@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finly</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes pulse{0%,60%,100%{transform:scale(1);opacity:.4}30%{transform:scale(1.4);opacity:1;background:#555}}
+#topbar{position:fixed;top:0;left:0;right:0;height:52px;background:#fff;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100}
+.tl{display:flex;align-items:center;gap:10px}
+.tl svg{animation:spin 14s linear infinite}
+.tname{font-size:16px;font-weight:700;letter-spacing:-.5px}
+.ttag{font-size:11px;color:#bbb}
+.probtn{font-size:12px;padding:6px 16px;border-radius:999px;border:1.5px solid #1a1a1a;cursor:pointer;color:#1a1a1a;background:#fff;font-family:inherit;font-weight:600}
+.probtn:hover{background:#1a1a1a;color:#fff}
+#welcome{position:fixed;top:52px;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;background:#fff;overflow-y:auto}
+#welcome svg.big{animation:spin 14s linear infinite}
+#welcome h1{font-size:28px;font-weight:700;margin:24px 0 8px;text-align:center;letter-spacing:-.6px}
+#welcome p{font-size:15px;color:#888;margin-bottom:32px;text-align:center;max-width:400px;line-height:1.6}
+.winput{width:100%;max-width:580px;position:relative}
+.winput input{width:100%;padding:16px 52px 16px 18px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:14px;outline:none;font-family:inherit;color:#1a1a1a}
+.winput input:focus{border-color:#888}
+.winput button{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;max-width:580px}
+.chip{font-size:13px;padding:7px 14px;border-radius:999px;border:1px solid #e8e8e8;background:#fafafa;color:#444;cursor:pointer;font-family:inherit}
+.chip:hover{border-color:#aaa;background:#f0f0f0}
+#chat{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;flex-direction:column;background:#fff}
+#chat.on{display:flex}
+#msgs{flex:1;overflow-y:auto;padding:28px 24px 16px}
+.mrow{max-width:700px;width:100%;margin:0 auto 12px}
+.urow{display:flex;justify-content:flex-end}
+.ubub{background:#f2f2f2;padding:11px 16px;border-radius:18px 18px 4px 18px;font-size:15px;max-width:75%;line-height:1.5;word-break:break-word}
+.brow{display:flex;gap:12px;align-items:flex-start}
+.bav{width:28px;height:28px;flex-shrink:0;margin-top:3px}
+.bav svg{width:28px;height:28px;display:block}
+.bav.spinning svg{animation:spin 2s linear infinite}
+.bcont{flex:1;min-width:0;font-size:15px;line-height:1.75;color:#1a1a1a;padding-top:2px;word-break:break-word}
+.bcont b{font-weight:700;color:#1a1a1a}
+.bcont ul{padding-left:20px;margin:2px 0}
+.bcont li{margin-bottom:2px;line-height:1.4}
+.bcont br{display:block;content:"";margin:0;padding:0;line-height:0}
+.bcont li{margin-bottom:5px}
+.bcont .disclaimer{font-size:12px;color:#bbb;margin-top:10px;display:block;border-top:1px solid #f0f0f0;padding-top:8px}
+.fups{display:flex;flex-direction:column;gap:4px;margin-top:12px;padding-left:40px}
+.fup{font-size:14px;padding:2px 0;border:none;background:none;color:#888;cursor:pointer;font-family:inherit;text-align:left;display:block}
+.fup:hover{color:#1a1a1a}
+.pdots{display:flex;align-items:center;gap:6px;padding:4px 0}
+.pdots span{font-size:13px;color:#aaa}
+.pd{width:6px;height:6px;border-radius:50%;background:#ccc;display:inline-block;animation:pulse 1.4s infinite}
+.pd:nth-child(2){animation-delay:.2s}
+.pd:nth-child(3){animation-delay:.4s}
+#ibar{flex-shrink:0;border-top:1px solid #f0f0f0;padding:12px 24px 16px;background:#fff}
+.iinner{max-width:700px;margin:0 auto;position:relative}
+.iinner input{width:100%;padding:13px 52px 13px 18px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:12px;outline:none;font-family:inherit;color:#1a1a1a}
+.iinner input:focus{border-color:#888}
+.iinner input:disabled{background:#fafafa;color:#aaa;cursor:not-allowed}
+.iinner button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+.iinner button:disabled{background:#ddd;cursor:not-allowed}
+#lnotice{display:none;max-width:700px;margin:0 auto 8px}
+.linner{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ltxt{font-size:13px;color:#555}
+.ltxt b{color:#1a1a1a}
+.ltimer{font-size:13px;font-weight:600;color:#1a1a1a}
+.lupbtn{font-size:12px;padding:6px 14px;border-radius:999px;background:#1a1a1a;color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:500}
+#ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;align-items:center;justify-content:center}
+#ov.open{display:flex}
+.modal{background:#fff;border-radius:20px;padding:32px;max-width:420px;width:90%}
+.modal h2{font-size:20px;font-weight:700;margin-bottom:6px}
+.modal>p{font-size:14px;color:#666;margin-bottom:24px;line-height:1.5}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.plan{border:1.5px solid #e8e8e8;border-radius:12px;padding:16px;cursor:pointer}
+.plan.best{border-color:#1a1a1a}
+.plabel{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;margin-bottom:6px}
+.plan.best .plabel{color:#1a1a1a}
+.pprice{font-size:24px;font-weight:700}
+.psub{font-size:12px;color:#aaa;margin-bottom:8px}
+.pfeats{font-size:12px;color:#666;line-height:1.7}
+.mcta{width:100%;padding:14px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:10px}
+.mclose{width:100%;padding:10px;background:none;border:none;font-size:13px;color:#bbb;cursor:pointer;font-family:inherit}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="tl">
+    <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/>
+      <circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/>
+      <circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/>
+      <circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/>
+      <circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/>
+      <circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/>
+      <circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/>
+      <circle cx="6" cy="22" r="1.a1a1a"/>
+      <line x1="14" y1="3" x2="14" y2="25" stroke="#1a1a1a" stroke-width="1"/>
+      <line x1="3" y1="14" x2="25" y2="14" stroke="#1a1a1a" stroke-width="1"/>
+      <line x1="6" y1="6" x2="22" y2="22" stroke="#1a1a1a" stroke-width="1"/>
+      <line x1="22" y1="6" x2="6" y2="22" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="14" cy="14" r="3.5" fill="#1a1a1a"/>
+    </svg>
+    <span class="tname">Finly</span>
+    <span class="ttag">India's finance brain</span>
+  </div>
+  <button class="probtn" onclick="openModal()">Get Pro</button>
+</div>
+
+<div id="welcome">
+  <svg class="big" width="52" height="52" viewBox="0 0 52 52" fill="none">
+    <circle cx="26" cy="4" r="3" fill="#1a1a1a"/>
+    <circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
+    <circle cx="4" cy="26" r="3" fill="#1a1a1a"/>
+    <circle cx="48" cy="26" r="3" fill="#1a1a1a"/>
+    <circle cx="9" cy="9" r="3" fill="#1a1a1a"/>
+    <circle cx="43" cy="43" r="3" fill="#1a1a1a"/>
+    <circle cx="43" cy="9" r="3" fill="#1a1a1a"/>
+    <circle cx="9" cy="43" r="3" fill="#1a1a1a"/>
+    <line x1="26" y1="4" x2="26" y2="48" stroke="#1a1a1a" stroke-width="1.2"/>
+    <line x1="4" y1="26" x2="48" y2="26" stroke="#1a1a1a" stroke-width="1.2"/>
+    <line x1="9" y1="9" x2="43" y2="43" stroke="#1a1a1a" stroke-width="1.2"/>
+    <line x1="43" y1="9" x2="9" y2="43" stroke="#1a1a1a" stroke-width="1.2"/>
+    <circle cx="26" cy="26" r="6.5" fill="#1a1a1a"/>
+  </svg>
+  <h1>What's on your mind?</h1>
+  <p>Taxes, trading, startups, investing, crypto — ask anything about money in India. No jargon. No sugarcoating.</p>
+  <div class="winput">
+    <input type="text" id="wi" placeholder="Ask anything about money..."/>
+    <button onclick="startChat()">↑</button>
+  </div>
+  <div class="chips">
+    <div class="chip" onclick="ca('How do I start investing in stocks in India?')">Start investing in stocks</div>
+    <div class="chip" onclick="ca('How to start a business in India?')">Start a business</div>
+    <div class="chip" onclick="ca('What is crypto tax in India?')">Crypto tax</div>
+    <div class="chip" onclick="ca('How to save tax on my salary?')">Save tax on salary</div>
+    <div class="chip" onclick="ca('What is SIP and should I start one?')">SIP basics</div>
+    <div class="chip" onclick="ca('How does GST work for freelancers?')">Freelancer GST</div>
+  </div>
+</div>
+
+<div id="chat">
+  <div id="msgs"></div>
+  <div id="ibar">
+    <div id="lnotice">
+      <div class="linner">
+        <div class="ltxt"><b>Daily limit reached.</b> Free again at <span id="rt">--:--</span></div>
+        <div class="ltimer" id="cd">3h 00m 00s</div>
+        <button class="lupbtn" onclick="openModal()">Get Pro →</button>
+      </div>
+    </div>
+    <div class="iinner">
+      <input type="text" id="ci" placeholder="Ask anything about money in India..."/>
+      <button id="sb">↑</button>
+    </div>
+  </div>
+</div>
+
+<div id="ov">
+  <div class="modal">
+    <h2>Upgrade to Pro</h2>
+    <p>Unlimited questions on taxes, trading, startups, investing and more — with faster answers and CA referral access.</p>
+    <div class="plans">
+      <div class="plan">
+        <div class="plabel">Monthly</div>
+        <div class="pprice">₹99</div>
+        <div class="psub">/month</div>
+        <div class="pfeats">✓ Unlimited questions<br>✓ All topics covered<br>✓ Cancel anytime</div>
+      </div>
+      <div class="plan best">
+        <div class="plabel">Annual ✦ Best value</div>
+        <div class="pprice">₹799</div>
+        <div class="psub">/year · saves ₹389</div>
+        <div class="pfeats">✓ Everything in monthly<br>✓ CA referral connect<br>✓ Priority answers</div>
+      </div>
+    </div>
+    <button class="mcta">Continue with Razorpay →</button>
+    <button class="mclose" onclick="closeModal()">Maybe later</button>
+  </div>
+</div>
+
+<script>
+var KEY = "REMOVED";
+var MODEL = "llama-3.3-70b-versatile";
+var qCount = 0;
+var FREE = 10;
+var isPro = false;
+var timerInt = null;
+var chatLog = [];
+var msgIdx = 0;
+
+ var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more, nothing less.\n\nFORMAT RULES — follow exactly every single time:\n1. Use clean HTML only — never use ** or ## or markdown ever\n2. 2. Start with one line: <b>To become a [TOPIC]</b>, here is the pathway: — then immediately go to the numbered sections on new lines. The opening line must be alone on its own line with nothing else on it.\n3. Use <b> tags for EVERY important term, name, number, percentage, rupee amount\n4.4. Use numbered sections — each section heading must be on its own line like this: <br><b>1. Foundation Course</b><br> then the bullets underneath. Never put a section number on the same line as the opening sentence.\n5. Under each section use <ul><li> bullet points — each bullet must be a complete detailed sentence\n6. End with a <b>Key Tips:</b> section with practical advice bullets\n7. End with a <b>Typical Timeline:</b> or relevant summary line\n8. Give thorough complete answers — explain every point fully like teaching someone from scratch\n9. Never add disclaimer for general knowledge questions — only add <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span> if user asks HOW TO actually file taxes or HOW TO actually invest real money\n10. Always end every answer with this exact line: <br><i>Want more detail on any specific part?</i>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax), GST, stock market and trading (NSE, BSE, Nifty, Sensex, F&O, technical analysis), personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax in India (30% flat, 1% TDS), credit scores and loans. For live prices say you don't have live data and direct to nseindia.com or Moneycontrol.";
+function snow(s) {
+  var a = s ? 'style="animation:spin 2s linear infinite;"' : '';
+  return '<svg viewBox="0 0 28 28" fill="none" ' + a + '><circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/><circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/><circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="22" r="1.8" fill="#1a1a1a"/><line x1="14" y1="3" x2="14" y2="25" stroke="#1a1a1a" stroke-width="1"/><line x1="3" y1="14" x2="25" y2="14" stroke="#1a1a1a" stroke-width="1"/><line x1="6" y1="6" x2="22" y2="22" stroke="#1a1a1a" stroke-width="1"/><line x1="22" y1="6" x2="6" y2="22" stroke="#1a1a1a" stroke-width="1"/><circle cx="14" cy="14" r="3.5" fill="#1a1a1a"/></svg>';
+}
+
+function extractSuggestions(text) {
+  var match = text.match(/<!--SUGGESTIONS:\[(.*?)\]-->/);
+  if (!match) return [];
+  try {
+    var arr = JSON.parse('[' + match[1] + ']');
+    return arr.filter(function(s) { return typeof s === 'string' && s.trim(); });
+  } catch(e) { return []; }
+}
+
+function cleanText(text) {
+  return text.replace(/<!--SUGGESTIONS:\[.*?\]-->/g, '').trim();
+}
+
+document.getElementById("wi").addEventListener("keydown", function(e) { if (e.key === "Enter") startChat(); });
+document.getElementById("ci").addEventListener("keydown", function(e) { if (e.key === "Enter") send(); });
+document.getElementById("sb").addEventListener("click", send);
+document.getElementById("ov").addEventListener("click", function(e) { if (e.target === this) closeModal(); });
+
+function ca(q) { document.getElementById("wi").value = q; startChat(); }
+
+function startChat() {
+  var v = document.getElementById("wi").value.trim();
+  if (!v) return;
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("chat").classList.add("on");
+  document.getElementById("ci").value = v;
+  send();
+}
+
+function send() {
+  if (!isPro && qCount >= FREE) { showLimit(); return; }
+  var ci = document.getElementById("ci");
+  var msg = ci.value.trim();
+  if (!msg) return;
+  ci.value = "";
+  document.getElementById("sb").disabled = true;
+  var ms = document.getElementById("msgs");
+  chatLog.push({ role: "user", content: msg });
+  var id = msgIdx++;
+
+  var ur = document.createElement("div");
+  ur.className = "mrow urow";
+  ur.innerHTML = "<div class='ubub'>" + esc(msg) + "</div>";
+  ms.appendChild(ur);
+
+  var br = document.createElement("div");
+  br.className = "mrow";
+  br.innerHTML = "<div class='brow'><div class='bav spinning' id='av" + id + "'>" + snow(true) + "</div><div class='bcont' id='bc" + id + "'><div class='pdots'><div class='pd'></div><div class='pd'></div><div class='pd'></div><span>Thinking...</span></div></div></div>";
+  ms.appendChild(br);
+  ms.scrollTop = ms.scrollHeight;
+
+  if (!isPro) qCount++;
+
+  fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + KEY },
+    body: JSON.stringify({ model: MODEL, messages: [{ role: "system", content: SYS }].concat(chatLog) })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    var raw = d.choices[0].message.content;
+    chatLog.push({ role: "assistant", content: raw });
+    var suggestions = extractSuggestions(raw);
+    console.log("RAW:", raw.slice(-200));
+    var clean = cleanText(raw);
+    var av = document.getElementById("av" + id);
+    var bc = document.getElementById("bc" + id);
+    av.className = "bav";
+    av.innerHTML = snow(false);
+    bc.innerHTML = clean
+    document.getElementById("sb").disabled = false;
+    ms.scrollTop = ms.scrollHeight;
+    if (!isPro && qCount >= FREE) showLimit();
+  })
+  .catch(function() {
+    var av = document.getElementById("av" + id);
+    var bc = document.getElementById("bc" + id);
+    av.className = "bav";
+    av.innerHTML = snow(false);
+    bc.innerHTML = "Something went wrong. Please try again.";
+    document.getElementById("sb").disabled = false;
+  });
+}
+
+function showLimit() {
+  var now = new Date();
+  var res = new Date(now.getTime() + 3 * 60 * 60 * 1000);
+  var h = res.getHours(), m = res.getMinutes(), ap = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  var ms = m < 10 ? "0" + m : m;
+  document.getElementById("rt").textContent = h + ":" + ms + " " + ap;
+  document.getElementById("lnotice").style.display = "block";
+  document.getElementById("ci").disabled = true;
+  document.getElementById("sb").disabled = true;
+  document.getElementById("ci").placeholder = "Free again at " + h + ":" + ms + " " + ap + " — or upgrade";
+  var secs = 10800;
+  if (timerInt) clearInterval(timerInt);
+  timerInt = setInterval(function() {
+    secs--;
+    var hh = Math.floor(secs / 3600), mm = Math.floor((secs % 3600) / 60), ss = secs % 60;
+    document.getElementById("cd").textContent = (hh > 0 ? hh + "h " : "") + (mm < 10 ? "0" + mm : mm) + "m " + (ss < 10 ? "0" + ss : ss) + "s";
+    if (secs <= 0) {
+      clearInterval(timerInt);
+      qCount = 0;
+      document.getElementById("lnotice").style.display = "none";
+      document.getElementById("ci").disabled = false;
+      document.getElementById("sb").disabled = false;
+      document.getElementById("ci").placeholder = "Ask anything about money in India...";
+    }
+  }, 1000);
+}
+
+function openModal() { document.getElementById("ov").classList.add("open"); }
+function closeModal() { document.getElementById("ov").classList.remove("open"); }
+function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+</script>
+</body>
+</html>
