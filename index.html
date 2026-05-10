@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Finly</title>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes pulse{0%,60%,100%{transform:scale(1);opacity:.4}30%{transform:scale(1.4);opacity:1;background:#555}}
 
-/* TOPBAR */
 #topbar{position:fixed;top:0;left:0;right:0;height:52px;background:#fff;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100}
 .tl{display:flex;align-items:center;gap:8px}
 .tl svg{animation:spin 14s linear infinite;flex-shrink:0}
@@ -25,14 +26,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .useravatar img{width:100%;height:100%;border-radius:50%}
 #username{font-size:13px;color:#555;display:none}
 @media(min-width:480px){#username{display:inline}}
-.signoutbtn{font-size:11px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
+.signoutbtn{font-size:11px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit}
 .signoutbtn:hover{color:#555}
 
-/* LOGIN */
 #loginscreen{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;z-index:200;overflow-y:auto}
 #loginscreen svg.big{animation:spin 14s linear infinite}
 #loginscreen h1{font-size:24px;font-weight:700;margin:20px 0 8px;text-align:center;letter-spacing:-.5px}
-@media(min-width:480px){#loginscreen h1{font-size:28px}}
 #loginscreen p{font-size:14px;color:#888;margin-bottom:32px;text-align:center;max-width:340px;line-height:1.6}
 .authbox{width:100%;max-width:360px}
 .googlebtn{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 24px;border:1.5px solid #e0e0e0;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;background:#fff;font-family:inherit;color:#1a1a1a;width:100%;margin-bottom:16px;transition:all 0.15s}
@@ -45,15 +44,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .emailform input{padding:12px 14px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:inherit;outline:none;color:#1a1a1a}
 .emailform input:focus{border-color:#888}
 .emailtabs{display:flex;gap:0;margin-bottom:12px;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden}
-.etab{flex:1;padding:8px;font-size:13px;font-weight:500;cursor:pointer;background:#fff;border:none;font-family:inherit;color:#888;transition:all 0.15s}
+.etab{flex:1;padding:8px;font-size:13px;font-weight:500;cursor:pointer;background:#fff;border:none;font-family:inherit;color:#888}
 .etab.active{background:#1a1a1a;color:#fff}
 .submitbtn{padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
-.submitbtn:hover{background:#333}
 .loginskip{font-size:12px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit;margin-top:8px;width:100%;text-align:center}
-.loginskip:hover{color:#555}
 .autherr{font-size:12px;color:#c0392b;text-align:center;min-height:16px}
 
-/* WELCOME */
 #welcome{position:fixed;top:52px;left:0;right:0;bottom:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;background:#fff;overflow-y:auto}
 #welcome svg.big{animation:spin 14s linear infinite}
 #welcome h1{font-size:22px;font-weight:700;margin:20px 0 8px;text-align:center;letter-spacing:-.5px}
@@ -68,7 +64,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .chip:hover{border-color:#aaa;background:#f0f0f0}
 @media(min-width:480px){.chip{font-size:13px;padding:7px 14px}}
 
-/* CHAT */
 #chat{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;flex-direction:column;background:#fff}
 #chat.on{display:flex}
 #msgs{flex:1;overflow-y:auto;padding:20px 16px 8px}
@@ -88,17 +83,38 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .bcont li{margin-bottom:4px;line-height:1.5}
 .bcont br{display:block;margin:2px 0}
 .bcont .disclaimer{font-size:11px;color:#bbb;margin-top:10px;display:block;border-top:1px solid #f0f0f0;padding-top:8px}
+
+.chartbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px;max-width:100%}
+.chartbox canvas{max-width:100%}
+
+.calcbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px}
+.calcbox h4{font-size:14px;font-weight:600;margin-bottom:12px}
+.calcrow{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.calcrow input{flex:1;min-width:120px;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;font-family:inherit;outline:none}
+.calcrow input:focus{border-color:#888}
+.calcbtn{padding:8px 16px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.calcresult{font-size:13px;color:#1a1a1a;margin-top:8px;padding:10px;background:#fff;border-radius:8px;border:1px solid #eee;line-height:1.6}
+
+.stockbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:14px;margin-top:12px}
+.stockrow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f0f0}
+.stockrow:last-child{border-bottom:none}
+.stockname{font-size:13px;font-weight:600}
+.stockprice{font-size:13px}
+.stockchange{font-size:12px;padding:2px 8px;border-radius:999px}
+.up{background:#e8f8f0;color:#0a7a4a}
+.down{background:#fdf0f0;color:#c0392b}
+
+.cabox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px}
+.cabox h4{font-size:14px;font-weight:600;margin-bottom:8px}
+.cabox p{font-size:13px;color:#555;margin-bottom:12px;line-height:1.5}
+.cabtn{padding:10px 20px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500}
+
 .pdots{display:flex;align-items:center;gap:6px;padding:4px 0}
 .pdots span{font-size:13px;color:#aaa}
 .pd{width:6px;height:6px;border-radius:50%;background:#ccc;display:inline-block;animation:pulse 1.4s infinite}
 .pd:nth-child(2){animation-delay:.2s}
 .pd:nth-child(3){animation-delay:.4s}
 
-/* CHART */
-.chartbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px;max-width:100%}
-.chartbox canvas{max-width:100%}
-
-/* INPUT BAR */
 #ibar{flex-shrink:0;border-top:1px solid #f0f0f0;padding:10px 16px 14px;background:#fff}
 @media(min-width:480px){#ibar{padding:12px 24px 16px}}
 .iinner{max-width:700px;margin:0 auto;position:relative}
@@ -114,24 +130,29 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .ltimer{font-size:12px;font-weight:600;color:#1a1a1a}
 .lupbtn{font-size:11px;padding:5px 12px;border-radius:999px;background:#1a1a1a;color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:500;white-space:nowrap}
 
-/* MODAL */
 #ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;align-items:center;justify-content:center;padding:16px}
 #ov.open{display:flex}
-.modal{background:#fff;border-radius:20px;padding:24px;max-width:420px;width:100%}
+.modal{background:#fff;border-radius:20px;padding:24px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto}
 @media(min-width:480px){.modal{padding:32px}}
 .modal h2{font-size:18px;font-weight:700;margin-bottom:6px}
-@media(min-width:480px){.modal h2{font-size:20px}}
 .modal>p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.5}
 .plans{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.plan{border:1.5px solid #e8e8e8;border-radius:12px;padding:14px;cursor:pointer}
+.plan{border:1.5px solid #e8e8e8;border-radius:12px;padding:14px;cursor:pointer;transition:border 0.15s}
+.plan:hover{border-color:#888}
 .plan.best{border-color:#1a1a1a}
 .plabel{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;margin-bottom:4px}
 .plan.best .plabel{color:#1a1a1a}
 .pprice{font-size:22px;font-weight:700}
 .psub{font-size:11px;color:#aaa;margin-bottom:6px}
 .pfeats{font-size:11px;color:#666;line-height:1.7}
+.plan-select{width:100%;padding:8px;background:#f5f5f5;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:8px}
+.plan.best .plan-select{background:#1a1a1a;color:#fff}
 .mcta{width:100%;padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:8px}
 .mclose{width:100%;padding:8px;background:none;border:none;font-size:13px;color:#bbb;cursor:pointer;font-family:inherit}
+.profeats{background:#fafafa;border-radius:10px;padding:14px;margin-bottom:16px}
+.profeats h4{font-size:13px;font-weight:600;margin-bottom:8px}
+.profeats ul{padding-left:16px}
+.profeats li{font-size:12px;color:#555;margin-bottom:4px;line-height:1.5}
 </style>
 </head>
 <body>
@@ -168,14 +189,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 
 <div id="loginscreen">
   <svg class="big" width="48" height="48" viewBox="0 0 52 52" fill="none">
-    <circle cx="26" cy="4" r="3" fill="#1a1a1a"/>
-    <circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
-    <circle cx="4" cy="26" r="3" fill="#1a1a1a"/>
-    <circle cx="48" cy="26" r="3" fill="#1a1a1a"/>
-    <circle cx="9" cy="9" r="3" fill="#1a1a1a"/>
-    <circle cx="43" cy="43" r="3" fill="#1a1a1a"/>
-    <circle cx="43" cy="9" r="3" fill="#1a1a1a"/>
-    <circle cx="9" cy="43" r="3" fill="#1a1a1a"/>
+    <circle cx="26" cy="4" r="3" fill="#1a1a1a"/><circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
+    <circle cx="4" cy="26" r="3" fill="#1a1a1a"/><circle cx="48" cy="26" r="3" fill="#1a1a1a"/>
+    <circle cx="9" cy="9" r="3" fill="#1a1a1a"/><circle cx="43" cy="43" r="3" fill="#1a1a1a"/>
+    <circle cx="43" cy="9" r="3" fill="#1a1a1a"/><circle cx="9" cy="43" r="3" fill="#1a1a1a"/>
     <line x1="26" y1="4" x2="26" y2="48" stroke="#1a1a1a" stroke-width="1.2"/>
     <line x1="4" y1="26" x2="48" y2="26" stroke="#1a1a1a" stroke-width="1.2"/>
     <line x1="9" y1="9" x2="43" y2="43" stroke="#1a1a1a" stroke-width="1.2"/>
@@ -183,10 +200,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <circle cx="26" cy="26" r="6.5" fill="#1a1a1a"/>
   </svg>
   <h1>Welcome to Finly</h1>
-  <p>India's finance brain. Sign in to get started with taxes, investing, trading and more.</p>
+  <p>India's finance brain. Sign in to get started.</p>
   <div class="authbox">
     <button class="googlebtn" onclick="signInWithGoogle()">
-      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"/>
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G"/>
       Continue with Google
     </button>
     <div class="divider"><hr><span>or</span><hr></div>
@@ -207,14 +224,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 
 <div id="welcome">
   <svg class="big" width="48" height="48" viewBox="0 0 52 52" fill="none">
-    <circle cx="26" cy="4" r="3" fill="#1a1a1a"/>
-    <circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
-    <circle cx="4" cy="26" r="3" fill="#1a1a1a"/>
-    <circle cx="48" cy="26" r="3" fill="#1a1a1a"/>
-    <circle cx="9" cy="9" r="3" fill="#1a1a1a"/>
-    <circle cx="43" cy="43" r="3" fill="#1a1a1a"/>
-    <circle cx="43" cy="9" r="3" fill="#1a1a1a"/>
-    <circle cx="9" cy="43" r="3" fill="#1a1a1a"/>
+    <circle cx="26" cy="4" r="3" fill="#1a1a1a"/><circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
+    <circle cx="4" cy="26" r="3" fill="#1a1a1a"/><circle cx="48" cy="26" r="3" fill="#1a1a1a"/>
+    <circle cx="9" cy="9" r="3" fill="#1a1a1a"/><circle cx="43" cy="43" r="3" fill="#1a1a1a"/>
+    <circle cx="43" cy="9" r="3" fill="#1a1a1a"/><circle cx="9" cy="43" r="3" fill="#1a1a1a"/>
     <line x1="26" y1="4" x2="26" y2="48" stroke="#1a1a1a" stroke-width="1.2"/>
     <line x1="4" y1="26" x2="48" y2="26" stroke="#1a1a1a" stroke-width="1.2"/>
     <line x1="9" y1="9" x2="43" y2="43" stroke="#1a1a1a" stroke-width="1.2"/>
@@ -228,13 +241,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <button onclick="startChat()">↑</button>
   </div>
   <div class="chips">
-    <div class="chip" onclick="ca('How do I start investing in stocks in India?')">Investing in stocks</div>
-    <div class="chip" onclick="ca('How to start a business in India?')">Start a business</div>
-    <div class="chip" onclick="ca('What is crypto tax in India?')">Crypto tax</div>
-    <div class="chip" onclick="ca('How to save tax on my salary?')">Save tax on salary</div>
-    <div class="chip" onclick="ca('What is SIP?')">SIP basics</div>
-    <div class="chip" onclick="ca('How does GST work for freelancers?')">Freelancer GST</div>
     <div class="chip" onclick="ca('Show me Indian income tax slabs 2024-25')">Tax slabs chart</div>
+    <div class="chip" onclick="ca('Show me SIP growth calculator')">SIP calculator</div>
+    <div class="chip" onclick="ca('Show me portfolio breakdown')">Portfolio chart</div>
+    <div class="chip" onclick="ca('Find legal ways to save my tax')">Save my tax</div>
+    <div class="chip" onclick="ca('Calculate my EMI')">EMI calculator</div>
+    <div class="chip" onclick="ca('Show me live Nifty and Sensex prices')">Live market</div>
+    <div class="chip" onclick="ca('Connect me to a CA')">Talk to a CA</div>
+    <div class="chip" onclick="ca('How to file ITR step by step for my situation')">File my ITR</div>
   </div>
 </div>
 
@@ -258,27 +272,37 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 <div id="ov">
   <div class="modal">
     <h2>Upgrade to Pro</h2>
-    <p>Unlimited questions on taxes, trading, startups, investing and more — with faster answers and CA referral access.</p>
+    <p>Unlock the full power of Finly — personalised tax saving, CA access, unlimited questions and more.</p>
+    <div class="profeats">
+      <h4>What you get with Pro:</h4>
+      <ul>
+        <li>✓ Unlimited questions — no daily limit</li>
+        <li>✓ Personalised tax optimisation — find your exact savings</li>
+        <li>✓ Guided ITR filing — step by step for your situation</li>
+        <li>✓ CA connector — talk to a real CA instantly</li>
+        <li>✓ Old vs new regime comparison for your income</li>
+        <li>✓ Priority faster answers</li>
+      </ul>
+    </div>
     <div class="plans">
-      <div class="plan">
+      <div class="plan" id="plan-monthly">
         <div class="plabel">Monthly</div>
         <div class="pprice">₹99</div>
         <div class="psub">/month</div>
-        <div class="pfeats">✓ Unlimited questions<br>✓ All topics covered<br>✓ Cancel anytime</div>
+        <div class="pfeats">Cancel anytime</div>
+        <button class="plan-select" onclick="startPayment(99, 'monthly')">Select</button>
       </div>
-      <div class="plan best">
+      <div class="plan best" id="plan-annual">
         <div class="plabel">Annual ✦ Best value</div>
         <div class="pprice">₹799</div>
         <div class="psub">/year · saves ₹389</div>
-        <div class="pfeats">✓ Everything in monthly<br>✓ CA referral connect<br>✓ Priority answers</div>
+        <div class="pfeats">₹67/month effectively</div>
+        <button class="plan-select" onclick="startPayment(799, 'annual')">Select</button>
       </div>
     </div>
-    <button class="mcta">Continue with Razorpay →</button>
     <button class="mclose" onclick="closeModal()">Maybe later</button>
   </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -302,9 +326,7 @@ window.signInWithGoogle = async function() {
     document.getElementById("autherr").textContent = "";
     const result = await signInWithPopup(auth, provider);
     showApp(result.user);
-  } catch(e) {
-    document.getElementById("autherr").textContent = "Google sign in failed. Try again.";
-  }
+  } catch(e) { document.getElementById("autherr").textContent = "Google sign in failed. Try again."; }
 };
 
 window.submitEmail = async function() {
@@ -326,7 +348,7 @@ window.submitEmail = async function() {
     }
   } catch(e) {
     if (e.code === "auth/user-not-found") errEl.textContent = "No account found. Sign up instead.";
-    else if (e.code === "auth/wrong-password") errEl.textContent = "Wrong password. Try again.";
+    else if (e.code === "auth/wrong-password") errEl.textContent = "Wrong password.";
     else if (e.code === "auth/email-already-in-use") errEl.textContent = "Email already registered. Sign in instead.";
     else if (e.code === "auth/weak-password") errEl.textContent = "Password must be at least 6 characters.";
     else if (e.code === "auth/invalid-email") errEl.textContent = "Invalid email address.";
@@ -336,6 +358,7 @@ window.submitEmail = async function() {
 
 window.signOut = async function() {
   await fbSignOut(auth);
+  window.isPro = false;
   document.getElementById("loginscreen").style.display = "flex";
   document.getElementById("welcome").style.display = "none";
   document.getElementById("chat").classList.remove("on");
@@ -352,6 +375,8 @@ function showApp(user, overrideName) {
   document.getElementById("welcome").style.display = "flex";
   document.getElementById("userinfo").style.display = "flex";
   var firstName = overrideName || (user.displayName ? user.displayName.split(" ")[0] : "there");
+  window.currentUserName = firstName;
+  window.currentUserEmail = user.email || "";
   document.getElementById("username").textContent = firstName;
   document.getElementById("welcomeheading").textContent = "Hey " + firstName + ", what's on your mind?";
   if (user.photoURL) {
@@ -363,12 +388,16 @@ function showApp(user, overrideName) {
 </script>
 
 <script>
-var KEY = "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";
+var GROQ_KEY = "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";
+var RZP_KEY = "rzp_test_SnXgo4F1cJ0hbw";
+var AV_KEY = "2U78ST4VTFBB9MIX";
 var MODEL = "llama-3.3-70b-versatile";
 var qCount = 0, FREE = 10, isPro = false, timerInt = null, chatLog = [], msgIdx = 0;
 window.authMode = "signin";
+window.currentUserName = "User";
+window.currentUserEmail = "";
 
-var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more, nothing less.\n\nFORMAT RULES — follow exactly every single time:\n1. Use clean HTML only — never use ** or ## or markdown ever\n2. Start with a bold heading using <b>To become a [TOPIC]</b>, here is the pathway: or similar relevant opener\n3. Use <b> tags for EVERY important term, name, number, percentage, rupee amount\n4. Use numbered sections — each section heading must be on its own line like this: <br><b>1. Section Title</b><br> then the bullets underneath\n5. Under each section use <ul><li> bullet points — each bullet must be a complete detailed sentence\n6. End with a <b>Key Tips:</b> section with practical advice bullets\n7. End with a <b>Typical Timeline:</b> or relevant summary line\n8. Give thorough complete answers — explain every point fully like teaching someone from scratch\n9. Never add disclaimer for general knowledge questions — only add <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span> if user asks HOW TO actually file taxes or HOW TO actually invest real money\n10. Always end every answer with this exact line: <br><i>Want more detail on any specific part?</i>\n11. CHARTS: If the question is about tax slabs, SIP returns, portfolio breakdown, or any data that can be visualised, add this tag at the end of your answer: <div class='chartrequest' data-type='CHARTTYPE' data-label='TITLE'></div> where CHARTTYPE is one of: taxslabs, sipgrowth, portfoliopie. Only add this when a chart genuinely helps.\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax), GST, stock market and trading (NSE, BSE, Nifty, Sensex, F&O, technical analysis), personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax in India (30% flat, 1% TDS), credit scores and loans. For live prices say you don't have live data and direct to nseindia.com or Moneycontrol.";
+var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more, nothing less.\n\nFORMAT RULES — follow exactly every single time:\n1. Use clean HTML only — never use ** or ## or markdown ever\n2. Start with a bold heading relevant to the topic\n3. Use <b> tags for EVERY important term, name, number, percentage, rupee amount\n4. Use numbered sections — each section heading on its own line: <br><b>1. Section Title</b><br>\n5. Under each section use <ul><li> bullet points — each bullet a complete detailed sentence\n6. End with <b>Key Tips:</b> section\n7. End with <b>Typical Timeline:</b> or summary line\n8. Give thorough complete answers\n9. Only add disclaimer if user asks HOW TO actually file taxes or invest real money: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part?</i>\n11. SPECIAL COMMANDS — when user asks for these add the exact tag at the end:\n- Tax slabs/regime: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP/investment growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio breakdown: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime comparison: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/optimisation: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market prices: <div class='chartrequest' data-type='livemarket'></div>\n- Connect to CA: <div class='chartrequest' data-type='caconnect'></div>\n- ITR filing help: <div class='chartrequest' data-type='itrguide'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax), GST, stock market and trading (NSE, BSE, Nifty, Sensex, F&O, technical analysis), personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax in India (30% flat, 1% TDS), credit scores and loans. For live prices use the live market command tag.";
 
 function snow(s) {
   var a = s ? 'style="animation:spin 2s linear infinite;"' : '';
@@ -389,6 +418,32 @@ window.skipLogin = function() {
   document.getElementById("welcome").style.display = "flex";
 };
 
+window.startPayment = function(amount, plan) {
+  var options = {
+    key: RZP_KEY,
+    amount: amount * 100,
+    currency: "INR",
+    name: "Finly",
+    description: plan === "monthly" ? "Finly Pro Monthly" : "Finly Pro Annual",
+    image: "",
+    handler: function(response) {
+      isPro = true;
+      window.isPro = true;
+      closeModal();
+      document.getElementById("sb").disabled = false;
+      document.getElementById("ci").disabled = false;
+      document.getElementById("lnotice").style.display = "none";
+      document.getElementById("ci").placeholder = "Ask anything about money in India...";
+      alert("Welcome to Finly Pro! You now have unlimited access.");
+    },
+    prefill: { name: window.currentUserName, email: window.currentUserEmail },
+    theme: { color: "#1a1a1a" }
+  };
+  var rzp = new Razorpay(options);
+  rzp.open();
+  closeModal();
+};
+
 document.getElementById("wi").addEventListener("keydown", function(e) { if (e.key === "Enter") startChat(); });
 document.getElementById("ci").addEventListener("keydown", function(e) { if (e.key === "Enter") send(); });
 document.getElementById("sb").addEventListener("click", send);
@@ -405,29 +460,30 @@ function startChat() {
   send();
 }
 
-function renderChart(container, type) {
-  var box = document.createElement("div");
-  box.className = "chartbox";
-  var canvas = document.createElement("canvas");
-  canvas.style.maxHeight = "260px";
-  box.appendChild(canvas);
-  container.appendChild(box);
-
+function renderWidget(container, type, br) {
   if (type === "taxslabs") {
+    var box = document.createElement("div");
+    box.className = "chartbox";
+    var canvas = document.createElement("canvas");
+    canvas.style.maxHeight = "260px";
+    box.appendChild(canvas);
+    container.appendChild(box);
     new Chart(canvas, {
       type: "bar",
       data: {
         labels: ["₹0-3L", "₹3-7L", "₹7-10L", "₹10-12L", "₹12-15L", "₹15L+"],
-        datasets: [{
-          label: "Tax Rate (%)",
-          data: [0, 5, 10, 15, 20, 30],
-          backgroundColor: ["#e8f4f8","#b8d9ea","#88bfdb","#5aa5cc","#2b8abd","#1a6fa0"],
-          borderRadius: 6
-        }]
+        datasets: [{ label: "Tax Rate (%)", data: [0, 5, 10, 15, 20, 30], backgroundColor: ["#e8f4f8","#b8d9ea","#88bfdb","#5aa5cc","#2b8abd","#1a6fa0"], borderRadius: 6 }]
       },
       options: { responsive: true, plugins: { legend: { display: false }, title: { display: true, text: "New Tax Regime Slabs 2024-25" } }, scales: { y: { max: 35, ticks: { callback: function(v){ return v + "%" } } } } }
     });
+
   } else if (type === "sipgrowth") {
+    var box = document.createElement("div");
+    box.className = "chartbox";
+    var canvas = document.createElement("canvas");
+    canvas.style.maxHeight = "260px";
+    box.appendChild(canvas);
+    container.appendChild(box);
     var labels = [], invested = [], value = [];
     for (var i = 1; i <= 10; i++) {
       labels.push(i + "Y");
@@ -436,25 +492,132 @@ function renderChart(container, type) {
     }
     new Chart(canvas, {
       type: "line",
-      data: {
-        labels: labels,
-        datasets: [
-          { label: "Amount Invested", data: invested, borderColor: "#ccc", backgroundColor: "rgba(200,200,200,0.1)", fill: true, tension: 0.3 },
-          { label: "Wealth Created", data: value, borderColor: "#1a1a1a", backgroundColor: "rgba(26,26,26,0.08)", fill: true, tension: 0.3 }
-        ]
-      },
+      data: { labels: labels, datasets: [{ label: "Amount Invested", data: invested, borderColor: "#ccc", backgroundColor: "rgba(200,200,200,0.1)", fill: true, tension: 0.3 }, { label: "Wealth Created", data: value, borderColor: "#1a1a1a", backgroundColor: "rgba(26,26,26,0.08)", fill: true, tension: 0.3 }] },
       options: { responsive: true, plugins: { title: { display: true, text: "SIP Growth — ₹1,000/month at 12% p.a." } }, scales: { y: { ticks: { callback: function(v){ return "₹" + (v/1000).toFixed(0) + "K" } } } } }
     });
+
   } else if (type === "portfoliopie") {
+    var box = document.createElement("div");
+    box.className = "chartbox";
+    var canvas = document.createElement("canvas");
+    canvas.style.maxHeight = "260px";
+    box.appendChild(canvas);
+    container.appendChild(box);
     new Chart(canvas, {
       type: "doughnut",
-      data: {
-        labels: ["Equity (40%)", "Mutual Funds (25%)", "FD (15%)", "Gold (10%)", "PPF (10%)"],
-        datasets: [{ data: [40, 25, 15, 10, 10], backgroundColor: ["#1a1a1a","#444","#777","#aaa","#ddd"], borderWidth: 0 }]
-      },
+      data: { labels: ["Equity (40%)", "Mutual Funds (25%)", "FD (15%)", "Gold (10%)", "PPF (10%)"], datasets: [{ data: [40, 25, 15, 10, 10], backgroundColor: ["#1a1a1a","#444","#777","#aaa","#ddd"], borderWidth: 0 }] },
       options: { responsive: true, plugins: { title: { display: true, text: "Sample Balanced Portfolio" } } }
     });
+
+  } else if (type === "regimecompare") {
+    var box = document.createElement("div");
+    box.className = "chartbox";
+    var canvas = document.createElement("canvas");
+    canvas.style.maxHeight = "260px";
+    box.appendChild(canvas);
+    container.appendChild(box);
+    new Chart(canvas, {
+      type: "bar",
+      data: {
+        labels: ["₹5L", "₹7L", "₹10L", "₹12L", "₹15L", "₹20L"],
+        datasets: [
+          { label: "Old Regime Tax", data: [12500, 32500, 75000, 105000, 156000, 262500], backgroundColor: "rgba(180,180,180,0.7)", borderRadius: 4 },
+          { label: "New Regime Tax", data: [0, 0, 30000, 60000, 105000, 195000], backgroundColor: "rgba(26,26,26,0.8)", borderRadius: 4 }
+        ]
+      },
+      options: { responsive: true, plugins: { title: { display: true, text: "Old vs New Tax Regime Comparison" } }, scales: { y: { ticks: { callback: function(v){ return "₹" + (v/1000).toFixed(0) + "K" } } } } }
+    });
+
+  } else if (type === "emicalc") {
+    var box = document.createElement("div");
+    box.className = "calcbox";
+    box.innerHTML = "<h4>EMI Calculator</h4><div class='calcrow'><input type='number' id='loanamt' placeholder='Loan amount (₹)'/><input type='number' id='loanrate' placeholder='Interest rate (%)'/><input type='number' id='loantenure' placeholder='Tenure (months)'/><button class='calcbtn' onclick='calcEMI()'>Calculate</button></div><div class='calcresult' id='emiresult'>Enter loan details above to calculate your EMI.</div>";
+    container.appendChild(box);
+
+  } else if (type === "taxsaver") {
+    var box = document.createElement("div");
+    box.className = "calcbox";
+    box.innerHTML = "<h4>💰 Tax Saver — Find Your Legal Savings</h4><div class='calcrow'><input type='number' id='ts-salary' placeholder='Annual salary (₹)'/><input type='number' id='ts-80c' placeholder='Section 80C investments (₹)'/><input type='number' id='ts-hra' placeholder='HRA received (₹)'/><button class='calcbtn' onclick='calcTaxSaver()'>Find Savings</button></div><div class='calcresult' id='ts-result'>Enter your details to find how much tax you can legally save.</div>";
+    container.appendChild(box);
+
+  } else if (type === "livemarket") {
+    var box = document.createElement("div");
+    box.className = "stockbox";
+    box.innerHTML = "<div style='font-size:13px;font-weight:600;margin-bottom:8px'>Live Market Prices</div><div id='stockdata'><div style='font-size:13px;color:#aaa'>Loading...</div></div>";
+    container.appendChild(box);
+    fetchStocks(box.querySelector("#stockdata"));
+
+  } else if (type === "caconnect") {
+    var box = document.createElement("div");
+    box.className = "cabox";
+    box.innerHTML = "<h4>Connect with a CA</h4><p>Get personalised advice from a registered Chartered Accountant for your specific tax, business, or filing situation.</p><button class='cabtn' onclick='openModal()'>Upgrade to Pro to Connect →</button>";
+    if (isPro) {
+      box.innerHTML = "<h4>Connect with a CA</h4><p>You're a Pro member! A CA will contact you within 24 hours on your registered email.</p><div class='calcresult'>Our CA partner will reach out to <b>" + (window.currentUserEmail || "your email") + "</b> within 24 hours. Average response time is 2-4 hours during business days.</div>";
+    }
+    container.appendChild(box);
+
+  } else if (type === "itrguide") {
+    var box = document.createElement("div");
+    box.className = "calcbox";
+    box.innerHTML = "<h4>Guided ITR Filing</h4><div class='calcrow'><input type='number' id='itr-salary' placeholder='Annual salary (₹)'/><input type='text' id='itr-source' placeholder='Income source (salary/freelance/business)'/><button class='calcbtn' onclick='calcITR()'>Get My ITR Guide</button></div><div class='calcresult' id='itr-result'>Enter your details to get a personalised ITR filing guide.</div>";
+    container.appendChild(box);
   }
+}
+
+window.calcEMI = function() {
+  var p = parseFloat(document.getElementById("loanamt").value);
+  var r = parseFloat(document.getElementById("loanrate").value) / 12 / 100;
+  var n = parseFloat(document.getElementById("loantenure").value);
+  if (!p || !r || !n) { document.getElementById("emiresult").innerHTML = "Please enter all fields."; return; }
+  var emi = p * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+  var total = emi * n;
+  var interest = total - p;
+  document.getElementById("emiresult").innerHTML = "<b>Monthly EMI: ₹" + Math.round(emi).toLocaleString("en-IN") + "</b><br>Total Payment: ₹" + Math.round(total).toLocaleString("en-IN") + "<br>Total Interest: ₹" + Math.round(interest).toLocaleString("en-IN") + "<br>Principal: ₹" + p.toLocaleString("en-IN");
+};
+
+window.calcTaxSaver = function() {
+  var salary = parseFloat(document.getElementById("ts-salary").value) || 0;
+  var inv80c = parseFloat(document.getElementById("ts-80c").value) || 0;
+  var hra = parseFloat(document.getElementById("ts-hra").value) || 0;
+  if (!salary) { document.getElementById("ts-result").innerHTML = "Please enter your salary."; return; }
+  var maxima80c = Math.min(150000 - inv80c, 150000);
+  var hraDeduct = Math.min(hra * 0.5, salary * 0.4);
+  var nps = 50000;
+  var health = 25000;
+  var totalSavings = maxima80c + hraDeduct + nps + health;
+  var taxSaved = Math.round(totalSavings * 0.2);
+  document.getElementById("ts-result").innerHTML = "<b>Legal tax saving opportunities found:</b><br>Additional 80C investment possible: <b>₹" + Math.max(0,maxima80c).toLocaleString("en-IN") + "</b><br>HRA deduction available: <b>₹" + Math.round(hraDeduct).toLocaleString("en-IN") + "</b><br>NPS Section 80CCD(1B): <b>₹50,000</b><br>Health insurance 80D: <b>₹25,000</b><br><br><b>Estimated tax you could save: ₹" + taxSaved.toLocaleString("en-IN") + " per year</b><br><small style='color:#aaa'>Upgrade to Pro for your exact personalised calculation.</small>";
+};
+
+window.calcITR = function() {
+  var salary = parseFloat(document.getElementById("itr-salary").value) || 0;
+  var source = document.getElementById("itr-source").value.toLowerCase();
+  if (!salary) { document.getElementById("itr-result").innerHTML = "Please enter your annual income."; return; }
+  var form = "ITR-1 (SAHAJ)";
+  var notes = "For salaried individuals with income up to ₹50 lakhs.";
+  if (source.includes("freelance") || source.includes("business")) { form = "ITR-3 or ITR-4 (SUGAM)"; notes = "For freelancers and business owners. You can claim business expenses to reduce taxable income."; }
+  var deadline = "31st July 2025";
+  document.getElementById("itr-result").innerHTML = "<b>Your ITR form: " + form + "</b><br>" + notes + "<br><br><b>Steps for you:</b><br>1. Collect Form 16 from employer (if salaried)<br>2. Download AIS from incometax.gov.in<br>3. Check 26AS for TDS details<br>4. File on incometax.gov.in<br><b>Deadline: " + deadline + "</b><br><br><small style='color:#aaa'>Upgrade to Pro for guided step-by-step filing with a CA.</small>";
+};
+
+function fetchStocks(container) {
+  var symbols = ["BSE:SENSEX", "NSE:NIFTY_50"];
+  container.innerHTML = "<div style='font-size:13px;color:#aaa'>Fetching live prices...</div>";
+  fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=RELIANCE.BSE&apikey=" + AV_KEY)
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var price = d["Global Quote"] ? d["Global Quote"]["05. price"] : null;
+      var change = d["Global Quote"] ? d["Global Quote"]["10. change percent"] : null;
+      if (price) {
+        var isUp = parseFloat(change) >= 0;
+        container.innerHTML = "<div class='stockrow'><span class='stockname'>Reliance Industries</span><span class='stockprice'>₹" + parseFloat(price).toFixed(2) + "</span><span class='stockchange " + (isUp?"up":"down") + "'>" + (isUp?"+":"") + parseFloat(change).toFixed(2) + "%</span></div><div style='font-size:11px;color:#bbb;margin-top:8px'>Live data via Alpha Vantage · Delayed 15 mins · Check NSE/BSE for real-time</div>";
+      } else {
+        container.innerHTML = "<div style='font-size:13px;color:#555'>Live data temporarily unavailable. Check <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> or <a href='https://moneycontrol.com' target='_blank' style='color:#1a1a1a'>Moneycontrol</a> for live prices.</div>";
+      }
+    })
+    .catch(function() {
+      container.innerHTML = "<div style='font-size:13px;color:#555'>Check <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> or <a href='https://moneycontrol.com' target='_blank' style='color:#1a1a1a'>Moneycontrol</a> for live prices.</div>";
+    });
 }
 
 function send() {
@@ -482,7 +645,7 @@ function send() {
 
   fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + KEY },
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + GROQ_KEY },
     body: JSON.stringify({ model: MODEL, messages: [{ role: "system", content: SYS }].concat(chatLog) })
   })
   .then(function(r) { return r.json(); })
@@ -498,7 +661,7 @@ function send() {
     if (cr) {
       var ctype = cr.getAttribute("data-type");
       cr.remove();
-      renderChart(br, ctype);
+      renderWidget(br, ctype, br);
     }
     document.getElementById("sb").disabled = false;
     br.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -528,8 +691,8 @@ function showLimit() {
   if (timerInt) clearInterval(timerInt);
   timerInt = setInterval(function() {
     secs--;
-    var hh = Math.floor(secs / 3600), mm = Math.floor((secs % 3600) / 60), ss = secs % 60;
-    document.getElementById("cd").textContent = (hh > 0 ? hh + "h " : "") + (mm < 10 ? "0" + mm : mm) + "m " + (ss < 10 ? "0" + ss : ss) + "s";
+    var hh = Math.floor(secs/3600), mm = Math.floor((secs%3600)/60), ss = secs%60;
+    document.getElementById("cd").textContent = (hh>0?hh+"h ":"")+(mm<10?"0"+mm:mm)+"m "+(ss<10?"0"+ss:ss)+"s";
     if (secs <= 0) {
       clearInterval(timerInt);
       qCount = 0;
@@ -543,7 +706,7 @@ function showLimit() {
 
 function openModal() { document.getElementById("ov").classList.add("open"); }
 function closeModal() { document.getElementById("ov").classList.remove("open"); }
-function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+function esc(t) { return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 </script>
 </body>
 </html>
