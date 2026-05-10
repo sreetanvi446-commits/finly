@@ -501,7 +501,7 @@ function send() {
       renderChart(br, ctype);
     }
     document.getElementById("sb").disabled = false;
-    ms.scrollTop = ms.scrollHeight;
+    br.scrollIntoView({ behavior: "smooth", block: "start" });
     if (!isPro && qCount >= FREE) showLimit();
   })
   .catch(function() {
