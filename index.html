@@ -2,117 +2,143 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Finly</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes pulse{0%,60%,100%{transform:scale(1);opacity:.4}30%{transform:scale(1.4);opacity:1;background:#555}}
 
 /* TOPBAR */
-#topbar{position:fixed;top:0;left:0;right:0;height:52px;background:#fff;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100}
-.tl{display:flex;align-items:center;gap:10px}
-.tl svg{animation:spin 14s linear infinite}
-.tname{font-size:16px;font-weight:700;letter-spacing:-.5px}
-.ttag{font-size:11px;color:#bbb}
-.topright{display:flex;align-items:center;gap:12px}
-.probtn{font-size:12px;padding:6px 16px;border-radius:999px;border:1.5px solid #1a1a1a;cursor:pointer;color:#1a1a1a;background:#fff;font-family:inherit;font-weight:600}
+#topbar{position:fixed;top:0;left:0;right:0;height:52px;background:#fff;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100}
+.tl{display:flex;align-items:center;gap:8px}
+.tl svg{animation:spin 14s linear infinite;flex-shrink:0}
+.tname{font-size:15px;font-weight:700;letter-spacing:-.5px}
+.ttag{font-size:11px;color:#bbb;display:none}
+@media(min-width:480px){.ttag{display:inline}.tname{font-size:16px}}
+.topright{display:flex;align-items:center;gap:8px}
+.probtn{font-size:12px;padding:5px 12px;border-radius:999px;border:1.5px solid #1a1a1a;cursor:pointer;color:#1a1a1a;background:#fff;font-family:inherit;font-weight:600;white-space:nowrap}
 .probtn:hover{background:#1a1a1a;color:#fff}
-.userbtn{font-size:13px;color:#555;cursor:pointer;display:flex;align-items:center;gap:6px}
-.useravatar{width:28px;height:28px;border-radius:50%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;overflow:hidden}
+#userinfo{display:none;align-items:center;gap:6px}
+.useravatar{width:26px;height:26px;border-radius:50%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;overflow:hidden;flex-shrink:0}
 .useravatar img{width:100%;height:100%;border-radius:50%}
-.signoutbtn{font-size:12px;color:#aaa;cursor:pointer;background:none;border:none;font-family:inherit}
-.signoutbtn:hover{color:#1a1a1a}
+#username{font-size:13px;color:#555;display:none}
+@media(min-width:480px){#username{display:inline}}
+.signoutbtn{font-size:11px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
+.signoutbtn:hover{color:#555}
 
-/* LOGIN SCREEN */
-#loginscreen{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;z-index:50}
+/* LOGIN */
+#loginscreen{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;z-index:200;overflow-y:auto}
 #loginscreen svg.big{animation:spin 14s linear infinite}
-#loginscreen h1{font-size:28px;font-weight:700;margin:24px 0 8px;text-align:center;letter-spacing:-.6px}
-#loginscreen p{font-size:15px;color:#888;margin-bottom:40px;text-align:center;max-width:380px;line-height:1.6}
-.googlebtn{display:flex;align-items:center;gap:12px;padding:14px 28px;border:1.5px solid #e0e0e0;border-radius:12px;cursor:pointer;font-size:15px;font-weight:500;background:#fff;font-family:inherit;color:#1a1a1a;transition:all 0.15s;margin-bottom:12px}
+#loginscreen h1{font-size:24px;font-weight:700;margin:20px 0 8px;text-align:center;letter-spacing:-.5px}
+@media(min-width:480px){#loginscreen h1{font-size:28px}}
+#loginscreen p{font-size:14px;color:#888;margin-bottom:32px;text-align:center;max-width:340px;line-height:1.6}
+.authbox{width:100%;max-width:360px}
+.googlebtn{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 24px;border:1.5px solid #e0e0e0;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;background:#fff;font-family:inherit;color:#1a1a1a;width:100%;margin-bottom:16px;transition:all 0.15s}
 .googlebtn:hover{border-color:#aaa;background:#fafafa}
-.googlebtn img{width:20px;height:20px}
-.loginskip{font-size:13px;color:#aaa;cursor:pointer;background:none;border:none;font-family:inherit;margin-top:8px}
+.googlebtn img{width:18px;height:18px}
+.divider{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.divider hr{flex:1;border:none;border-top:1px solid #eee}
+.divider span{font-size:12px;color:#bbb}
+.emailform{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.emailform input{padding:12px 14px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:inherit;outline:none;color:#1a1a1a}
+.emailform input:focus{border-color:#888}
+.emailtabs{display:flex;gap:0;margin-bottom:12px;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden}
+.etab{flex:1;padding:8px;font-size:13px;font-weight:500;cursor:pointer;background:#fff;border:none;font-family:inherit;color:#888;transition:all 0.15s}
+.etab.active{background:#1a1a1a;color:#fff}
+.submitbtn{padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
+.submitbtn:hover{background:#333}
+.loginskip{font-size:12px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit;margin-top:8px;width:100%;text-align:center}
 .loginskip:hover{color:#555}
+.autherr{font-size:12px;color:#c0392b;text-align:center;min-height:16px}
 
 /* WELCOME */
-#welcome{position:fixed;top:52px;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;background:#fff;overflow-y:auto}
+#welcome{position:fixed;top:52px;left:0;right:0;bottom:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;background:#fff;overflow-y:auto}
 #welcome svg.big{animation:spin 14s linear infinite}
-#welcome h1{font-size:28px;font-weight:700;margin:24px 0 8px;text-align:center;letter-spacing:-.6px}
-#welcome p{font-size:15px;color:#888;margin-bottom:32px;text-align:center;max-width:400px;line-height:1.6}
+#welcome h1{font-size:22px;font-weight:700;margin:20px 0 8px;text-align:center;letter-spacing:-.5px}
+@media(min-width:480px){#welcome h1{font-size:28px}}
+#welcome p{font-size:14px;color:#888;margin-bottom:28px;text-align:center;max-width:400px;line-height:1.6}
 .winput{width:100%;max-width:580px;position:relative}
-.winput input{width:100%;padding:16px 52px 16px 18px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:14px;outline:none;font-family:inherit;color:#1a1a1a}
+.winput input{width:100%;padding:14px 48px 14px 16px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:14px;outline:none;font-family:inherit;color:#1a1a1a}
 .winput input:focus{border-color:#888}
-.winput button{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;max-width:580px}
-.chip{font-size:13px;padding:7px 14px;border-radius:999px;border:1px solid #e8e8e8;background:#fafafa;color:#444;cursor:pointer;font-family:inherit}
+.winput button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;max-width:580px}
+.chip{font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid #e8e8e8;background:#fafafa;color:#444;cursor:pointer;font-family:inherit}
 .chip:hover{border-color:#aaa;background:#f0f0f0}
+@media(min-width:480px){.chip{font-size:13px;padding:7px 14px}}
 
 /* CHAT */
 #chat{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;flex-direction:column;background:#fff}
 #chat.on{display:flex}
-#msgs{flex:1;overflow-y:auto;padding:28px 24px 16px}
-.mrow{max-width:700px;width:100%;margin:0 auto 24px}
+#msgs{flex:1;overflow-y:auto;padding:20px 16px 8px}
+@media(min-width:480px){#msgs{padding:28px 24px 8px}}
+.mrow{max-width:700px;width:100%;margin:0 auto 20px}
 .urow{display:flex;justify-content:flex-end}
-.ubub{background:#f2f2f2;padding:11px 16px;border-radius:18px 18px 4px 18px;font-size:15px;max-width:75%;line-height:1.5;word-break:break-word}
-.brow{display:flex;gap:12px;align-items:flex-start}
-.bav{width:28px;height:28px;flex-shrink:0;margin-top:3px}
-.bav svg{width:28px;height:28px;display:block}
+.ubub{background:#f2f2f2;padding:10px 14px;border-radius:18px 18px 4px 18px;font-size:14px;max-width:80%;line-height:1.5;word-break:break-word}
+@media(min-width:480px){.ubub{font-size:15px;max-width:75%}}
+.brow{display:flex;gap:10px;align-items:flex-start}
+.bav{width:26px;height:26px;flex-shrink:0;margin-top:3px}
+.bav svg{width:26px;height:26px;display:block}
 .bav.spinning svg{animation:spin 2s linear infinite}
-.bcont{flex:1;min-width:0;font-size:15px;line-height:1.75;color:#1a1a1a;padding-top:2px;word-break:break-word}
+.bcont{flex:1;min-width:0;font-size:14px;line-height:1.7;color:#1a1a1a;padding-top:2px;word-break:break-word}
+@media(min-width:480px){.bcont{font-size:15px;line-height:1.75}}
 .bcont b{font-weight:700;color:#1a1a1a}
-.bcont ul{padding-left:20px;margin:4px 0}
+.bcont ul{padding-left:18px;margin:4px 0}
 .bcont li{margin-bottom:4px;line-height:1.5}
 .bcont br{display:block;margin:2px 0}
-.bcont .disclaimer{font-size:12px;color:#bbb;margin-top:10px;display:block;border-top:1px solid #f0f0f0;padding-top:8px}
+.bcont .disclaimer{font-size:11px;color:#bbb;margin-top:10px;display:block;border-top:1px solid #f0f0f0;padding-top:8px}
 .pdots{display:flex;align-items:center;gap:6px;padding:4px 0}
 .pdots span{font-size:13px;color:#aaa}
 .pd{width:6px;height:6px;border-radius:50%;background:#ccc;display:inline-block;animation:pulse 1.4s infinite}
 .pd:nth-child(2){animation-delay:.2s}
 .pd:nth-child(3){animation-delay:.4s}
 
+/* CHART */
+.chartbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px;max-width:100%}
+.chartbox canvas{max-width:100%}
+
 /* INPUT BAR */
-#ibar{flex-shrink:0;border-top:1px solid #f0f0f0;padding:12px 24px 16px;background:#fff}
+#ibar{flex-shrink:0;border-top:1px solid #f0f0f0;padding:10px 16px 14px;background:#fff}
+@media(min-width:480px){#ibar{padding:12px 24px 16px}}
 .iinner{max-width:700px;margin:0 auto;position:relative}
-.iinner input{width:100%;padding:13px 52px 13px 18px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:12px;outline:none;font-family:inherit;color:#1a1a1a}
+.iinner input{width:100%;padding:12px 48px 12px 16px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:12px;outline:none;font-family:inherit;color:#1a1a1a}
 .iinner input:focus{border-color:#888}
 .iinner input:disabled{background:#fafafa;color:#aaa;cursor:not-allowed}
-.iinner button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+.iinner button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
 .iinner button:disabled{background:#ddd;cursor:not-allowed}
-
-/* LIMIT */
 #lnotice{display:none;max-width:700px;margin:0 auto 8px}
-.linner{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.ltxt{font-size:13px;color:#555}
+.linner{background:#fafafa;border:1px solid #eee;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ltxt{font-size:12px;color:#555}
 .ltxt b{color:#1a1a1a}
-.ltimer{font-size:13px;font-weight:600;color:#1a1a1a}
-.lupbtn{font-size:12px;padding:6px 14px;border-radius:999px;background:#1a1a1a;color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:500}
+.ltimer{font-size:12px;font-weight:600;color:#1a1a1a}
+.lupbtn{font-size:11px;padding:5px 12px;border-radius:999px;background:#1a1a1a;color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:500;white-space:nowrap}
 
 /* MODAL */
-#ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;align-items:center;justify-content:center}
+#ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;align-items:center;justify-content:center;padding:16px}
 #ov.open{display:flex}
-.modal{background:#fff;border-radius:20px;padding:32px;max-width:420px;width:90%}
-.modal h2{font-size:20px;font-weight:700;margin-bottom:6px}
-.modal>p{font-size:14px;color:#666;margin-bottom:24px;line-height:1.5}
-.plans{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.plan{border:1.5px solid #e8e8e8;border-radius:12px;padding:16px;cursor:pointer}
+.modal{background:#fff;border-radius:20px;padding:24px;max-width:420px;width:100%}
+@media(min-width:480px){.modal{padding:32px}}
+.modal h2{font-size:18px;font-weight:700;margin-bottom:6px}
+@media(min-width:480px){.modal h2{font-size:20px}}
+.modal>p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.5}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.plan{border:1.5px solid #e8e8e8;border-radius:12px;padding:14px;cursor:pointer}
 .plan.best{border-color:#1a1a1a}
-.plabel{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;margin-bottom:6px}
+.plabel{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;margin-bottom:4px}
 .plan.best .plabel{color:#1a1a1a}
-.pprice{font-size:24px;font-weight:700}
-.psub{font-size:12px;color:#aaa;margin-bottom:8px}
-.pfeats{font-size:12px;color:#666;line-height:1.7}
-.mcta{width:100%;padding:14px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:10px}
-.mclose{width:100%;padding:10px;background:none;border:none;font-size:13px;color:#bbb;cursor:pointer;font-family:inherit}
+.pprice{font-size:22px;font-weight:700}
+.psub{font-size:11px;color:#aaa;margin-bottom:6px}
+.pfeats{font-size:11px;color:#666;line-height:1.7}
+.mcta{width:100%;padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:8px}
+.mclose{width:100%;padding:8px;background:none;border:none;font-size:13px;color:#bbb;cursor:pointer;font-family:inherit}
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div id="topbar">
   <div class="tl">
-    <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+    <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
       <circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/>
       <circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/>
       <circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/>
@@ -131,18 +157,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a}
     <span class="ttag">India's finance brain</span>
   </div>
   <div class="topright">
-    <div id="userinfo" style="display:none;align-items:center;gap:8px">
+    <div id="userinfo">
       <div class="useravatar" id="useravatar">U</div>
-      <span style="font-size:13px;color:#555" id="username">User</span>
+      <span id="username"></span>
       <button class="signoutbtn" onclick="signOut()">Sign out</button>
     </div>
     <button class="probtn" onclick="openModal()">Get Pro</button>
   </div>
 </div>
 
-<!-- LOGIN SCREEN -->
 <div id="loginscreen">
-  <svg class="big" width="52" height="52" viewBox="0 0 52 52" fill="none">
+  <svg class="big" width="48" height="48" viewBox="0 0 52 52" fill="none">
     <circle cx="26" cy="4" r="3" fill="#1a1a1a"/>
     <circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
     <circle cx="4" cy="26" r="3" fill="#1a1a1a"/>
@@ -159,16 +184,29 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a}
   </svg>
   <h1>Welcome to Finly</h1>
   <p>India's finance brain. Sign in to get started with taxes, investing, trading and more.</p>
-  <button class="googlebtn" onclick="signInWithGoogle()">
-    <img src="https://www.google.com/favicon.ico" alt="Google"/>
-    Continue with Google
-  </button>
-  <button class="loginskip" onclick="skipLogin()">Continue without signing in</button>
+  <div class="authbox">
+    <button class="googlebtn" onclick="signInWithGoogle()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"/>
+      Continue with Google
+    </button>
+    <div class="divider"><hr><span>or</span><hr></div>
+    <div class="emailtabs">
+      <button class="etab active" id="tab-signin" onclick="switchTab('signin')">Sign In</button>
+      <button class="etab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+    <div class="emailform">
+      <input type="email" id="emailinput" placeholder="Email address"/>
+      <input type="password" id="passinput" placeholder="Password"/>
+      <input type="text" id="nameinput" placeholder="Your name" style="display:none"/>
+      <div class="autherr" id="autherr"></div>
+      <button class="submitbtn" id="submitbtn" onclick="submitEmail()">Sign In</button>
+    </div>
+    <button class="loginskip" onclick="skipLogin()">Continue without signing in</button>
+  </div>
 </div>
 
-<!-- WELCOME -->
-<div id="welcome" style="display:none">
-  <svg class="big" width="52" height="52" viewBox="0 0 52 52" fill="none">
+<div id="welcome">
+  <svg class="big" width="48" height="48" viewBox="0 0 52 52" fill="none">
     <circle cx="26" cy="4" r="3" fill="#1a1a1a"/>
     <circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
     <circle cx="4" cy="26" r="3" fill="#1a1a1a"/>
@@ -184,22 +222,22 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a}
     <circle cx="26" cy="26" r="6.5" fill="#1a1a1a"/>
   </svg>
   <h1 id="welcomeheading">What's on your mind?</h1>
-  <p>Taxes, trading, startups, investing, crypto — ask anything about money in India. No jargon. No sugarcoating.</p>
+  <p>Taxes, trading, startups, investing, crypto — ask anything about money in India.</p>
   <div class="winput">
     <input type="text" id="wi" placeholder="Ask anything about money..."/>
     <button onclick="startChat()">↑</button>
   </div>
   <div class="chips">
-    <div class="chip" onclick="ca('How do I start investing in stocks in India?')">Start investing in stocks</div>
+    <div class="chip" onclick="ca('How do I start investing in stocks in India?')">Investing in stocks</div>
     <div class="chip" onclick="ca('How to start a business in India?')">Start a business</div>
     <div class="chip" onclick="ca('What is crypto tax in India?')">Crypto tax</div>
     <div class="chip" onclick="ca('How to save tax on my salary?')">Save tax on salary</div>
-    <div class="chip" onclick="ca('What is SIP and should I start one?')">SIP basics</div>
+    <div class="chip" onclick="ca('What is SIP?')">SIP basics</div>
     <div class="chip" onclick="ca('How does GST work for freelancers?')">Freelancer GST</div>
+    <div class="chip" onclick="ca('Show me Indian income tax slabs 2024-25')">Tax slabs chart</div>
   </div>
 </div>
 
-<!-- CHAT -->
 <div id="chat">
   <div id="msgs"></div>
   <div id="ibar">
@@ -217,7 +255,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a}
   </div>
 </div>
 
-<!-- MODAL -->
 <div id="ov">
   <div class="modal">
     <h2>Upgrade to Pro</h2>
@@ -241,10 +278,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a}
   </div>
 </div>
 
-<!-- FIREBASE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut as fbSignOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut as fbSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyConXjYX_IFDiFjsc7tgEtdN1JBnDo_DTU",
@@ -261,12 +299,38 @@ const provider = new GoogleAuthProvider();
 
 window.signInWithGoogle = async function() {
   try {
+    document.getElementById("autherr").textContent = "";
     const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-    showApp(user);
+    showApp(result.user);
   } catch(e) {
-    console.error(e);
-    alert("Sign in failed. Please try again.");
+    document.getElementById("autherr").textContent = "Google sign in failed. Try again.";
+  }
+};
+
+window.submitEmail = async function() {
+  var email = document.getElementById("emailinput").value.trim();
+  var pass = document.getElementById("passinput").value;
+  var name = document.getElementById("nameinput").value.trim();
+  var errEl = document.getElementById("autherr");
+  errEl.textContent = "";
+  if (!email || !pass) { errEl.textContent = "Please enter email and password."; return; }
+  try {
+    if (window.authMode === "signup") {
+      if (!name) { errEl.textContent = "Please enter your name."; return; }
+      var cred = await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(cred.user, { displayName: name });
+      showApp(cred.user, name);
+    } else {
+      var cred2 = await signInWithEmailAndPassword(auth, email, pass);
+      showApp(cred2.user);
+    }
+  } catch(e) {
+    if (e.code === "auth/user-not-found") errEl.textContent = "No account found. Sign up instead.";
+    else if (e.code === "auth/wrong-password") errEl.textContent = "Wrong password. Try again.";
+    else if (e.code === "auth/email-already-in-use") errEl.textContent = "Email already registered. Sign in instead.";
+    else if (e.code === "auth/weak-password") errEl.textContent = "Password must be at least 6 characters.";
+    else if (e.code === "auth/invalid-email") errEl.textContent = "Invalid email address.";
+    else errEl.textContent = "Something went wrong. Try again.";
   }
 };
 
@@ -279,18 +343,15 @@ window.signOut = async function() {
 };
 
 onAuthStateChanged(auth, function(user) {
-  if (user) {
-    showApp(user);
-  } else {
-    document.getElementById("loginscreen").style.display = "flex";
-  }
+  if (user) { showApp(user); }
+  else { document.getElementById("loginscreen").style.display = "flex"; }
 });
 
-function showApp(user) {
+function showApp(user, overrideName) {
   document.getElementById("loginscreen").style.display = "none";
   document.getElementById("welcome").style.display = "flex";
   document.getElementById("userinfo").style.display = "flex";
-  var firstName = user.displayName ? user.displayName.split(" ")[0] : "there";
+  var firstName = overrideName || (user.displayName ? user.displayName.split(" ")[0] : "there");
   document.getElementById("username").textContent = firstName;
   document.getElementById("welcomeheading").textContent = "Hey " + firstName + ", what's on your mind?";
   if (user.photoURL) {
@@ -304,19 +365,24 @@ function showApp(user) {
 <script>
 var KEY = "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";
 var MODEL = "llama-3.3-70b-versatile";
-var qCount = 0;
-var FREE = 10;
-var isPro = false;
-var timerInt = null;
-var chatLog = [];
-var msgIdx = 0;
+var qCount = 0, FREE = 10, isPro = false, timerInt = null, chatLog = [], msgIdx = 0;
+window.authMode = "signin";
 
-var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more, nothing less.\n\nFORMAT RULES — follow exactly every single time:\n1. Use clean HTML only — never use ** or ## or markdown ever\n2. Start with a bold heading using <b>To become a [TOPIC]</b>, here is the pathway: or similar relevant opener\n3. Use <b> tags for EVERY important term, name, number, percentage, rupee amount\n4. Use numbered sections — each section heading must be on its own line like this: <br><b>1. Foundation Course</b><br> then the bullets underneath\n5. Under each section use <ul><li> bullet points — each bullet must be a complete detailed sentence\n6. End with a <b>Key Tips:</b> section with practical advice bullets\n7. End with a <b>Typical Timeline:</b> or relevant summary line\n8. Give thorough complete answers — explain every point fully like teaching someone from scratch\n9. Never add disclaimer for general knowledge questions — only add <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span> if user asks HOW TO actually file taxes or HOW TO actually invest real money\n10. Always end every answer with this exact line: <br><i>Want more detail on any specific part?</i>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax), GST, stock market and trading (NSE, BSE, Nifty, Sensex, F&O, technical analysis), personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax in India (30% flat, 1% TDS), credit scores and loans. For live prices say you don't have live data and direct to nseindia.com or Moneycontrol.";
+var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more, nothing less.\n\nFORMAT RULES — follow exactly every single time:\n1. Use clean HTML only — never use ** or ## or markdown ever\n2. Start with a bold heading using <b>To become a [TOPIC]</b>, here is the pathway: or similar relevant opener\n3. Use <b> tags for EVERY important term, name, number, percentage, rupee amount\n4. Use numbered sections — each section heading must be on its own line like this: <br><b>1. Section Title</b><br> then the bullets underneath\n5. Under each section use <ul><li> bullet points — each bullet must be a complete detailed sentence\n6. End with a <b>Key Tips:</b> section with practical advice bullets\n7. End with a <b>Typical Timeline:</b> or relevant summary line\n8. Give thorough complete answers — explain every point fully like teaching someone from scratch\n9. Never add disclaimer for general knowledge questions — only add <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span> if user asks HOW TO actually file taxes or HOW TO actually invest real money\n10. Always end every answer with this exact line: <br><i>Want more detail on any specific part?</i>\n11. CHARTS: If the question is about tax slabs, SIP returns, portfolio breakdown, or any data that can be visualised, add this tag at the end of your answer: <div class='chartrequest' data-type='CHARTTYPE' data-label='TITLE'></div> where CHARTTYPE is one of: taxslabs, sipgrowth, portfoliopie. Only add this when a chart genuinely helps.\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax), GST, stock market and trading (NSE, BSE, Nifty, Sensex, F&O, technical analysis), personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax in India (30% flat, 1% TDS), credit scores and loans. For live prices say you don't have live data and direct to nseindia.com or Moneycontrol.";
 
 function snow(s) {
   var a = s ? 'style="animation:spin 2s linear infinite;"' : '';
   return '<svg viewBox="0 0 28 28" fill="none" ' + a + '><circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/><circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/><circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="22" r="1.8" fill="#1a1a1a"/><line x1="14" y1="3" x2="14" y2="25" stroke="#1a1a1a" stroke-width="1"/><line x1="3" y1="14" x2="25" y2="14" stroke="#1a1a1a" stroke-width="1"/><line x1="6" y1="6" x2="22" y2="22" stroke="#1a1a1a" stroke-width="1"/><line x1="22" y1="6" x2="6" y2="22" stroke="#1a1a1a" stroke-width="1"/><circle cx="14" cy="14" r="3.5" fill="#1a1a1a"/></svg>';
 }
+
+window.switchTab = function(mode) {
+  window.authMode = mode;
+  document.getElementById("tab-signin").className = "etab" + (mode === "signin" ? " active" : "");
+  document.getElementById("tab-signup").className = "etab" + (mode === "signup" ? " active" : "");
+  document.getElementById("nameinput").style.display = mode === "signup" ? "block" : "none";
+  document.getElementById("submitbtn").textContent = mode === "signup" ? "Create Account" : "Sign In";
+  document.getElementById("autherr").textContent = "";
+};
 
 window.skipLogin = function() {
   document.getElementById("loginscreen").style.display = "none";
@@ -337,6 +403,58 @@ function startChat() {
   document.getElementById("chat").classList.add("on");
   document.getElementById("ci").value = v;
   send();
+}
+
+function renderChart(container, type) {
+  var box = document.createElement("div");
+  box.className = "chartbox";
+  var canvas = document.createElement("canvas");
+  canvas.style.maxHeight = "260px";
+  box.appendChild(canvas);
+  container.appendChild(box);
+
+  if (type === "taxslabs") {
+    new Chart(canvas, {
+      type: "bar",
+      data: {
+        labels: ["₹0-3L", "₹3-7L", "₹7-10L", "₹10-12L", "₹12-15L", "₹15L+"],
+        datasets: [{
+          label: "Tax Rate (%)",
+          data: [0, 5, 10, 15, 20, 30],
+          backgroundColor: ["#e8f4f8","#b8d9ea","#88bfdb","#5aa5cc","#2b8abd","#1a6fa0"],
+          borderRadius: 6
+        }]
+      },
+      options: { responsive: true, plugins: { legend: { display: false }, title: { display: true, text: "New Tax Regime Slabs 2024-25" } }, scales: { y: { max: 35, ticks: { callback: function(v){ return v + "%" } } } } }
+    });
+  } else if (type === "sipgrowth") {
+    var labels = [], invested = [], value = [];
+    for (var i = 1; i <= 10; i++) {
+      labels.push(i + "Y");
+      invested.push(i * 12000);
+      value.push(Math.round(12000 * ((Math.pow(1 + 0.12/12, i*12) - 1) / (0.12/12)) * (1 + 0.12/12)));
+    }
+    new Chart(canvas, {
+      type: "line",
+      data: {
+        labels: labels,
+        datasets: [
+          { label: "Amount Invested", data: invested, borderColor: "#ccc", backgroundColor: "rgba(200,200,200,0.1)", fill: true, tension: 0.3 },
+          { label: "Wealth Created", data: value, borderColor: "#1a1a1a", backgroundColor: "rgba(26,26,26,0.08)", fill: true, tension: 0.3 }
+        ]
+      },
+      options: { responsive: true, plugins: { title: { display: true, text: "SIP Growth — ₹1,000/month at 12% p.a." } }, scales: { y: { ticks: { callback: function(v){ return "₹" + (v/1000).toFixed(0) + "K" } } } } }
+    });
+  } else if (type === "portfoliopie") {
+    new Chart(canvas, {
+      type: "doughnut",
+      data: {
+        labels: ["Equity (40%)", "Mutual Funds (25%)", "FD (15%)", "Gold (10%)", "PPF (10%)"],
+        datasets: [{ data: [40, 25, 15, 10, 10], backgroundColor: ["#1a1a1a","#444","#777","#aaa","#ddd"], borderWidth: 0 }]
+      },
+      options: { responsive: true, plugins: { title: { display: true, text: "Sample Balanced Portfolio" } } }
+    });
+  }
 }
 
 function send() {
@@ -360,7 +478,6 @@ function send() {
   br.innerHTML = "<div class='brow'><div class='bav spinning' id='av" + id + "'>" + snow(true) + "</div><div class='bcont' id='bc" + id + "'><div class='pdots'><div class='pd'></div><div class='pd'></div><div class='pd'></div><span>Thinking...</span></div></div></div>";
   ms.appendChild(br);
   ms.scrollTop = ms.scrollHeight;
-
   if (!isPro) qCount++;
 
   fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -377,6 +494,12 @@ function send() {
     av.className = "bav";
     av.innerHTML = snow(false);
     bc.innerHTML = reply;
+    var cr = bc.querySelector(".chartrequest");
+    if (cr) {
+      var ctype = cr.getAttribute("data-type");
+      cr.remove();
+      renderChart(br, ctype);
+    }
     document.getElementById("sb").disabled = false;
     ms.scrollTop = ms.scrollHeight;
     if (!isPro && qCount >= FREE) showLimit();
@@ -392,8 +515,7 @@ function send() {
 }
 
 function showLimit() {
-  var now = new Date();
-  var res = new Date(now.getTime() + 3 * 60 * 60 * 1000);
+  var now = new Date(), res = new Date(now.getTime() + 3 * 60 * 60 * 1000);
   var h = res.getHours(), m = res.getMinutes(), ap = h >= 12 ? "PM" : "AM";
   h = h % 12 || 12;
   var ms = m < 10 ? "0" + m : m;
