@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Finly</title>
+<title>Finly — India's Finance Brain</title>
+<meta name="description" content="Free AI-powered finance assistant for Indians. Get answers on taxes, ITR, GST, investing, trading, crypto and more.">
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -11,7 +12,9 @@
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes pulse{0%,60%,100%{transform:scale(1);opacity:.4}30%{transform:scale(1.4);opacity:1;background:#555}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
+/* TOPBAR */
 #topbar{position:fixed;top:0;left:0;right:0;height:52px;background:#fff;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100}
 .tl{display:flex;align-items:center;gap:8px}
 .tl svg{animation:spin 14s linear infinite;flex-shrink:0}
@@ -29,6 +32,22 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .signoutbtn{font-size:11px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit}
 .signoutbtn:hover{color:#555}
 
+/* ONBOARDING */
+#onboarding{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;z-index:150;overflow-y:auto}
+.onboard-step{width:100%;max-width:420px;animation:fadeIn 0.3s ease}
+.onboard-step h2{font-size:20px;font-weight:700;margin-bottom:8px;letter-spacing:-.4px}
+.onboard-step p{font-size:14px;color:#888;margin-bottom:24px;line-height:1.5}
+.onboard-options{display:flex;flex-direction:column;gap:10px}
+.oopt{padding:14px 16px;border:1.5px solid #e0e0e0;border-radius:12px;cursor:pointer;font-size:14px;font-family:inherit;background:#fff;text-align:left;transition:all 0.15s;color:#1a1a1a}
+.oopt:hover{border-color:#1a1a1a;background:#fafafa}
+.oopt.selected{border-color:#1a1a1a;background:#1a1a1a;color:#fff}
+.onboard-next{margin-top:16px;padding:12px 24px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
+.onboard-skip{margin-top:8px;padding:8px;background:none;border:none;font-size:12px;color:#bbb;cursor:pointer;font-family:inherit;width:100%}
+.progress-dots{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
+.pdot{width:6px;height:6px;border-radius:50%;background:#e0e0e0}
+.pdot.active{background:#1a1a1a}
+
+/* LOGIN */
 #loginscreen{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;z-index:200;overflow-y:auto}
 #loginscreen svg.big{animation:spin 14s linear infinite}
 #loginscreen h1{font-size:24px;font-weight:700;margin:20px 0 8px;text-align:center;letter-spacing:-.5px}
@@ -50,6 +69,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .loginskip{font-size:12px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit;margin-top:8px;width:100%;text-align:center}
 .autherr{font-size:12px;color:#c0392b;text-align:center;min-height:16px}
 
+/* WELCOME */
 #welcome{position:fixed;top:52px;left:0;right:0;bottom:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;background:#fff;overflow-y:auto}
 #welcome svg.big{animation:spin 14s linear infinite}
 #welcome h1{font-size:22px;font-weight:700;margin:20px 0 8px;text-align:center;letter-spacing:-.5px}
@@ -60,15 +80,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .winput input:focus{border-color:#888}
 .winput button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
 .chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;max-width:580px}
-.chip{font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid #e8e8e8;background:#fafafa;color:#444;cursor:pointer;font-family:inherit}
+.chip{font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid #e8e8e8;background:#fafafa;color:#444;cursor:pointer;font-family:inherit;transition:all 0.15s}
 .chip:hover{border-color:#aaa;background:#f0f0f0}
 @media(min-width:480px){.chip{font-size:13px;padding:7px 14px}}
 
+/* HEALTH SCORE */
+.healthscore{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px;text-align:center}
+.score-circle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:24px;font-weight:700;border:4px solid}
+.score-good{border-color:#22c55e;color:#22c55e}
+.score-avg{border-color:#f59e0b;color:#f59e0b}
+.score-poor{border-color:#ef4444;color:#ef4444}
+.score-label{font-size:14px;font-weight:600;margin-bottom:6px}
+.score-tips{font-size:12px;color:#666;line-height:1.6;text-align:left}
+
+/* CHAT */
 #chat{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;flex-direction:column;background:#fff}
 #chat.on{display:flex}
 #msgs{flex:1;overflow-y:auto;padding:20px 16px 8px}
 @media(min-width:480px){#msgs{padding:28px 24px 8px}}
-.mrow{max-width:700px;width:100%;margin:0 auto 20px}
+.mrow{max-width:700px;width:100%;margin:0 auto 20px;animation:fadeIn 0.25s ease}
 .urow{display:flex;justify-content:flex-end}
 .ubub{background:#f2f2f2;padding:10px 14px;border-radius:18px 18px 4px 18px;font-size:14px;max-width:80%;line-height:1.5;word-break:break-word}
 @media(min-width:480px){.ubub{font-size:15px;max-width:75%}}
@@ -84,30 +114,30 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .bcont br{display:block;margin:2px 0}
 .bcont .disclaimer{font-size:11px;color:#bbb;margin-top:10px;display:block;border-top:1px solid #f0f0f0;padding-top:8px}
 
+/* WIDGETS */
 .chartbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px;max-width:100%}
 .chartbox canvas{max-width:100%}
-
 .calcbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px}
 .calcbox h4{font-size:14px;font-weight:600;margin-bottom:12px}
 .calcrow{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
-.calcrow input{flex:1;min-width:120px;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;font-family:inherit;outline:none}
+.calcrow input{flex:1;min-width:100px;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;font-family:inherit;outline:none}
 .calcrow input:focus{border-color:#888}
+.calcrow select{flex:1;min-width:100px;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;font-family:inherit;outline:none;background:#fff}
 .calcbtn{padding:8px 16px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .calcresult{font-size:13px;color:#1a1a1a;margin-top:8px;padding:10px;background:#fff;border-radius:8px;border:1px solid #eee;line-height:1.6}
-
 .stockbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:14px;margin-top:12px}
-.stockrow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f0f0}
+.stockrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0}
 .stockrow:last-child{border-bottom:none}
 .stockname{font-size:13px;font-weight:600}
-.stockprice{font-size:13px}
-.stockchange{font-size:12px;padding:2px 8px;border-radius:999px}
+.stockprice{font-size:13px;font-weight:500}
+.stockchange{font-size:12px;padding:2px 8px;border-radius:999px;font-weight:500}
 .up{background:#e8f8f0;color:#0a7a4a}
 .down{background:#fdf0f0;color:#c0392b}
-
 .cabox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px}
 .cabox h4{font-size:14px;font-weight:600;margin-bottom:8px}
 .cabox p{font-size:13px;color:#555;margin-bottom:12px;line-height:1.5}
 .cabtn{padding:10px 20px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500}
+.cabtn-secondary{padding:10px 20px;background:none;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500;margin-top:8px;width:100%}
 
 .pdots{display:flex;align-items:center;gap:6px;padding:4px 0}
 .pdots span{font-size:13px;color:#aaa}
@@ -115,14 +145,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .pd:nth-child(2){animation-delay:.2s}
 .pd:nth-child(3){animation-delay:.4s}
 
-#ibar{flex-shrink:0;border-top:1px solid #f0f0f0;padding:10px 16px 14px;background:#fff}
-@media(min-width:480px){#ibar{padding:12px 24px 16px}}
+/* INPUT BAR */
+#ibar{flex-shrink:0;border-top:1px solid #f0f0f0;padding:10px 16px 6px;background:#fff}
+@media(min-width:480px){#ibar{padding:12px 24px 8px}}
 .iinner{max-width:700px;margin:0 auto;position:relative}
 .iinner input{width:100%;padding:12px 48px 12px 16px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:12px;outline:none;font-family:inherit;color:#1a1a1a}
 .iinner input:focus{border-color:#888}
 .iinner input:disabled{background:#fafafa;color:#aaa;cursor:not-allowed}
 .iinner button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
 .iinner button:disabled{background:#ddd;cursor:not-allowed}
+.disclaimer-bar{text-align:center;font-size:11px;color:#bbb;padding:4px 0 8px}
 #lnotice{display:none;max-width:700px;margin:0 auto 8px}
 .linner{background:#fafafa;border:1px solid #eee;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .ltxt{font-size:12px;color:#555}
@@ -130,6 +162,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .ltimer{font-size:12px;font-weight:600;color:#1a1a1a}
 .lupbtn{font-size:11px;padding:5px 12px;border-radius:999px;background:#1a1a1a;color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:500;white-space:nowrap}
 
+/* MODAL */
 #ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;align-items:center;justify-content:center;padding:16px}
 #ov.open{display:flex}
 .modal{background:#fff;border-radius:20px;padding:24px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto}
@@ -147,12 +180,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .pfeats{font-size:11px;color:#666;line-height:1.7}
 .plan-select{width:100%;padding:8px;background:#f5f5f5;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:8px}
 .plan.best .plan-select{background:#1a1a1a;color:#fff}
-.mcta{width:100%;padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:8px}
-.mclose{width:100%;padding:8px;background:none;border:none;font-size:13px;color:#bbb;cursor:pointer;font-family:inherit}
 .profeats{background:#fafafa;border-radius:10px;padding:14px;margin-bottom:16px}
 .profeats h4{font-size:13px;font-weight:600;margin-bottom:8px}
 .profeats ul{padding-left:16px}
 .profeats li{font-size:12px;color:#555;margin-bottom:4px;line-height:1.5}
+.mclose{width:100%;padding:8px;background:none;border:none;font-size:13px;color:#bbb;cursor:pointer;font-family:inherit}
+
+/* PRIVACY PAGE */
+#privacy{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;overflow-y:auto;padding:32px 24px;background:#fff;z-index:80}
+.privacy-content{max-width:680px;margin:0 auto}
+.privacy-content h1{font-size:22px;font-weight:700;margin-bottom:8px}
+.privacy-content h2{font-size:16px;font-weight:600;margin:20px 0 8px}
+.privacy-content p{font-size:14px;color:#444;line-height:1.7;margin-bottom:12px}
+.privacy-content ul{padding-left:20px;margin-bottom:12px}
+.privacy-content li{font-size:14px;color:#444;line-height:1.7;margin-bottom:4px}
+.privacy-back{font-size:13px;color:#1a1a1a;cursor:pointer;background:none;border:none;font-family:inherit;font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:4px}
 </style>
 </head>
 <body>
@@ -160,14 +202,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 <div id="topbar">
   <div class="tl">
     <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-      <circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/>
-      <circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/>
-      <circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/>
-      <circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/>
-      <circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/>
-      <circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/>
-      <circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/>
-      <circle cx="6" cy="22" r="1.8" fill="#1a1a1a"/>
+      <circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/><circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/>
+      <circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/>
+      <circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/>
+      <circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="22" r="1.8" fill="#1a1a1a"/>
       <line x1="14" y1="3" x2="14" y2="25" stroke="#1a1a1a" stroke-width="1"/>
       <line x1="3" y1="14" x2="25" y2="14" stroke="#1a1a1a" stroke-width="1"/>
       <line x1="6" y1="6" x2="22" y2="22" stroke="#1a1a1a" stroke-width="1"/>
@@ -187,6 +225,56 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
   </div>
 </div>
 
+<!-- ONBOARDING -->
+<div id="onboarding">
+  <div class="onboard-step" id="ob1">
+    <div class="progress-dots">
+      <div class="pdot active"></div><div class="pdot"></div><div class="pdot"></div>
+    </div>
+    <h2>What's your main income source?</h2>
+    <p>This helps Finly personalise answers for your situation.</p>
+    <div class="onboard-options">
+      <button class="oopt" onclick="selectOpt(this,'income','Salaried employee')">💼 Salaried employee</button>
+      <button class="oopt" onclick="selectOpt(this,'income','Freelancer / Consultant')">💻 Freelancer / Consultant</button>
+      <button class="oopt" onclick="selectOpt(this,'income','Business owner')">🏪 Business owner</button>
+      <button class="oopt" onclick="selectOpt(this,'income','Student')">🎓 Student</button>
+    </div>
+    <button class="onboard-next" onclick="nextOnboard(2)">Continue →</button>
+    <button class="onboard-skip" onclick="skipOnboard()">Skip for now</button>
+  </div>
+  <div class="onboard-step" id="ob2" style="display:none">
+    <div class="progress-dots">
+      <div class="pdot"></div><div class="pdot active"></div><div class="pdot"></div>
+    </div>
+    <h2>What's your main financial goal?</h2>
+    <p>Finly will focus on what matters most to you.</p>
+    <div class="onboard-options">
+      <button class="oopt" onclick="selectOpt(this,'goal','Save tax and file ITR')">📋 Save tax and file ITR</button>
+      <button class="oopt" onclick="selectOpt(this,'goal','Start investing')">📈 Start investing</button>
+      <button class="oopt" onclick="selectOpt(this,'goal','Understand trading and stocks')">🏦 Understand trading and stocks</button>
+      <button class="oopt" onclick="selectOpt(this,'goal','Start or grow a business')">🚀 Start or grow a business</button>
+    </div>
+    <button class="onboard-next" onclick="nextOnboard(3)">Continue →</button>
+    <button class="onboard-skip" onclick="skipOnboard()">Skip for now</button>
+  </div>
+  <div class="onboard-step" id="ob3" style="display:none">
+    <div class="progress-dots">
+      <div class="pdot"></div><div class="pdot"></div><div class="pdot active"></div>
+    </div>
+    <h2>What confuses you most?</h2>
+    <p>No judgement — everyone finds something confusing.</p>
+    <div class="onboard-options">
+      <button class="oopt" onclick="selectOpt(this,'confuse','ITR filing and tax saving')">🤔 ITR filing and tax saving</button>
+      <button class="oopt" onclick="selectOpt(this,'confuse','Where and how to invest')">💰 Where and how to invest</button>
+      <button class="oopt" onclick="selectOpt(this,'confuse','GST and business taxes')">📊 GST and business taxes</button>
+      <button class="oopt" onclick="selectOpt(this,'confuse','Crypto and new age finance')">₿ Crypto and new age finance</button>
+    </div>
+    <button class="onboard-next" onclick="finishOnboard()">Let's go →</button>
+    <button class="onboard-skip" onclick="skipOnboard()">Skip for now</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
 <div id="loginscreen">
   <svg class="big" width="48" height="48" viewBox="0 0 52 52" fill="none">
     <circle cx="26" cy="4" r="3" fill="#1a1a1a"/><circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
@@ -200,7 +288,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <circle cx="26" cy="26" r="6.5" fill="#1a1a1a"/>
   </svg>
   <h1>Welcome to Finly</h1>
-  <p>India's finance brain. Sign in to get started.</p>
+  <p>India's finance brain. Sign in to get personalised financial guidance.</p>
   <div class="authbox">
     <button class="googlebtn" onclick="signInWithGoogle()">
       <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G"/>
@@ -222,6 +310,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
   </div>
 </div>
 
+<!-- WELCOME -->
 <div id="welcome">
   <svg class="big" width="48" height="48" viewBox="0 0 52 52" fill="none">
     <circle cx="26" cy="4" r="3" fill="#1a1a1a"/><circle cx="26" cy="48" r="3" fill="#1a1a1a"/>
@@ -235,7 +324,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <circle cx="26" cy="26" r="6.5" fill="#1a1a1a"/>
   </svg>
   <h1 id="welcomeheading">What's on your mind?</h1>
-  <p>Taxes, trading, startups, investing, crypto — ask anything about money in India.</p>
+  <p id="welcomesub">Taxes, trading, startups, investing, crypto — ask anything about money in India.</p>
   <div class="winput">
     <input type="text" id="wi" placeholder="Ask anything about money..."/>
     <button onclick="startChat()">↑</button>
@@ -243,15 +332,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
   <div class="chips">
     <div class="chip" onclick="ca('Show me Indian income tax slabs 2024-25')">Tax slabs chart</div>
     <div class="chip" onclick="ca('Show me SIP growth calculator')">SIP calculator</div>
-    <div class="chip" onclick="ca('Show me portfolio breakdown')">Portfolio chart</div>
     <div class="chip" onclick="ca('Find legal ways to save my tax')">Save my tax</div>
     <div class="chip" onclick="ca('Calculate my EMI')">EMI calculator</div>
-    <div class="chip" onclick="ca('Show me live Nifty and Sensex prices')">Live market</div>
+    <div class="chip" onclick="ca('Show me old vs new tax regime comparison')">Regime comparison</div>
+    <div class="chip" onclick="ca('Show me live market prices')">Live market</div>
+    <div class="chip" onclick="ca('What changed in Budget 2025 for taxes')">Budget 2025</div>
+    <div class="chip" onclick="ca('Calculate my financial health score')">Financial health score</div>
+    <div class="chip" onclick="ca('I want 1 crore in 10 years how much SIP do I need')">SIP goal calculator</div>
+    <div class="chip" onclick="ca('Calculate my crypto tax liability')">Crypto tax calculator</div>
     <div class="chip" onclick="ca('Connect me to a CA')">Talk to a CA</div>
     <div class="chip" onclick="ca('How to file ITR step by step for my situation')">File my ITR</div>
   </div>
 </div>
 
+<!-- CHAT -->
 <div id="chat">
   <div id="msgs"></div>
   <div id="ibar">
@@ -262,14 +356,53 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
         <button class="lupbtn" onclick="openModal()">Get Pro →</button>
       </div>
     </div>
-   <div class="iinner">
-  <input type="text" id="ci" placeholder="Ask anything about money in India..."/>
-  <button id="sb">↑</button>
-</div>
-<div style="text-align:center;font-size:11px;color:#bbb;margin-top:6px">Finly can make mistakes. Always double-check important financial decisions.</div>
+    <div class="iinner">
+      <input type="text" id="ci" placeholder="Ask anything about money in India..."/>
+      <button id="sb">↑</button>
+    </div>
+    <div class="disclaimer-bar">Finly can make mistakes. Always double-check important financial decisions. · <span onclick="showPrivacy()" style="cursor:pointer;text-decoration:underline">Privacy Policy</span></div>
   </div>
 </div>
 
+<!-- PRIVACY PAGE -->
+<div id="privacy">
+  <div class="privacy-content">
+    <button class="privacy-back" onclick="hidePrivacy()">← Back</button>
+    <h1>Privacy Policy</h1>
+    <p style="color:#888;font-size:13px">Last updated: May 2026</p>
+    <h2>Who we are</h2>
+    <p>Finly is an AI-powered financial education assistant built for Indians. We help users understand taxes, investing, trading, and personal finance. Finly does not provide professional financial or legal advice.</p>
+    <h2>What information we collect</h2>
+    <ul>
+      <li>Name and email address when you sign in with Google or create an account</li>
+      <li>Profile photo from Google (if you sign in with Google)</li>
+      <li>Questions you ask Finly (used to provide answers, not stored permanently)</li>
+      <li>Usage data such as number of questions asked</li>
+    </ul>
+    <h2>How we use your information</h2>
+    <ul>
+      <li>To personalise your experience and greet you by name</li>
+      <li>To track your daily question limit (free plan)</li>
+      <li>To process payments if you upgrade to Pro via Razorpay</li>
+      <li>To improve Finly's responses and features</li>
+    </ul>
+    <h2>What we do not do</h2>
+    <ul>
+      <li>We do not sell your personal information to anyone</li>
+      <li>We do not share your data with third parties except Razorpay for payment processing and Firebase for authentication</li>
+      <li>We do not store your financial details or tax information</li>
+    </ul>
+    <h2>Third party services</h2>
+    <p>Finly uses Firebase (Google) for authentication, Razorpay for payments, Groq for AI responses, and Alpha Vantage for market data. Each of these services has their own privacy policies.</p>
+    <h2>Your rights</h2>
+    <p>You can delete your account and all associated data at any time by contacting us. You can also sign out at any time to stop using the service.</p>
+    <h2>Contact</h2>
+    <p>For any privacy concerns email us at finlyapp.in@gmail.com</p>
+    <p style="color:#bbb;font-size:12px;margin-top:24px">Finly is an educational tool. Nothing on Finly constitutes professional financial, tax, or legal advice. Always consult a registered CA or SEBI advisor for actual financial decisions.</p>
+  </div>
+</div>
+
+<!-- MODAL -->
 <div id="ov">
   <div class="modal">
     <h2>Upgrade to Pro</h2>
@@ -280,8 +413,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
         <li>✓ Unlimited questions — no daily limit</li>
         <li>✓ Personalised tax optimisation — find your exact savings</li>
         <li>✓ Guided ITR filing — step by step for your situation</li>
-        <li>✓ CA connector — talk to a real CA instantly</li>
-        <li>✓ Old vs new regime comparison for your income</li>
+        <li>✓ CA connector — talk to a real CA</li>
+        <li>✓ Financial health score — know where you stand</li>
+        <li>✓ Crypto tax calculator — exact liability</li>
         <li>✓ Priority faster answers</li>
       </ul>
     </div>
@@ -291,14 +425,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
         <div class="pprice">₹99</div>
         <div class="psub">/month</div>
         <div class="pfeats">Cancel anytime</div>
-        <button class="plan-select" onclick="startPayment(99, 'monthly')">Select</button>
+        <button class="plan-select" onclick="startPayment(99,'monthly')">Select</button>
       </div>
       <div class="plan best" id="plan-annual">
         <div class="plabel">Annual ✦ Best value</div>
         <div class="pprice">₹799</div>
         <div class="psub">/year · saves ₹389</div>
         <div class="pfeats">₹67/month effectively</div>
-        <button class="plan-select" onclick="startPayment(799, 'annual')">Select</button>
+        <button class="plan-select" onclick="startPayment(799,'annual')">Select</button>
       </div>
     </div>
     <button class="mclose" onclick="closeModal()">Maybe later</button>
@@ -342,7 +476,7 @@ window.submitEmail = async function() {
       if (!name) { errEl.textContent = "Please enter your name."; return; }
       var cred = await createUserWithEmailAndPassword(auth, email, pass);
       await updateProfile(cred.user, { displayName: name });
-      showApp(cred.user, name);
+      showApp(cred.user, name, true);
     } else {
       var cred2 = await signInWithEmailAndPassword(auth, email, pass);
       showApp(cred2.user);
@@ -360,6 +494,7 @@ window.submitEmail = async function() {
 window.signOut = async function() {
   await fbSignOut(auth);
   window.isPro = false;
+  window.onboardData = {};
   document.getElementById("loginscreen").style.display = "flex";
   document.getElementById("welcome").style.display = "none";
   document.getElementById("chat").classList.remove("on");
@@ -371,19 +506,23 @@ onAuthStateChanged(auth, function(user) {
   else { document.getElementById("loginscreen").style.display = "flex"; }
 });
 
-function showApp(user, overrideName) {
+function showApp(user, overrideName, isNew) {
   document.getElementById("loginscreen").style.display = "none";
-  document.getElementById("welcome").style.display = "flex";
   document.getElementById("userinfo").style.display = "flex";
   var firstName = overrideName || (user.displayName ? user.displayName.split(" ")[0] : "there");
   window.currentUserName = firstName;
   window.currentUserEmail = user.email || "";
   document.getElementById("username").textContent = firstName;
-  document.getElementById("welcomeheading").textContent = "Hey " + firstName + ", what's on your mind?";
   if (user.photoURL) {
     document.getElementById("useravatar").innerHTML = "<img src='" + user.photoURL + "' alt=''/>";
   } else {
     document.getElementById("useravatar").textContent = firstName[0].toUpperCase();
+  }
+  if (isNew) {
+    document.getElementById("onboarding").style.display = "flex";
+  } else {
+    document.getElementById("welcome").style.display = "flex";
+    document.getElementById("welcomeheading").textContent = "Hey " + firstName + ", what's on your mind?";
   }
 }
 </script>
@@ -397,26 +536,61 @@ var qCount = 0, FREE = 10, isPro = false, timerInt = null, chatLog = [], msgIdx 
 window.authMode = "signin";
 window.currentUserName = "User";
 window.currentUserEmail = "";
+window.onboardData = {};
 
-var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat.You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation or term, always assume they mean the finance/investing version first. For example EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return. Always interpret questions from a finance perspective.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more, nothing less.\n\nFORMAT RULES — follow exactly every single time:\n1. Use clean HTML only — never use ** or ## or markdown ever\n2. Start with a bold heading relevant to the topic\n3. Use <b> tags for EVERY important term, name, number, percentage, rupee amount\n4. Use numbered sections — each section heading on its own line: <br><b>1. Section Title</b><br>\n5. Under each section use <ul><li> bullet points — each bullet a complete detailed sentence\n6. End with <b>Key Tips:</b> section\n7. End with <b>Typical Timeline:</b> or summary line\n8. Give thorough complete answers\n9. Only add disclaimer if user asks HOW TO actually file taxes or invest real money: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part?</i>\n11. SPECIAL COMMANDS — when user asks for these add the exact tag at the end:\n- Tax slabs/regime: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP/investment growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio breakdown: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime comparison: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/optimisation: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market prices: <div class='chartrequest' data-type='livemarket'></div>\n- Connect to CA: <div class='chartrequest' data-type='caconnect'></div>\n- ITR filing help: <div class='chartrequest' data-type='itrguide'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax), GST, stock market and trading (NSE, BSE, Nifty, Sensex, F&O, technical analysis), personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax in India (30% flat, 1% TDS), credit scores and loans. For live prices use the live market command tag.";
+var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation always assume the finance meaning first — EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more.\n\nFORMAT RULES:\n1. Clean HTML only — never ** or ## or markdown\n2. Bold heading relevant to topic\n3. <b> tags for every important term, number, percentage, rupee amount\n4. Numbered sections: <br><b>1. Section Title</b><br>\n5. <ul><li> bullets — each a complete detailed sentence\n6. End with <b>Key Tips:</b>\n7. End with <b>Typical Timeline:</b> or summary\n8. Thorough complete answers\n9. Disclaimer only if HOW TO actually file or invest: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part?</i>\n11. SPECIAL COMMANDS — add exact tag at end when user asks:\n- Tax slabs: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/loopholes: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market: <div class='chartrequest' data-type='livemarket'></div>\n- CA connect: <div class='chartrequest' data-type='caconnect'></div>\n- ITR guide: <div class='chartrequest' data-type='itrguide'></div>\n- Financial health score: <div class='chartrequest' data-type='healthscore'></div>\n- SIP goal/target: <div class='chartrequest' data-type='sipgoal'></div>\n- Crypto tax: <div class='chartrequest' data-type='cryptotax'></div>\n- Salary analysis: <div class='chartrequest' data-type='salarycheck'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax, Budget 2025 changes), GST, stock market and trading, personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax (30% flat, 1% TDS), credit scores and loans.";
 
-function snow(s) {
-  var a = s ? 'style="animation:spin 2s linear infinite;"' : '';
-  return '<svg viewBox="0 0 28 28" fill="none" ' + a + '><circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/><circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/><circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="22" r="1.8" fill="#1a1a1a"/><line x1="14" y1="3" x2="14" y2="25" stroke="#1a1a1a" stroke-width="1"/><line x1="3" y1="14" x2="25" y2="14" stroke="#1a1a1a" stroke-width="1"/><line x1="6" y1="6" x2="22" y2="22" stroke="#1a1a1a" stroke-width="1"/><line x1="22" y1="6" x2="6" y2="22" stroke="#1a1a1a" stroke-width="1"/><circle cx="14" cy="14" r="3.5" fill="#1a1a1a"/></svg>';
-}
+var onboardContext = "";
 
-window.switchTab = function(mode) {
-  window.authMode = mode;
-  document.getElementById("tab-signin").className = "etab" + (mode === "signin" ? " active" : "");
-  document.getElementById("tab-signup").className = "etab" + (mode === "signup" ? " active" : "");
-  document.getElementById("nameinput").style.display = mode === "signup" ? "block" : "none";
-  document.getElementById("submitbtn").textContent = mode === "signup" ? "Create Account" : "Sign In";
-  document.getElementById("autherr").textContent = "";
+window.selectOpt = function(el, key, val) {
+  var parent = el.parentElement;
+  parent.querySelectorAll(".oopt").forEach(function(b){ b.classList.remove("selected"); });
+  el.classList.add("selected");
+  window.onboardData[key] = val;
+};
+
+window.nextOnboard = function(step) {
+  document.getElementById("ob" + (step-1)).style.display = "none";
+  document.getElementById("ob" + step).style.display = "block";
+};
+
+window.finishOnboard = function() {
+  var d = window.onboardData;
+  onboardContext = "User profile: Income source: " + (d.income||"unknown") + ". Financial goal: " + (d.goal||"unknown") + ". Main confusion: " + (d.confuse||"unknown") + ". Personalise all answers for this profile.";
+  document.getElementById("onboarding").style.display = "none";
+  document.getElementById("welcome").style.display = "flex";
+  document.getElementById("welcomeheading").textContent = "Hey " + window.currentUserName + ", what's on your mind?";
+  var sub = "";
+  if (d.goal) sub = "I'll help you " + d.goal.toLowerCase() + " and more.";
+  else sub = "Taxes, trading, startups, investing, crypto — ask anything about money in India.";
+  document.getElementById("welcomesub").textContent = sub;
+};
+
+window.skipOnboard = function() {
+  document.getElementById("onboarding").style.display = "none";
+  document.getElementById("welcome").style.display = "flex";
+  document.getElementById("welcomeheading").textContent = "Hey " + window.currentUserName + ", what's on your mind?";
 };
 
 window.skipLogin = function() {
   document.getElementById("loginscreen").style.display = "none";
   document.getElementById("welcome").style.display = "flex";
+};
+
+window.showPrivacy = function() {
+  document.getElementById("privacy").style.display = "block";
+};
+window.hidePrivacy = function() {
+  document.getElementById("privacy").style.display = "none";
+};
+
+window.switchTab = function(mode) {
+  window.authMode = mode;
+  document.getElementById("tab-signin").className = "etab" + (mode==="signin"?" active":"");
+  document.getElementById("tab-signup").className = "etab" + (mode==="signup"?" active":"");
+  document.getElementById("nameinput").style.display = mode==="signup"?"block":"none";
+  document.getElementById("submitbtn").textContent = mode==="signup"?"Create Account":"Sign In";
+  document.getElementById("autherr").textContent = "";
 };
 
 window.startPayment = function(amount, plan) {
@@ -425,8 +599,7 @@ window.startPayment = function(amount, plan) {
     amount: amount * 100,
     currency: "INR",
     name: "Finly",
-    description: plan === "monthly" ? "Finly Pro Monthly" : "Finly Pro Annual",
-    image: "",
+    description: plan==="monthly"?"Finly Pro Monthly":"Finly Pro Annual",
     handler: function(response) {
       isPro = true;
       window.isPro = true;
@@ -435,7 +608,7 @@ window.startPayment = function(amount, plan) {
       document.getElementById("ci").disabled = false;
       document.getElementById("lnotice").style.display = "none";
       document.getElementById("ci").placeholder = "Ask anything about money in India...";
-      alert("Welcome to Finly Pro! You now have unlimited access.");
+      alert("Welcome to Finly Pro! You now have unlimited access. 🎉");
     },
     prefill: { name: window.currentUserName, email: window.currentUserEmail },
     theme: { color: "#1a1a1a" }
@@ -445,269 +618,190 @@ window.startPayment = function(amount, plan) {
   closeModal();
 };
 
-document.getElementById("wi").addEventListener("keydown", function(e) { if (e.key === "Enter") startChat(); });
-document.getElementById("ci").addEventListener("keydown", function(e) { if (e.key === "Enter") send(); });
-document.getElementById("sb").addEventListener("click", send);
-document.getElementById("ov").addEventListener("click", function(e) { if (e.target === this) closeModal(); });
-
-function ca(q) { document.getElementById("wi").value = q; startChat(); }
-
-function startChat() {
-  var v = document.getElementById("wi").value.trim();
-  if (!v) return;
-  document.getElementById("welcome").style.display = "none";
-  document.getElementById("chat").classList.add("on");
-  document.getElementById("ci").value = v;
-  send();
+function snow(s) {
+  var a = s?'style="animation:spin 2s linear infinite;"':'';
+  return '<svg viewBox="0 0 28 28" fill="none" '+a+'><circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/><circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/><circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="22" r="1.8" fill="#1a1a1a"/><line x1="14" y1="3" x2="14" y2="25" stroke="#1a1a1a" stroke-width="1"/><line x1="3" y1="14" x2="25" y2="14" stroke="#1a1a1a" stroke-width="1"/><line x1="6" y1="6" x2="22" y2="22" stroke="#1a1a1a" stroke-width="1"/><line x1="22" y1="6" x2="6" y2="22" stroke="#1a1a1a" stroke-width="1"/><circle cx="14" cy="14" r="3.5" fill="#1a1a1a"/></svg>';
 }
 
-function renderWidget(container, type, br) {
-  if (type === "taxslabs") {
-    var box = document.createElement("div");
-    box.className = "chartbox";
-    var canvas = document.createElement("canvas");
-    canvas.style.maxHeight = "260px";
-    box.appendChild(canvas);
-    container.appendChild(box);
-    new Chart(canvas, {
-      type: "bar",
-      data: {
-        labels: ["₹0-3L", "₹3-7L", "₹7-10L", "₹10-12L", "₹12-15L", "₹15L+"],
-        datasets: [{ label: "Tax Rate (%)", data: [0, 5, 10, 15, 20, 30], backgroundColor: ["#e8f4f8","#b8d9ea","#88bfdb","#5aa5cc","#2b8abd","#1a6fa0"], borderRadius: 6 }]
-      },
-      options: { responsive: true, plugins: { legend: { display: false }, title: { display: true, text: "New Tax Regime Slabs 2024-25" } }, scales: { y: { max: 35, ticks: { callback: function(v){ return v + "%" } } } } }
-    });
-
-  } else if (type === "sipgrowth") {
-    var box = document.createElement("div");
-    box.className = "chartbox";
-    var canvas = document.createElement("canvas");
-    canvas.style.maxHeight = "260px";
-    box.appendChild(canvas);
-    container.appendChild(box);
-    var labels = [], invested = [], value = [];
-    for (var i = 1; i <= 10; i++) {
-      labels.push(i + "Y");
-      invested.push(i * 12000);
-      value.push(Math.round(12000 * ((Math.pow(1 + 0.12/12, i*12) - 1) / (0.12/12)) * (1 + 0.12/12)));
-    }
-    new Chart(canvas, {
-      type: "line",
-      data: { labels: labels, datasets: [{ label: "Amount Invested", data: invested, borderColor: "#ccc", backgroundColor: "rgba(200,200,200,0.1)", fill: true, tension: 0.3 }, { label: "Wealth Created", data: value, borderColor: "#1a1a1a", backgroundColor: "rgba(26,26,26,0.08)", fill: true, tension: 0.3 }] },
-      options: { responsive: true, plugins: { title: { display: true, text: "SIP Growth — ₹1,000/month at 12% p.a." } }, scales: { y: { ticks: { callback: function(v){ return "₹" + (v/1000).toFixed(0) + "K" } } } } }
-    });
-
-  } else if (type === "portfoliopie") {
-    var box = document.createElement("div");
-    box.className = "chartbox";
-    var canvas = document.createElement("canvas");
-    canvas.style.maxHeight = "260px";
-    box.appendChild(canvas);
-    container.appendChild(box);
-    new Chart(canvas, {
-      type: "doughnut",
-      data: { labels: ["Equity (40%)", "Mutual Funds (25%)", "FD (15%)", "Gold (10%)", "PPF (10%)"], datasets: [{ data: [40, 25, 15, 10, 10], backgroundColor: ["#1a1a1a","#444","#777","#aaa","#ddd"], borderWidth: 0 }] },
-      options: { responsive: true, plugins: { title: { display: true, text: "Sample Balanced Portfolio" } } }
-    });
-
-  } else if (type === "regimecompare") {
-    var box = document.createElement("div");
-    box.className = "chartbox";
-    var canvas = document.createElement("canvas");
-    canvas.style.maxHeight = "260px";
-    box.appendChild(canvas);
-    container.appendChild(box);
-    new Chart(canvas, {
-      type: "bar",
-      data: {
-        labels: ["₹5L", "₹7L", "₹10L", "₹12L", "₹15L", "₹20L"],
-        datasets: [
-          { label: "Old Regime Tax", data: [12500, 32500, 75000, 105000, 156000, 262500], backgroundColor: "rgba(180,180,180,0.7)", borderRadius: 4 },
-          { label: "New Regime Tax", data: [0, 0, 30000, 60000, 105000, 195000], backgroundColor: "rgba(26,26,26,0.8)", borderRadius: 4 }
-        ]
-      },
-      options: { responsive: true, plugins: { title: { display: true, text: "Old vs New Tax Regime Comparison" } }, scales: { y: { ticks: { callback: function(v){ return "₹" + (v/1000).toFixed(0) + "K" } } } } }
-    });
-
-  } else if (type === "emicalc") {
-    var box = document.createElement("div");
-    box.className = "calcbox";
-    box.innerHTML = "<h4>EMI Calculator</h4><div class='calcrow'><input type='number' id='loanamt' placeholder='Loan amount (₹)'/><input type='number' id='loanrate' placeholder='Interest rate (%)'/><input type='number' id='loantenure' placeholder='Tenure (months)'/><button class='calcbtn' onclick='calcEMI()'>Calculate</button></div><div class='calcresult' id='emiresult'>Enter loan details above to calculate your EMI.</div>";
-    container.appendChild(box);
-
-  } else if (type === "taxsaver") {
-    var box = document.createElement("div");
-    box.className = "calcbox";
-    box.innerHTML = "<h4>💰 Tax Saver — Find Your Legal Savings</h4><div class='calcrow'><input type='number' id='ts-salary' placeholder='Annual salary (₹)'/><input type='number' id='ts-80c' placeholder='Section 80C investments (₹)'/><input type='number' id='ts-hra' placeholder='HRA received (₹)'/><button class='calcbtn' onclick='calcTaxSaver()'>Find Savings</button></div><div class='calcresult' id='ts-result'>Enter your details to find how much tax you can legally save.</div>";
-    container.appendChild(box);
-
-  } else if (type === "livemarket") {
-    var box = document.createElement("div");
-    box.className = "stockbox";
-    box.innerHTML = "<div style='font-size:13px;font-weight:600;margin-bottom:8px'>Live Market Prices</div><div id='stockdata'><div style='font-size:13px;color:#aaa'>Loading...</div></div>";
-    container.appendChild(box);
-    fetchStocks(box.querySelector("#stockdata"));
-
-  } else if (type === "caconnect") {
-    var box = document.createElement("div");
-    box.className = "cabox";
-    box.innerHTML = "<h4>Connect with a CA</h4><p>Get personalised advice from a registered Chartered Accountant for your specific tax, business, or filing situation.</p><button class='cabtn' onclick='openModal()'>Upgrade to Pro to Connect →</button>";
+function renderWidget(br, type) {
+  if (type==="taxslabs") {
+    var b=mkBox();br.appendChild(b);
+    new Chart(mkCanvas(b,260),{type:"bar",data:{labels:["₹0-3L","₹3-7L","₹7-10L","₹10-12L","₹12-15L","₹15L+"],datasets:[{label:"Tax Rate (%)",data:[0,5,10,15,20,30],backgroundColor:["#e8f4f8","#b8d9ea","#88bfdb","#5aa5cc","#2b8abd","#1a6fa0"],borderRadius:6}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:"New Tax Regime Slabs 2024-25"}},scales:{y:{max:35,ticks:{callback:function(v){return v+"%"}}}}}});
+  } else if (type==="sipgrowth") {
+    var b=mkBox();br.appendChild(b);
+    var labels=[],inv=[],val=[];
+    for(var i=1;i<=10;i++){labels.push(i+"Y");inv.push(i*12000);val.push(Math.round(12000*((Math.pow(1+0.12/12,i*12)-1)/(0.12/12))*(1+0.12/12)));}
+    new Chart(mkCanvas(b,260),{type:"line",data:{labels:labels,datasets:[{label:"Invested",data:inv,borderColor:"#ccc",backgroundColor:"rgba(200,200,200,0.1)",fill:true,tension:0.3},{label:"Wealth",data:val,borderColor:"#1a1a1a",backgroundColor:"rgba(26,26,26,0.08)",fill:true,tension:0.3}]},options:{responsive:true,plugins:{title:{display:true,text:"SIP Growth — ₹1,000/month at 12% p.a."}},scales:{y:{ticks:{callback:function(v){return"₹"+(v/1000).toFixed(0)+"K"}}}}}});
+  } else if (type==="portfoliopie") {
+    var b=mkBox();br.appendChild(b);
+    new Chart(mkCanvas(b,260),{type:"doughnut",data:{labels:["Equity (40%)","Mutual Funds (25%)","FD (15%)","Gold (10%)","PPF (10%)"],datasets:[{data:[40,25,15,10,10],backgroundColor:["#1a1a1a","#444","#777","#aaa","#ddd"],borderWidth:0}]},options:{responsive:true,plugins:{title:{display:true,text:"Sample Balanced Portfolio"}}}});
+  } else if (type==="regimecompare") {
+    var b=mkBox();br.appendChild(b);
+    new Chart(mkCanvas(b,260),{type:"bar",data:{labels:["₹5L","₹7L","₹10L","₹12L","₹15L","₹20L"],datasets:[{label:"Old Regime Tax",data:[12500,32500,75000,105000,156000,262500],backgroundColor:"rgba(180,180,180,0.7)",borderRadius:4},{label:"New Regime Tax",data:[0,0,30000,60000,105000,195000],backgroundColor:"rgba(26,26,26,0.8)",borderRadius:4}]},options:{responsive:true,plugins:{title:{display:true,text:"Old vs New Tax Regime Comparison"}},scales:{y:{ticks:{callback:function(v){return"₹"+(v/1000).toFixed(0)+"K"}}}}}});
+  } else if (type==="emicalc") {
+    var b=document.createElement("div");b.className="calcbox";
+    b.innerHTML="<h4>EMI Calculator</h4><div class='calcrow'><input type='number' id='loanamt' placeholder='Loan amount (₹)'/><input type='number' id='loanrate' placeholder='Interest rate (%)'/><input type='number' id='loantenure' placeholder='Tenure (months)'/><button class='calcbtn' onclick='calcEMI()'>Calculate</button></div><div class='calcresult' id='emiresult'>Enter loan details above to calculate your EMI.</div>";
+    br.appendChild(b);
+  } else if (type==="taxsaver") {
+    var b=document.createElement("div");b.className="calcbox";
+    b.innerHTML="<h4>💰 Tax Saver — Find Your Legal Savings</h4><div class='calcrow'><input type='number' id='ts-salary' placeholder='Annual salary (₹)'/><input type='number' id='ts-80c' placeholder='80C invested (₹)'/><input type='number' id='ts-hra' placeholder='HRA received (₹)'/><input type='number' id='ts-80d' placeholder='Health insurance (₹)'/><button class='calcbtn' onclick='calcTaxSaver()'>Find Savings</button></div><div class='calcresult' id='ts-result'>Enter your details to find legal tax savings.</div>";
+    br.appendChild(b);
+  } else if (type==="livemarket") {
+    var b=document.createElement("div");b.className="stockbox";
+    b.innerHTML="<div style='font-size:13px;font-weight:600;margin-bottom:8px'>Live Market Data</div><div id='stockdata'><div style='font-size:13px;color:#aaa'>Loading...</div></div>";
+    br.appendChild(b);
+    fetchStocks(b.querySelector("#stockdata"));
+  } else if (type==="caconnect") {
+    var b=document.createElement("div");b.className="cabox";
     if (isPro) {
-      box.innerHTML = "<h4>Connect with a CA</h4><p>You're a Pro member! A CA will contact you within 24 hours on your registered email.</p><div class='calcresult'>Our CA partner will reach out to <b>" + (window.currentUserEmail || "your email") + "</b> within 24 hours. Average response time is 2-4 hours during business days.</div>";
+      b.innerHTML="<h4>Connect with a CA ✓</h4><p>You're a Pro member! Fill in your details and a registered CA partner will contact you within 24-48 hours.</p><div class='calcrow'><input type='text' id='ca-name' placeholder='Your name'/><input type='text' id='ca-query' placeholder='Brief description of your query'/><button class='calcbtn' onclick='submitCA()'>Request CA</button></div><div class='calcresult' id='ca-result'></div>";
+    } else {
+      b.innerHTML="<h4>Connect with a CA</h4><p>Get expert advice from a registered Chartered Accountant for your specific tax, business, or filing situation.</p><p style='font-size:12px;color:#aaa;margin-bottom:12px'>🔜 CA partner network coming soon. Leave your email to get notified first.</p><div class='calcrow'><input type='email' id='ca-email' placeholder='Your email address'/><button class='calcbtn' onclick='submitCAWaitlist()'>Notify me</button></div><div class='calcresult' id='ca-result'></div>";
     }
-    container.appendChild(box);
-
-  } else if (type === "itrguide") {
-    var box = document.createElement("div");
-    box.className = "calcbox";
-    box.innerHTML = "<h4>Guided ITR Filing</h4><div class='calcrow'><input type='number' id='itr-salary' placeholder='Annual salary (₹)'/><input type='text' id='itr-source' placeholder='Income source (salary/freelance/business)'/><button class='calcbtn' onclick='calcITR()'>Get My ITR Guide</button></div><div class='calcresult' id='itr-result'>Enter your details to get a personalised ITR filing guide.</div>";
-    container.appendChild(box);
+    br.appendChild(b);
+  } else if (type==="itrguide") {
+    var b=document.createElement("div");b.className="calcbox";
+    b.innerHTML="<h4>Guided ITR Filing</h4><div class='calcrow'><input type='number' id='itr-salary' placeholder='Annual income (₹)'/><select id='itr-source'><option value=''>Income source</option><option>Salaried</option><option>Freelancer</option><option>Business</option><option>Multiple sources</option></select><button class='calcbtn' onclick='calcITR()'>Get My Guide</button></div><div class='calcresult' id='itr-result'>Enter your details for a personalised ITR guide.</div>";
+    br.appendChild(b);
+  } else if (type==="healthscore") {
+    var b=document.createElement("div");b.className="calcbox";
+    b.innerHTML="<h4>Financial Health Score</h4><div class='calcrow'><input type='number' id='fh-salary' placeholder='Monthly income (₹)'/><input type='number' id='fh-savings' placeholder='Monthly savings (₹)'/><input type='number' id='fh-invest' placeholder='Total investments (₹)'/><input type='number' id='fh-debt' placeholder='Total debt/loans (₹)'/><button class='calcbtn' onclick='calcHealth()'>Get Score</button></div><div id='fh-result'></div>";
+    br.appendChild(b);
+  } else if (type==="sipgoal") {
+    var b=document.createElement("div");b.className="calcbox";
+    b.innerHTML="<h4>SIP Goal Calculator</h4><div class='calcrow'><input type='number' id='sg-goal' placeholder='Target amount (₹)'/><input type='number' id='sg-years' placeholder='Years'/><input type='number' id='sg-rate' placeholder='Expected return % (default 12)'/><button class='calcbtn' onclick='calcSIPGoal()'>Calculate</button></div><div class='calcresult' id='sg-result'>Enter your target to find how much SIP you need monthly.</div>";
+    br.appendChild(b);
+  } else if (type==="cryptotax") {
+    var b=document.createElement("div");b.className="calcbox";
+    b.innerHTML="<h4>₿ Crypto Tax Calculator</h4><div class='calcrow'><input type='number' id='ct-buy' placeholder='Buy price (₹)'/><input type='number' id='ct-sell' placeholder='Sell price (₹)'/><input type='number' id='ct-qty' placeholder='Quantity'/><button class='calcbtn' onclick='calcCrypto()'>Calculate Tax</button></div><div class='calcresult' id='ct-result'>Enter your crypto trade details to calculate exact tax liability.</div>";
+    br.appendChild(b);
+  } else if (type==="salarycheck") {
+    var b=document.createElement("div");b.className="calcbox";
+    b.innerHTML="<h4>Salary Analyser</h4><div class='calcrow'><input type='number' id='sal-ctc' placeholder='CTC / Offer (₹ per year)'/><select id='sal-city'><option value='metro'>Metro city</option><option value='tier2'>Tier 2 city</option></select><button class='calcbtn' onclick='calcSalary()'>Analyse</button></div><div class='calcresult' id='sal-result'>Enter your CTC to see in-hand salary, tax, and whether it's a good offer.</div>";
+    br.appendChild(b);
   }
 }
 
-window.calcEMI = function() {
-  var p = parseFloat(document.getElementById("loanamt").value);
-  var r = parseFloat(document.getElementById("loanrate").value) / 12 / 100;
-  var n = parseFloat(document.getElementById("loantenure").value);
-  if (!p || !r || !n) { document.getElementById("emiresult").innerHTML = "Please enter all fields."; return; }
-  var emi = p * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
-  var total = emi * n;
-  var interest = total - p;
-  document.getElementById("emiresult").innerHTML = "<b>Monthly EMI: ₹" + Math.round(emi).toLocaleString("en-IN") + "</b><br>Total Payment: ₹" + Math.round(total).toLocaleString("en-IN") + "<br>Total Interest: ₹" + Math.round(interest).toLocaleString("en-IN") + "<br>Principal: ₹" + p.toLocaleString("en-IN");
-};
+function mkBox(){var b=document.createElement("div");b.className="chartbox";return b;}
+function mkCanvas(b,h){var c=document.createElement("canvas");c.style.maxHeight=h+"px";b.appendChild(c);return c;}
 
-window.calcTaxSaver = function() {
-  var salary = parseFloat(document.getElementById("ts-salary").value) || 0;
-  var inv80c = parseFloat(document.getElementById("ts-80c").value) || 0;
-  var hra = parseFloat(document.getElementById("ts-hra").value) || 0;
-  if (!salary) { document.getElementById("ts-result").innerHTML = "Please enter your salary."; return; }
-  var maxima80c = Math.min(150000 - inv80c, 150000);
-  var hraDeduct = Math.min(hra * 0.5, salary * 0.4);
-  var nps = 50000;
-  var health = 25000;
-  var totalSavings = maxima80c + hraDeduct + nps + health;
-  var taxSaved = Math.round(totalSavings * 0.2);
-  document.getElementById("ts-result").innerHTML = "<b>Legal tax saving opportunities found:</b><br>Additional 80C investment possible: <b>₹" + Math.max(0,maxima80c).toLocaleString("en-IN") + "</b><br>HRA deduction available: <b>₹" + Math.round(hraDeduct).toLocaleString("en-IN") + "</b><br>NPS Section 80CCD(1B): <b>₹50,000</b><br>Health insurance 80D: <b>₹25,000</b><br><br><b>Estimated tax you could save: ₹" + taxSaved.toLocaleString("en-IN") + " per year</b><br><small style='color:#aaa'>Upgrade to Pro for your exact personalised calculation.</small>";
-};
+window.calcEMI=function(){var p=parseFloat(document.getElementById("loanamt").value),r=parseFloat(document.getElementById("loanrate").value)/12/100,n=parseFloat(document.getElementById("loantenure").value);if(!p||!r||!n){document.getElementById("emiresult").innerHTML="Please enter all fields.";return;}var emi=p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=emi*n,interest=total-p;document.getElementById("emiresult").innerHTML="<b>Monthly EMI: ₹"+Math.round(emi).toLocaleString("en-IN")+"</b><br>Total payment: ₹"+Math.round(total).toLocaleString("en-IN")+"<br>Total interest: ₹"+Math.round(interest).toLocaleString("en-IN")+"<br>Principal: ₹"+p.toLocaleString("en-IN");};
 
-window.calcITR = function() {
-  var salary = parseFloat(document.getElementById("itr-salary").value) || 0;
-  var source = document.getElementById("itr-source").value.toLowerCase();
-  if (!salary) { document.getElementById("itr-result").innerHTML = "Please enter your annual income."; return; }
-  var form = "ITR-1 (SAHAJ)";
-  var notes = "For salaried individuals with income up to ₹50 lakhs.";
-  if (source.includes("freelance") || source.includes("business")) { form = "ITR-3 or ITR-4 (SUGAM)"; notes = "For freelancers and business owners. You can claim business expenses to reduce taxable income."; }
-  var deadline = "31st July 2025";
-  document.getElementById("itr-result").innerHTML = "<b>Your ITR form: " + form + "</b><br>" + notes + "<br><br><b>Steps for you:</b><br>1. Collect Form 16 from employer (if salaried)<br>2. Download AIS from incometax.gov.in<br>3. Check 26AS for TDS details<br>4. File on incometax.gov.in<br><b>Deadline: " + deadline + "</b><br><br><small style='color:#aaa'>Upgrade to Pro for guided step-by-step filing with a CA.</small>";
-};
+window.calcTaxSaver=function(){var sal=parseFloat(document.getElementById("ts-salary").value)||0,inv=parseFloat(document.getElementById("ts-80c").value)||0,hra=parseFloat(document.getElementById("ts-hra").value)||0,hins=parseFloat(document.getElementById("ts-80d").value)||0;if(!sal){document.getElementById("ts-result").innerHTML="Please enter your salary.";return;}var add80c=Math.max(0,150000-inv),hraD=Math.min(hra*0.5,sal*0.4),nps=50000,add80d=Math.max(0,25000-hins),edu=50000,total=add80c+hraD+nps+add80d+edu,saved=Math.round(total*0.2);document.getElementById("ts-result").innerHTML="<b>Legal tax saving opportunities found:</b><br>Additional 80C: <b>₹"+add80c.toLocaleString("en-IN")+"</b><br>HRA deduction: <b>₹"+Math.round(hraD).toLocaleString("en-IN")+"</b><br>NPS 80CCD(1B): <b>₹50,000</b><br>Additional health 80D: <b>₹"+add80d.toLocaleString("en-IN")+"</b><br>Education loan 80E: <b>₹50,000</b><br><br><b>Estimated tax you could save: ₹"+saved.toLocaleString("en-IN")+"/year</b><br><small style='color:#aaa'>Results are estimates. Consult a CA for exact calculation.</small>";};
 
-function fetchStocks(container) {
-  var symbols = ["BSE:SENSEX", "NSE:NIFTY_50"];
-  container.innerHTML = "<div style='font-size:13px;color:#aaa'>Fetching live prices...</div>";
-  fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=RELIANCE.BSE&apikey=" + AV_KEY)
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      var price = d["Global Quote"] ? d["Global Quote"]["05. price"] : null;
-      var change = d["Global Quote"] ? d["Global Quote"]["10. change percent"] : null;
-      if (price) {
-        var isUp = parseFloat(change) >= 0;
-        container.innerHTML = "<div class='stockrow'><span class='stockname'>Reliance Industries</span><span class='stockprice'>₹" + parseFloat(price).toFixed(2) + "</span><span class='stockchange " + (isUp?"up":"down") + "'>" + (isUp?"+":"") + parseFloat(change).toFixed(2) + "%</span></div><div style='font-size:11px;color:#bbb;margin-top:8px'>Live data via Alpha Vantage · Delayed 15 mins · Check NSE/BSE for real-time</div>";
+window.calcITR=function(){var sal=parseFloat(document.getElementById("itr-salary").value)||0,src=document.getElementById("itr-source").value;if(!sal){document.getElementById("itr-result").innerHTML="Please enter your income.";return;}var form="ITR-1 (SAHAJ)",notes="For salaried individuals with income up to ₹50 lakhs from salary, one house property, and other sources.";if(src==="Freelancer"){form="ITR-3 or ITR-4 (SUGAM)";notes="For freelancers. You can deduct business expenses like internet, equipment, workspace to reduce taxable income.";}else if(src==="Business"){form="ITR-3";notes="For business owners. Maintain proper books and claim all legitimate business expenses.";}else if(src==="Multiple sources"){form="ITR-2 or ITR-3";notes="For income from multiple sources including capital gains, property, etc.";}document.getElementById("itr-result").innerHTML="<b>Your ITR form: "+form+"</b><br>"+notes+"<br><br><b>Steps:</b><br>1. Collect Form 16 / income proof<br>2. Download AIS from incometax.gov.in<br>3. Check 26AS for TDS<br>4. File at incometax.gov.in<br><b>Deadline: 31st July 2025</b>";};
+
+window.calcHealth=function(){var sal=parseFloat(document.getElementById("fh-salary").value)||0,sav=parseFloat(document.getElementById("fh-savings").value)||0,inv=parseFloat(document.getElementById("fh-invest").value)||0,debt=parseFloat(document.getElementById("fh-debt").value)||0;if(!sal){document.getElementById("fh-result").innerHTML="<div class='calcresult'>Please enter your monthly income.</div>";return;}var savRate=sal>0?sav/sal*100:0,debtRatio=sal>0?debt/(sal*12)*100:0;var score=0;if(savRate>=20)score+=30;else if(savRate>=10)score+=15;if(inv>=sal*12)score+=25;else if(inv>=sal*6)score+=15;if(debtRatio<30)score+=25;else if(debtRatio<60)score+=10;if(sav>0)score+=20;var cls=score>=70?"good":score>=40?"avg":"poor",label=score>=70?"Healthy 💚":score>=40?"Average ⚠️":"Needs attention 🔴",tips="";if(savRate<20)tips+="• Try to save at least 20% of your income monthly<br>";if(inv<sal*6)tips+="• Build an investment corpus of at least 6 months salary<br>";if(debtRatio>30)tips+="• Work on reducing your debt-to-income ratio<br>";if(score>=70)tips="You're in great financial health! Keep investing consistently.";document.getElementById("fh-result").innerHTML="<div class='healthscore'><div class='score-circle score-"+cls+"'>"+score+"</div><div class='score-label'>"+label+"</div><div class='score-tips'>"+tips+"</div></div>";};
+
+window.calcSIPGoal=function(){var goal=parseFloat(document.getElementById("sg-goal").value),years=parseFloat(document.getElementById("sg-years").value),rate=parseFloat(document.getElementById("sg-rate").value)||12;if(!goal||!years){document.getElementById("sg-result").innerHTML="Please enter your target amount and years.";return;}var r=rate/12/100,n=years*12,sip=Math.round(goal*r/(Math.pow(1+r,n)-1));document.getElementById("sg-result").innerHTML="To reach <b>₹"+goal.toLocaleString("en-IN")+"</b> in <b>"+years+" years</b> at <b>"+rate+"% p.a.</b>:<br><br><b>Monthly SIP required: ₹"+sip.toLocaleString("en-IN")+"</b><br>Total invested: ₹"+(sip*n).toLocaleString("en-IN")+"<br>Wealth created by returns: ₹"+(goal-sip*n).toLocaleString("en-IN");};
+
+window.calcCrypto=function(){var buy=parseFloat(document.getElementById("ct-buy").value),sell=parseFloat(document.getElementById("ct-sell").value),qty=parseFloat(document.getElementById("ct-qty").value);if(!buy||!sell||!qty){document.getElementById("ct-result").innerHTML="Please enter all trade details.";return;}var profit=(sell-buy)*qty,tax=profit>0?Math.round(profit*0.3):0,tds=Math.round(sell*qty*0.01);document.getElementById("ct-result").innerHTML="<b>Trade summary:</b><br>Buy value: ₹"+(buy*qty).toLocaleString("en-IN")+"<br>Sell value: ₹"+(sell*qty).toLocaleString("en-IN")+"<br>"+(profit>0?"<b style='color:#0a7a4a'>Profit: ₹"+profit.toLocaleString("en-IN")+"</b>":"<b style='color:#c0392b'>Loss: ₹"+Math.abs(profit).toLocaleString("en-IN")+"</b>")+"<br><br><b>Tax liability:</b><br>30% flat tax on profit: <b>₹"+tax.toLocaleString("en-IN")+"</b><br>1% TDS deducted at source: <b>₹"+tds.toLocaleString("en-IN")+"</b><br><small style='color:#aaa'>Losses cannot be offset against other income. Consult a CA for filing.</small>";};
+
+window.calcSalary=function(){var ctc=parseFloat(document.getElementById("sal-ctc").value),city=document.getElementById("sal-city").value;if(!ctc){document.getElementById("sal-result").innerHTML="Please enter your CTC.";return;}var monthly=Math.round(ctc/12),pf=Math.round(ctc*0.12/12),tax=ctc>1500000?Math.round((ctc-1500000)*0.3+150000):ctc>1200000?Math.round((ctc-1200000)*0.2+90000):ctc>1000000?Math.round((ctc-1000000)*0.15+60000):ctc>700000?Math.round((ctc-700000)*0.1+10000):ctc>300000?Math.round((ctc-300000)*0.05):0;var inhand=Math.round((ctc-tax-pf*2)/12),rent=city==="metro"?Math.round(inhand*0.3):Math.round(inhand*0.2),rating=ctc>=1200000?"Great offer 🎉":ctc>=700000?"Decent offer ✓":ctc>=400000?"Average for India":"Below market";document.getElementById("sal-result").innerHTML="<b>"+rating+"</b><br><br>Monthly CTC: <b>₹"+monthly.toLocaleString("en-IN")+"</b><br>Estimated in-hand: <b>₹"+inhand.toLocaleString("en-IN")+"/month</b><br>Annual tax: ₹"+tax.toLocaleString("en-IN")+"<br>PF deduction: ₹"+(pf*2*12).toLocaleString("en-IN")+"/year<br>Suggested rent budget: ₹"+rent.toLocaleString("en-IN")+"/month<br><small style='color:#aaa'>In-hand estimate. Actual depends on your employer's structure.</small>";};
+
+window.submitCA=function(){var name=document.getElementById("ca-name")?document.getElementById("ca-name").value:"",query=document.getElementById("ca-query")?document.getElementById("ca-query").value:"";if(!name||!query){document.getElementById("ca-result").innerHTML="Please fill in your name and query.";return;}document.getElementById("ca-result").innerHTML="<b>Request submitted! ✓</b><br>Our CA partner will contact <b>"+window.currentUserEmail+"</b> within 24-48 hours regarding: "+query;};
+
+window.submitCAWaitlist=function(){var email=document.getElementById("ca-email")?document.getElementById("ca-email").value:"";if(!email){document.getElementById("ca-result").innerHTML="Please enter your email.";return;}document.getElementById("ca-result").innerHTML="<b>You're on the waitlist! ✓</b><br>We'll notify <b>"+email+"</b> as soon as CA connect launches.";};
+
+function fetchStocks(container){
+  fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=RELIANCE.BSE&apikey="+AV_KEY)
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var q=d["Global Quote"];
+      if(q&&q["05. price"]){
+        var price=parseFloat(q["05. price"]).toFixed(2),chg=parseFloat(q["10. change percent"]).toFixed(2),up=parseFloat(chg)>=0;
+        container.innerHTML="<div class='stockrow'><span class='stockname'>Reliance Industries</span><span class='stockprice'>₹"+price+"</span><span class='stockchange "+(up?"up":"down")+"'>"+(up?"+":"")+chg+"%</span></div><div style='font-size:11px;color:#bbb;margin-top:8px'>Via Alpha Vantage · 15 min delay · <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> for real-time</div>";
       } else {
-        container.innerHTML = "<div style='font-size:13px;color:#555'>Live data temporarily unavailable. Check <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> or <a href='https://moneycontrol.com' target='_blank' style='color:#1a1a1a'>Moneycontrol</a> for live prices.</div>";
+        container.innerHTML="<div style='font-size:13px;color:#555'>Check <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> or <a href='https://moneycontrol.com' target='_blank' style='color:#1a1a1a'>Moneycontrol</a> for live prices.</div>";
       }
     })
-    .catch(function() {
-      container.innerHTML = "<div style='font-size:13px;color:#555'>Check <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> or <a href='https://moneycontrol.com' target='_blank' style='color:#1a1a1a'>Moneycontrol</a> for live prices.</div>";
-    });
+    .catch(function(){container.innerHTML="<div style='font-size:13px;color:#555'>Check <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> for live prices.</div>";});
 }
 
-function send() {
-  if (!isPro && qCount >= FREE) { showLimit(); return; }
-  var ci = document.getElementById("ci");
-  var msg = ci.value.trim();
-  if (!msg) return;
-  ci.value = "";
-  document.getElementById("sb").disabled = true;
-  var ms = document.getElementById("msgs");
-  chatLog.push({ role: "user", content: msg });
-  var id = msgIdx++;
+document.getElementById("wi").addEventListener("keydown",function(e){if(e.key==="Enter")startChat();});
+document.getElementById("ci").addEventListener("keydown",function(e){if(e.key==="Enter")send();});
+document.getElementById("sb").addEventListener("click",send);
+document.getElementById("ov").addEventListener("click",function(e){if(e.target===this)closeModal();});
 
-  var ur = document.createElement("div");
-  ur.className = "mrow urow";
-  ur.innerHTML = "<div class='ubub'>" + esc(msg) + "</div>";
+function ca(q){document.getElementById("wi").value=q;startChat();}
+
+function startChat(){
+  var v=document.getElementById("wi").value.trim();
+  if(!v)return;
+  document.getElementById("welcome").style.display="none";
+  document.getElementById("chat").classList.add("on");
+  document.getElementById("ci").value=v;
+  send();
+}
+
+function send(){
+  if(!isPro&&qCount>=FREE){showLimit();return;}
+  var ci=document.getElementById("ci"),msg=ci.value.trim();
+  if(!msg)return;
+  ci.value="";
+  document.getElementById("sb").disabled=true;
+  var ms=document.getElementById("msgs");
+  chatLog.push({role:"user",content:msg});
+  var id=msgIdx++;
+  var ur=document.createElement("div");
+  ur.className="mrow urow";
+  ur.innerHTML="<div class='ubub'>"+esc(msg)+"</div>";
   ms.appendChild(ur);
-
-  var br = document.createElement("div");
-  br.className = "mrow";
-  br.innerHTML = "<div class='brow'><div class='bav spinning' id='av" + id + "'>" + snow(true) + "</div><div class='bcont' id='bc" + id + "'><div class='pdots'><div class='pd'></div><div class='pd'></div><div class='pd'></div><span>Thinking...</span></div></div></div>";
+  var br=document.createElement("div");
+  br.className="mrow";
+  br.innerHTML="<div class='brow'><div class='bav spinning' id='av"+id+"'>"+snow(true)+"</div><div class='bcont' id='bc"+id+"'><div class='pdots'><div class='pd'></div><div class='pd'></div><div class='pd'></div><span>Thinking...</span></div></div></div>";
   ms.appendChild(br);
-  ms.scrollTop = ms.scrollHeight;
-  if (!isPro) qCount++;
-
-  fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + GROQ_KEY },
-    body: JSON.stringify({ model: MODEL, messages: [{ role: "system", content: SYS }].concat(chatLog) })
+  ms.scrollTop=ms.scrollHeight;
+  if(!isPro)qCount++;
+  var fullSYS = onboardContext ? SYS + "\n\nUSER PROFILE: " + onboardContext : SYS;
+  fetch("https://api.groq.com/openai/v1/chat/completions",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Authorization":"Bearer "+GROQ_KEY},
+    body:JSON.stringify({model:MODEL,messages:[{role:"system",content:fullSYS}].concat(chatLog)})
   })
-  .then(function(r) { return r.json(); })
-  .then(function(d) {
-    var reply = d.choices[0].message.content;
-    chatLog.push({ role: "assistant", content: reply });
-    var av = document.getElementById("av" + id);
-    var bc = document.getElementById("bc" + id);
-    av.className = "bav";
-    av.innerHTML = snow(false);
-    bc.innerHTML = reply;
-    var cr = bc.querySelector(".chartrequest");
-    if (cr) {
-      var ctype = cr.getAttribute("data-type");
-      cr.remove();
-      renderWidget(br, ctype, br);
-    }
-    document.getElementById("sb").disabled = false;
-    br.scrollIntoView({ behavior: "smooth", block: "start" });
-    if (!isPro && qCount >= FREE) showLimit();
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var reply=d.choices[0].message.content;
+    chatLog.push({role:"assistant",content:reply});
+    var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
+    av.className="bav";av.innerHTML=snow(false);
+    bc.innerHTML=reply;
+    var cr=bc.querySelector(".chartrequest");
+    if(cr){var ct=cr.getAttribute("data-type");cr.remove();renderWidget(br,ct);}
+    document.getElementById("sb").disabled=false;
+    br.scrollIntoView({behavior:"smooth",block:"start"});
+    if(!isPro&&qCount>=FREE)showLimit();
   })
-  .catch(function() {
-    var av = document.getElementById("av" + id);
-    var bc = document.getElementById("bc" + id);
-    av.className = "bav";
-    av.innerHTML = snow(false);
-    bc.innerHTML = "Something went wrong. Please try again.";
-    document.getElementById("sb").disabled = false;
+  .catch(function(){
+    var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
+    av.className="bav";av.innerHTML=snow(false);
+    bc.innerHTML="Something went wrong. Please check your connection and try again.";
+    document.getElementById("sb").disabled=false;
   });
 }
 
-function showLimit() {
-  var now = new Date(), res = new Date(now.getTime() + 3 * 60 * 60 * 1000);
-  var h = res.getHours(), m = res.getMinutes(), ap = h >= 12 ? "PM" : "AM";
-  h = h % 12 || 12;
-  var ms = m < 10 ? "0" + m : m;
-  document.getElementById("rt").textContent = h + ":" + ms + " " + ap;
-  document.getElementById("lnotice").style.display = "block";
-  document.getElementById("ci").disabled = true;
-  document.getElementById("sb").disabled = true;
-  document.getElementById("ci").placeholder = "Free again at " + h + ":" + ms + " " + ap + " — or upgrade";
-  var secs = 10800;
-  if (timerInt) clearInterval(timerInt);
-  timerInt = setInterval(function() {
+function showLimit(){
+  var now=new Date(),res=new Date(now.getTime()+3*60*60*1000);
+  var h=res.getHours(),m=res.getMinutes(),ap=h>=12?"PM":"AM";
+  h=h%12||12;var ms=m<10?"0"+m:m;
+  document.getElementById("rt").textContent=h+":"+ms+" "+ap;
+  document.getElementById("lnotice").style.display="block";
+  document.getElementById("ci").disabled=true;
+  document.getElementById("sb").disabled=true;
+  document.getElementById("ci").placeholder="Free again at "+h+":"+ms+" "+ap+" — or upgrade to Pro";
+  var secs=10800;
+  if(timerInt)clearInterval(timerInt);
+  timerInt=setInterval(function(){
     secs--;
-    var hh = Math.floor(secs/3600), mm = Math.floor((secs%3600)/60), ss = secs%60;
-    document.getElementById("cd").textContent = (hh>0?hh+"h ":"")+(mm<10?"0"+mm:mm)+"m "+(ss<10?"0"+ss:ss)+"s";
-    if (secs <= 0) {
-      clearInterval(timerInt);
-      qCount = 0;
-      document.getElementById("lnotice").style.display = "none";
-      document.getElementById("ci").disabled = false;
-      document.getElementById("sb").disabled = false;
-      document.getElementById("ci").placeholder = "Ask anything about money in India...";
-    }
-  }, 1000);
+    var hh=Math.floor(secs/3600),mm=Math.floor((secs%3600)/60),ss=secs%60;
+    document.getElementById("cd").textContent=(hh>0?hh+"h ":"")+(mm<10?"0"+mm:mm)+"m "+(ss<10?"0"+ss:ss)+"s";
+    if(secs<=0){clearInterval(timerInt);qCount=0;document.getElementById("lnotice").style.display="none";document.getElementById("ci").disabled=false;document.getElementById("sb").disabled=false;document.getElementById("ci").placeholder="Ask anything about money in India...";}
+  },1000);
 }
 
-function openModal() { document.getElementById("ov").classList.add("open"); }
-function closeModal() { document.getElementById("ov").classList.remove("open"); }
-function esc(t) { return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function openModal(){document.getElementById("ov").classList.add("open");}
+function closeModal(){document.getElementById("ov").classList.remove("open");}
+function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 </script>
 </body>
 </html>
