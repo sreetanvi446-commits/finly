@@ -528,7 +528,7 @@ function showApp(user, overrideName, isNew) {
 </script>
 
 <script>
-var GROQ_KEY = "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";
+// ✅ GROQ KEY REMOVED — now handled securely by /api/chat (Vercel Edge Function)
 var RZP_KEY = "rzp_test_SnXgo4F1cJ0hbw";
 var AV_KEY = "2U78ST4VTFBB9MIX";
 var MODEL = "llama-3.3-70b-versatile";
@@ -754,10 +754,15 @@ function send(){
   ms.scrollTop=ms.scrollHeight;
   if(!isPro)qCount++;
   var fullSYS = onboardContext ? SYS + "\n\nUSER PROFILE: " + onboardContext : SYS;
-  fetch("https://api.groq.com/openai/v1/chat/completions",{
-    method:"POST",
-    headers:{"Content-Type":"application/json","Authorization":"Bearer "+GROQ_KEY},
-    body:JSON.stringify({model:MODEL,messages:[{role:"system",content:fullSYS}].concat(chatLog)})
+
+  // ✅ NOW CALLS YOUR SECURE PROXY instead of Groq directly
+  fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: MODEL,
+      messages: [{role:"system",content:fullSYS}].concat(chatLog)
+    })
   })
   .then(function(r){return r.json();})
   .then(function(d){
@@ -772,7 +777,7 @@ function send(){
     br.scrollIntoView({behavior:"smooth",block:"start"});
     if(!isPro&&qCount>=FREE)showLimit();
   })
-  .catch(function(){
+  .catch(function(err){
     var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
     av.className="bav";av.innerHTML=snow(false);
     bc.innerHTML="Something went wrong. Please check your connection and try again.";
