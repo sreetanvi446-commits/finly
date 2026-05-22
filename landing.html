@@ -467,14 +467,14 @@ function flyRupee(callback){
   rupee.style.left=startX+"px";
   rupee.style.top=startY+"px";
   rupee.style.opacity="1";
-  rupee.style.fontSize="26px";
+  rupee.style.fontSize="36px";
   rupee.style.fontWeight="bold";
   rupee.style.color="#c8a97e";
   rupee.style.transform="rotate(0deg) scale(1)";
 
   // Animate along curved path using JS keyframes
   var startTime=null;
-  var duration=900;
+  var duration=1800;
 
   function animate(timestamp){
     if(!startTime)startTime=timestamp;
@@ -494,7 +494,7 @@ function flyRupee(callback){
 
     // Curved path — arc upward then down into window
     var curveX=startX+(endX-startX)*t;
-    var curveY=startY+(endY-startY)*t - Math.sin(Math.PI*t)*120;
+    var curveY=startY+(endY-startY)*t - Math.sin(Math.PI*t)*160;
 
     rupee.style.left=curveX+"px";
     rupee.style.top=curveY+"px";
@@ -572,7 +572,7 @@ function runDemo(){
 
 // Start after page loads so we can get element positions
 window.addEventListener("load",function(){
-  setTimeout(runDemo,1000);
+  setTimeout(runDemo,1500);
 });
 
 // FAQ
