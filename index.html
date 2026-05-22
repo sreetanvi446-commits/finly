@@ -528,6 +528,10 @@ function showApp(user, overrideName, isNew) {
 
 <script>
 // ✅ GROQ KEY REMOVED — now handled securely by /api/chat (Vercel Edge Function)
+  if(!sessionStorage.getItem("saw-landing")){
+  sessionStorage.setItem("saw-landing","yes");
+  window.location.href="landing.html";
+}
 var RZP_KEY = "rzp_test_SnXgo4F1cJ0hbw";
 var AV_KEY = "2U78ST4VTFBB9MIX";
 var MODEL = "llama-3.3-70b-versatile";
