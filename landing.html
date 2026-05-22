@@ -191,7 +191,20 @@ footer{background:var(--black);padding:60px 48px 32px}
 <body>
 
 <!-- FLYING RUPEE — overlays entire page during animation -->
-<div id="flying-rupee">₹</div>
+<div id="flying-rupee">
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="22" fill="url(#coinGrad)" stroke="#a0701a" stroke-width="2"/>
+    <circle cx="24" cy="24" r="18" fill="none" stroke="#f5c842" stroke-width="1" opacity="0.5"/>
+    <text x="24" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#7a4f00" font-family="serif">₹</text>
+    <defs>
+      <radialGradient id="coinGrad" cx="35%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#ffe066"/>
+        <stop offset="40%" stop-color="#f5c842"/>
+        <stop offset="100%" stop-color="#c8960a"/>
+      </radialGradient>
+    </defs>
+  </svg>
+</div>
 
 <nav>
   <a href="#" class="nav-logo">
@@ -467,9 +480,9 @@ function flyRupee(callback){
   rupee.style.left=startX+"px";
   rupee.style.top=startY+"px";
   rupee.style.opacity="1";
-  rupee.style.fontSize="36px";
-  rupee.style.fontWeight="bold";
-  rupee.style.color="#c8a97e";
+  rupee.style.width='48px';rupee.style.height='48px';
+  
+  
   rupee.style.transform="rotate(0deg) scale(1)";
 
   // Animate along curved path using JS keyframes
