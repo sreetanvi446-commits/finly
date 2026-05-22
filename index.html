@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+if(!sessionStorage.getItem("saw-landing")){
+  sessionStorage.setItem("saw-landing","yes");
+  window.location.replace("landing.html");
+}
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Finly — India's Finance Brain</title>
 <meta name="description" content="Free AI-powered finance assistant for Indians. Get answers on taxes, ITR, GST, investing, trading, crypto and more.">
@@ -528,10 +535,6 @@ function showApp(user, overrideName, isNew) {
 
 <script>
 // ✅ GROQ KEY REMOVED — now handled securely by /api/chat (Vercel Edge Function)
-  if(!sessionStorage.getItem("saw-landing")){
-  sessionStorage.setItem("saw-landing","yes");
-  window.location.href="landing.html";
-}
 var RZP_KEY = "rzp_test_SnXgo4F1cJ0hbw";
 var AV_KEY = "2U78ST4VTFBB9MIX";
 var MODEL = "llama-3.3-70b-versatile";
