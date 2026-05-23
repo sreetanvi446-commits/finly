@@ -229,6 +229,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
       <button class="signoutbtn" onclick="signOut()">Sign out</button>
     </div>
     <button class="probtn" onclick="openModal()">Get Pro</button>
+    <button onclick="clearChat()" style="font-size:11px;color:#bbb;background:none;border:none;cursor:pointer;font-family:inherit;padding:4px 8px" title="Clear chat">🗑️</button>
   </div>
 </div>
 
@@ -332,6 +333,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
   </svg>
   <h1 id="welcomeheading">What's on your mind?</h1>
   <p id="welcomesub">Taxes, trading, startups, investing, crypto — ask anything about money in India.</p>
+  <div style="display:flex;gap:24px;justify-content:center;margin-bottom:8px;flex-wrap:wrap">
+    <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#1a1a1a">500+</div><div style="font-size:11px;color:#bbb">Questions answered</div></div>
+    <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#1a1a1a">100%</div><div style="font-size:11px;color:#bbb">Free forever</div></div>
+    <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#1a1a1a">10+</div><div style="font-size:11px;color:#bbb">Finance tools</div></div>
+    <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#1a1a1a">🇮🇳</div><div style="font-size:11px;color:#bbb">Built for India</div></div>
+  </div>
   <div class="winput">
     <input type="text" id="wi" placeholder="Ask anything about money..."/>
     <button onclick="startChat()">↑</button>
@@ -592,13 +599,22 @@ function showApp(user, overrideName, isNew) {
 var RZP_KEY = "rzp_test_SnXgo4F1cJ0hbw";
 var AV_KEY = "2U78ST4VTFBB9MIX";
 var MODEL = "llama-3.3-70b-versatile";
-var qCount = 0, FREE = 10, isPro = false, timerInt = null, chatLog = [], msgIdx = 0;
+// Load Pro status from localStorage so it persists after refresh
+var isPro = localStorage.getItem("finly_pro") === "true";
+var qCount = parseInt(localStorage.getItem("finly_qcount") || "0");
+// Load saved chat history
+var savedChat = localStorage.getItem("finly_chat");
+if(savedChat){ try{ chatLog = JSON.parse(savedChat); }catch(e){ chatLog = []; } }
+// Reset count if it was saved more than 3 hours ago
+var lastReset = parseInt(localStorage.getItem("finly_reset") || "0");
+if (Date.now() - lastReset > 3 * 60 * 60 * 1000) { qCount = 0; localStorage.setItem("finly_qcount", "0"); localStorage.setItem("finly_reset", Date.now()); }
+var FREE = 10, timerInt = null, chatLog = [], msgIdx = 0;
 window.authMode = "signin";
 window.currentUserName = "User";
 window.currentUserEmail = "";
 window.onboardData = {};
 
-var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation always assume the finance meaning first — EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more.\n\nFORMAT RULES:\n1. Clean HTML only — never ** or ## or markdown\n2. Bold heading relevant to topic\n3. <b> tags for every important term, number, percentage, rupee amount\n4. Numbered sections: <br><b>1. Section Title</b><br>\n5. <ul><li> bullets — each a complete detailed sentence\n6. End with <b>Key Tips:</b>\n7. End with <b>Typical Timeline:</b> or summary\n8. Thorough complete answers\n9. Disclaimer only if HOW TO actually file or invest: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part?</i>\n11. SPECIAL COMMANDS — add exact tag at end when user asks:\n- Tax slabs: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/loopholes: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market: <div class='chartrequest' data-type='livemarket'></div>\n- CA connect: <div class='chartrequest' data-type='caconnect'></div>\n- ITR guide: <div class='chartrequest' data-type='itrguide'></div>\n- Financial health score: <div class='chartrequest' data-type='healthscore'></div>\n- SIP goal/target: <div class='chartrequest' data-type='sipgoal'></div>\n- Crypto tax: <div class='chartrequest' data-type='cryptotax'></div>\n- Salary analysis: <div class='chartrequest' data-type='salarycheck'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax, Budget 2025 changes), GST, stock market and trading, personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax (30% flat, 1% TDS), credit scores and loans.";
+var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation always assume the finance meaning first — EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more.\n\nEMOJI RULES — use these naturally throughout every answer:\n💰 for money, savings, rupee amounts\n📋 for ITR, forms, documents\n📈 for investing, growth, returns\n🔥 for great tips, important points\n✅ for completed steps, good news\n⚠️ for warnings, deadlines, risks\n💡 for tips, smart ideas\n🏦 for banks, regime, tax\n₿ for crypto\n🚀 for goals, targets\n😊 at the end of responses\n\nFORMAT RULES:\n1. Clean HTML only — never ** or ## or markdown\n2. Bold heading relevant to topic with relevant emoji\n3. <b> tags for every important term, number, percentage, rupee amount\n4. Numbered sections: <br><b>1. Section Title</b><br>\n5. <ul><li> bullets — each a complete detailed sentence\n6. End with <b>Key Tips: 💡</b>\n7. End with <b>Typical Timeline:</b> or summary\n8. Thorough complete answers\n9. Disclaimer only if HOW TO actually file or invest: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part? 😊</i>\n11. SPECIAL COMMANDS — add exact tag at end when user asks:\n- Tax slabs: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/loopholes: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market: <div class='chartrequest' data-type='livemarket'></div>\n- CA connect: <div class='chartrequest' data-type='caconnect'></div>\n- ITR guide: <div class='chartrequest' data-type='itrguide'></div>\n- Financial health score: <div class='chartrequest' data-type='healthscore'></div>\n- SIP goal/target: <div class='chartrequest' data-type='sipgoal'></div>\n- Crypto tax: <div class='chartrequest' data-type='cryptotax'></div>\n- Salary analysis: <div class='chartrequest' data-type='salarycheck'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax, Budget 2025 changes), GST, stock market and trading, personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax (30% flat, 1% TDS), credit scores and loans.";
 
 var onboardContext = "";
 
@@ -663,6 +679,7 @@ window.startPayment = function(amount, plan) {
     handler: function(response) {
       isPro = true;
       window.isPro = true;
+      localStorage.setItem("finly_pro", "true");
       closeModal();
       document.getElementById("sb").disabled = false;
       document.getElementById("ci").disabled = false;
@@ -812,7 +829,7 @@ function send(){
   br.innerHTML="<div class='brow'><div class='bav spinning' id='av"+id+"'>"+snow(true)+"</div><div class='bcont' id='bc"+id+"'><div class='pdots'><div class='pd'></div><div class='pd'></div><div class='pd'></div><span>Thinking...</span></div></div></div>";
   ms.appendChild(br);
   ms.scrollTop=ms.scrollHeight;
-  if(!isPro)qCount++;
+  if(!isPro){ qCount++; localStorage.setItem("finly_qcount", qCount); }
   var fullSYS = onboardContext ? SYS + "\n\nUSER PROFILE: " + onboardContext : SYS;
 
   // ✅ NOW CALLS YOUR SECURE PROXY instead of Groq directly
@@ -828,6 +845,9 @@ function send(){
   .then(function(d){
     var reply=d.choices[0].message.content;
     chatLog.push({role:"assistant",content:reply});
+    // Save chat history to localStorage (keep last 20 messages)
+    if(chatLog.length > 20) chatLog = chatLog.slice(chatLog.length - 20);
+    localStorage.setItem("finly_chat", JSON.stringify(chatLog));
     var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
     av.className="bav";av.innerHTML=snow(false);
     bc.innerHTML=reply;
@@ -864,6 +884,13 @@ function showLimit(){
   },1000);
 }
 
+function clearChat(){
+  chatLog=[];
+  localStorage.removeItem("finly_chat");
+  document.getElementById("msgs").innerHTML="";
+  document.getElementById("chat").classList.remove("on");
+  document.getElementById("welcome").style.display="flex";
+}
 function openModal(){document.getElementById("ov").classList.add("open");}
 function closeModal(){document.getElementById("ov").classList.remove("open");}
 window.joinWaitlist=function(){var email=document.getElementById("waitlist-email").value.trim();var msg=document.getElementById("waitlist-msg");if(!email||!email.includes("@")){msg.style.color="#c0392b";msg.textContent="Please enter a valid email.";return;}msg.style.color="#0a7a4a";msg.textContent="✓ You're on the list! We'll email you when Pro launches.";document.getElementById("waitlist-email").value="";document.getElementById("waitlist-email").disabled=true;};
