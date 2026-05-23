@@ -462,12 +462,66 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+// Detect in-app browser
+function isInAppBrowser() {
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+  return /FBAN|FBAV|Instagram|WhatsApp|LinkedInApp|Line|Snapchat|GSA|MicroMessenger/i.test(ua);
+}
+
+function openInChrome() {
+  var url = "https://finly-hazel.vercel.app";
+  // Try Chrome intent on Android
+  var chromeUrl = "intent://" + url.replace("https://","") + "#Intent;scheme=https;package=com.android.chrome;end";
+  // Try googlechrome:// on iOS
+  var iosChrome = url.replace("https://", "googlechrome://");
+  
+  var ua = navigator.userAgent;
+  if (/iPhone|iPad|iPod/i.test(ua)) {
+    // iOS — try Chrome app
+    window.location.href = iosChrome;
+    setTimeout(function() {
+      // Fallback — show instructions
+      document.getElementById("autherr").textContent = "Please copy this link and open in Chrome: finly-hazel.vercel.app";
+    }, 1500);
+  } else {
+    // Android — try Chrome intent
+    window.location.href = chromeUrl;
+    setTimeout(function() {
+      document.getElementById("autherr").textContent = "Please copy this link and open in Chrome: finly-hazel.vercel.app";
+    }, 1500);
+  }
+}
+
 window.signInWithGoogle = async function() {
+  // Check if in-app browser
+  if (isInAppBrowser()) {
+    // Try to open in Chrome first
+    openInChrome();
+    // Also show a helpful banner
+    document.getElementById("autherr").textContent = "";
+    var errEl = document.getElementById("autherr");
+    errEl.innerHTML = "Opening in Chrome... If it doesn't open, <b>copy this link</b> and paste in Chrome:<br><span style='font-size:11px;color:#888'>finly-hazel.vercel.app</span>";
+    return;
+  }
+
+  // Normal browser — try popup first
   try {
     document.getElementById("autherr").textContent = "";
     const result = await signInWithPopup(auth, provider);
     showApp(result.user);
-  } catch(e) { document.getElementById("autherr").textContent = "Google sign in failed. Try again."; }
+  } catch(e) {
+    // If popup fails, try redirect
+    if (e.code === "auth/popup-blocked" || e.code === "auth/popup-closed-by-user") {
+      try {
+        const { signInWithRedirect, getRedirectResult } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+        await signInWithRedirect(auth, provider);
+      } catch(e2) {
+        document.getElementById("autherr").textContent = "Google sign in failed. Please try email sign in below.";
+      }
+    } else {
+      document.getElementById("autherr").textContent = "Google sign in failed. Please try email sign in below.";
+    }
+  }
 };
 
 window.submitEmail = async function() {
