@@ -230,7 +230,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     </div>
     <button class="probtn" onclick="openModal()">Get Pro</button>
     <button onclick="clearChat()" style="font-size:11px;color:#bbb;background:none;border:none;cursor:pointer;font-family:inherit;padding:4px 8px" title="Clear chat">🗑️</button>
-    <button id="langbtn" onclick="toggleLang()" style="font-size:11px;color:#1a1a1a;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:6px;cursor:pointer;font-family:inherit;padding:4px 10px;font-weight:600">हिं</button>
   </div>
 </div>
 
@@ -597,7 +596,7 @@ window.currentUserName = "User";
 window.currentUserEmail = "";
 window.onboardData = {};
 
-var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation always assume the finance meaning first — EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return.\n\nPERSONALITY RULES — follow exactly:\n- If someone says ONLY hello, hey, hi, or hii — respond with exactly: Hey! 👋 How can I help you today? 😊\n- If someone asks how are you, how are u, hru, how are you doing — respond with exactly: I am doing great, thank you for asking! 😊 How are you doing? What is on your mind today?\n- NEVER give the same response for greetings and how are you — they are different\n- NEVER give finance answers to personal greetings or how are you questions\n\nEMOJI RULES — use these naturally throughout every answer:\n💰 for money, savings, rupee amounts\n📋 for ITR, forms, documents\n📈 for investing, growth, returns\n🔥 for great tips, important points\n✅ for completed steps, good news\n⚠️ for warnings, deadlines, risks\n💡 for tips, smart ideas\n🏦 for banks, regime, tax\n₿ for crypto\n🚀 for goals, targets\n😊 at the end of responses\n\nFORMAT RULES:\n1. Clean HTML only — never ** or ## or markdown\n2. Bold heading relevant to topic with relevant emoji\n3. <b> tags for every important term, number, percentage, rupee amount\n4. Numbered sections: <br><b>1. Section Title</b><br>\n5. <ul><li> bullets — each a complete detailed sentence\n6. End with <b>Key Tips: 💡</b>\n7. End with <b>Typical Timeline:</b> or summary\n8. Thorough complete answers\n9. Disclaimer only if HOW TO actually file or invest: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part? 😊</i>\n11. SPECIAL COMMANDS — add exact tag at end when user asks:\n- Tax slabs: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/loopholes: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market: <div class='chartrequest' data-type='livemarket'></div>\n- CA connect: <div class='chartrequest' data-type='caconnect'></div>\n- ITR guide: <div class='chartrequest' data-type='itrguide'></div>\n- Financial health score: <div class='chartrequest' data-type='healthscore'></div>\n- SIP goal/target: <div class='chartrequest' data-type='sipgoal'></div>\n- Crypto tax: <div class='chartrequest' data-type='cryptotax'></div>\n- Salary analysis: <div class='chartrequest' data-type='salarycheck'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax, Budget 2025 changes), GST, stock market and trading, personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax (30% flat, 1% TDS), credit scores and loans.";
+var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation always assume the finance meaning first — EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return.\n\nPERSONALITY: If someone says hello or hey, respond with exactly: Hey! How can I help you today? — nothing more.\n\nEMOJI RULES — use these naturally throughout every answer:\n💰 for money, savings, rupee amounts\n📋 for ITR, forms, documents\n📈 for investing, growth, returns\n🔥 for great tips, important points\n✅ for completed steps, good news\n⚠️ for warnings, deadlines, risks\n💡 for tips, smart ideas\n🏦 for banks, regime, tax\n₿ for crypto\n🚀 for goals, targets\n😊 at the end of responses\n\nFORMAT RULES:\n1. Clean HTML only — never ** or ## or markdown\n2. Bold heading relevant to topic with relevant emoji\n3. <b> tags for every important term, number, percentage, rupee amount\n4. Numbered sections: <br><b>1. Section Title</b><br>\n5. <ul><li> bullets — each a complete detailed sentence\n6. End with <b>Key Tips: 💡</b>\n7. End with <b>Typical Timeline:</b> or summary\n8. Thorough complete answers\n9. Disclaimer only if HOW TO actually file or invest: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part? 😊</i>\n11. SPECIAL COMMANDS — add exact tag at end when user asks:\n- Tax slabs: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/loopholes: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market: <div class='chartrequest' data-type='livemarket'></div>\n- CA connect: <div class='chartrequest' data-type='caconnect'></div>\n- ITR guide: <div class='chartrequest' data-type='itrguide'></div>\n- Financial health score: <div class='chartrequest' data-type='healthscore'></div>\n- SIP goal/target: <div class='chartrequest' data-type='sipgoal'></div>\n- Crypto tax: <div class='chartrequest' data-type='cryptotax'></div>\n- Salary analysis: <div class='chartrequest' data-type='salarycheck'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax, Budget 2025 changes), GST, stock market and trading, personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax (30% flat, 1% TDS), credit scores and loans.";
 
 var onboardContext = "";
 
@@ -813,8 +812,7 @@ function send(){
   ms.appendChild(br);
   ms.scrollTop=ms.scrollHeight;
   if(!isPro){ qCount++; localStorage.setItem("finly_qcount", qCount); }
-  var activeSYS = currentLang === "hi" ? SYS_HI : SYS;
-  var fullSYS = onboardContext ? activeSYS + "\n\nUSER PROFILE: " + onboardContext : activeSYS;
+  var fullSYS = onboardContext ? SYS + "\n\nUSER PROFILE: " + onboardContext : SYS;
 
   // ✅ NOW CALLS YOUR SECURE PROXY instead of Groq directly
   fetch("/api/chat", {
@@ -867,43 +865,6 @@ function showLimit(){
     if(secs<=0){clearInterval(timerInt);qCount=0;document.getElementById("lnotice").style.display="none";document.getElementById("ci").disabled=false;document.getElementById("sb").disabled=false;document.getElementById("ci").placeholder="Ask anything about money in India...";}
   },1000);
 }
-
-// Language support
-var currentLang = localStorage.getItem("finly_lang") || "en";
-
-var SYS_HI = "आप Finly हैं — भारत का finance brain। आप CA, broker या financial advisor नहीं हैं। आप honest और direct हैं। आप केवल finance, money, tax, investing, business और trading topics पर बात करते हैं।\n\nPERSONALITY RULES:\n- अगर कोई सिर्फ hello, hey, hi कहे — exactly यह कहें: हेय! 👋 आज मैं आपकी कैसे मदद कर सकता हूं? 😊\n- अगर कोई पूछे how are you या आप कैसे हैं — exactly यह कहें: मैं बहुत अच्छा हूं, पूछने के लिए धन्यवाद! 😊 आप कैसे हैं? आज क्या जानना चाहते हैं?\n\nFORMAT RULES:\n1. साफ HTML — कभी ** या ## नहीं\n2. हर important term, number, rupee amount को <b> tags में लिखें\n3. Emojis जरूर use करें — 💰📋📈🔥✅⚠️💡😊\n4. हमेशा इससे end करें: <br><i>क्या आप किसी specific part के बारे में और जानना चाहते हैं? 😊</i>\n\nआप cover करते हैं: Indian income tax, ITR, TDS, Section 80C, old vs new regime, GST, stock market, SIP, mutual funds, PPF, FD, NPS, crypto tax (30% flat, 1% TDS), credit scores, loans।";
-
-function toggleLang() {
-  currentLang = currentLang === "en" ? "hi" : "en";
-  localStorage.setItem("finly_lang", currentLang);
-  var btn = document.getElementById("langbtn");
-  if(currentLang === "hi") {
-    btn.textContent = "EN";
-    btn.style.background = "#1a1a1a";
-    btn.style.color = "#fff";
-    btn.style.border = "1px solid #1a1a1a";
-    document.getElementById("ci").placeholder = "पैसों के बारे में कुछ भी पूछें...";
-    document.getElementById("wi").placeholder = "पैसों के बारे में कुछ भी पूछें...";
-    document.getElementById("welcomeheading").textContent = "नमस्ते " + (window.currentUserName || "") + ", आज क्या जानना है?";
-    document.getElementById("welcomesub").textContent = "Tax, investing, ITR, GST, crypto — पैसों से जुड़ा कोई भी सवाल पूछें।";
-  } else {
-    btn.textContent = "हिं";
-    btn.style.background = "#f5f5f5";
-    btn.style.color = "#1a1a1a";
-    btn.style.border = "1px solid #e0e0e0";
-    document.getElementById("ci").placeholder = "Ask anything about money in India...";
-    document.getElementById("wi").placeholder = "Ask anything about money...";
-    document.getElementById("welcomeheading").textContent = "Hey " + (window.currentUserName || "") + ", what's on your mind?";
-    document.getElementById("welcomesub").textContent = "Taxes, trading, startups, investing, crypto — ask anything about money in India.";
-  }
-  // Clear chat when switching language
-  clearChat();
-}
-
-// Apply saved language on load
-window.addEventListener("load", function() {
-  if(currentLang === "hi") toggleLang();
-});
 
 function clearChat(){
   chatLog=[];
