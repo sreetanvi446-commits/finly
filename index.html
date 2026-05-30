@@ -230,6 +230,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     </div>
     <button class="probtn" onclick="openModal()">Get Pro</button>
     <button onclick="clearChat()" style="font-size:11px;color:#bbb;background:none;border:none;cursor:pointer;font-family:inherit;padding:4px 8px" title="Clear chat">🗑️</button>
+    <button onclick="window.location.href='desidrops.html'" style="font-size:11px;color:#1a1a1a;background:#f5c842;border:none;border-radius:6px;cursor:pointer;font-family:inherit;padding:4px 10px;font-weight:600" title="Desi Drops">🪙 Drops</button>
     <button id="langbtn" onclick="toggleLang()" style="font-size:11px;color:#1a1a1a;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:6px;cursor:pointer;font-family:inherit;padding:4px 10px;font-weight:600">हिं</button>
   </div>
 </div>
@@ -339,6 +340,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <input type="text" id="wi" placeholder="Ask anything about money..."/>
     <button onclick="startChat()">↑</button>
   </div>
+  <div style="margin-top:16px;width:100%;max-width:580px;display:flex;gap:10px">
+    <button onclick="window.location.href='desidrops.html'" style="flex:1;padding:12px 16px;background:#fff;color:#1a1a1a;border:1.5px solid #e0e0e0;border-radius:14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:10px;transition:all 0.2s;text-align:left" onmouseover="this.style.borderColor='#1a1a1a'" onmouseout="this.style.borderColor='#e0e0e0'">
+      <span style="font-size:22px">🪙</span>
+      <div>
+        <div style="font-size:13px;font-weight:600">Desi Drops</div>
+        <div style="font-size:11px;color:#888;font-weight:400">Daily investing challenge 🔥</div>
+      </div>
+      <span style="margin-left:auto;color:#bbb;font-size:16px">→</span>
+    </button>
+  </div>
 
 </div>
 
@@ -355,6 +366,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     </div>
     <div class="iinner">
       <input type="text" id="ci" placeholder="Ask anything about money in India..."/>
+      <button id="vb" onclick="toggleVoice()" title="Voice input" style="position:absolute;right:44px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;padding:4px">🎤</button>
       <button id="sb">↑</button>
     </div>
     <div class="disclaimer-bar">Finly can make mistakes. Always double-check important financial decisions. · <span onclick="showPrivacy()" style="cursor:pointer;text-decoration:underline">Privacy Policy</span></div>
@@ -597,7 +609,7 @@ window.currentUserName = "User";
 window.currentUserEmail = "";
 window.onboardData = {};
 
-var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation always assume the finance meaning first — EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return.\n\nPERSONALITY RULES — follow exactly:\n- If someone says ONLY hello, hey, hi, or hii — respond with exactly: Hey! 👋 How can I help you today? 😊\n- If someone asks how are you, how are u, hru, how are you doing — respond with exactly: I am doing great, thank you for asking! 😊 How are you doing? What is on your mind today?\n- NEVER give the same response for greetings and how are you — they are different\n- NEVER give finance answers to personal greetings or how are you questions\n\nEMOJI RULES — use these naturally throughout every answer:\n💰 for money, savings, rupee amounts\n📋 for ITR, forms, documents\n📈 for investing, growth, returns\n🔥 for great tips, important points\n✅ for completed steps, good news\n⚠️ for warnings, deadlines, risks\n💡 for tips, smart ideas\n🏦 for banks, regime, tax\n₿ for crypto\n🚀 for goals, targets\n😊 at the end of responses\n\nFORMAT RULES:\n1. Clean HTML only — never ** or ## or markdown\n2. Bold heading relevant to topic with relevant emoji\n3. <b> tags for every important term, number, percentage, rupee amount\n4. Numbered sections: <br><b>1. Section Title</b><br>\n5. <ul><li> bullets — each a complete detailed sentence\n6. End with <b>Key Tips: 💡</b>\n7. End with <b>Typical Timeline:</b> or summary\n8. Thorough complete answers\n9. Disclaimer only if HOW TO actually file or invest: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part? 😊</i>\n11. SPECIAL COMMANDS — add exact tag at end when user asks:\n- Tax slabs: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/loopholes: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market: <div class='chartrequest' data-type='livemarket'></div>\n- CA connect: <div class='chartrequest' data-type='caconnect'></div>\n- ITR guide: <div class='chartrequest' data-type='itrguide'></div>\n- Financial health score: <div class='chartrequest' data-type='healthscore'></div>\n- SIP goal/target: <div class='chartrequest' data-type='sipgoal'></div>\n- Crypto tax: <div class='chartrequest' data-type='cryptotax'></div>\n- Salary analysis: <div class='chartrequest' data-type='salarycheck'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax, Budget 2025 changes), GST, stock market and trading, personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax (30% flat, 1% TDS), credit scores and loans.";
+var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation always assume the finance meaning first — EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return.\n\nPERSONALITY RULES — follow exactly:\n- If someone says ONLY hello, hey, hi, or hii — respond with exactly: Hey! 👋 How can I help you today? 😊\n- If someone asks how are you, how are u, hru, how are you doing — respond with exactly: I am doing great, thank you for asking! 😊 How are you doing? What is on your mind today?\n- NEVER give the same response for greetings and how are you — they are different\n- NEVER give finance answers to personal greetings or how are you questions\n\nANSWER LENGTH RULES — very important:\n- Simple yes/no questions: answer in 2-3 lines MAX. Lead with yes or no, then one sentence explanation, then offer more detail\n- Example: User asks can I save tax on ₹2L salary — respond: No — income below ₹3L is tax free under the new regime! 😊 Want me to explain how to maximise your savings anyway?\n- Complex questions: full detailed breakdown with sections and bullets\n- NEVER give a 500 word answer to a question that needs 2 lines\n- Match answer length to question complexity always\n\nEMOJI RULES — use these naturally throughout every answer:\n💰 for money, savings, rupee amounts\n📋 for ITR, forms, documents\n📈 for investing, growth, returns\n🔥 for great tips, important points\n✅ for completed steps, good news\n⚠️ for warnings, deadlines, risks\n💡 for tips, smart ideas\n🏦 for banks, regime, tax\n₿ for crypto\n🚀 for goals, targets\n😊 at the end of responses\n\nFORMAT RULES:\n1. Clean HTML only — never ** or ## or markdown\n2. Bold heading relevant to topic with relevant emoji\n3. <b> tags for every important term, number, percentage, rupee amount\n4. Numbered sections: <br><b>1. Section Title</b><br>\n5. <ul><li> bullets — each a complete detailed sentence\n6. End with <b>Key Tips: 💡</b>\n7. End with <b>Typical Timeline:</b> or summary\n8. Thorough complete answers\n9. Disclaimer only if HOW TO actually file or invest: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part? 😊</i>\n11. SPECIAL COMMANDS — add exact tag at end when user asks:\n- Tax slabs: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/loopholes: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market: <div class='chartrequest' data-type='livemarket'></div>\n- CA connect: <div class='chartrequest' data-type='caconnect'></div>\n- ITR guide: <div class='chartrequest' data-type='itrguide'></div>\n- Financial health score: <div class='chartrequest' data-type='healthscore'></div>\n- SIP goal/target: <div class='chartrequest' data-type='sipgoal'></div>\n- Crypto tax: <div class='chartrequest' data-type='cryptotax'></div>\n- Salary analysis: <div class='chartrequest' data-type='salarycheck'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax, Budget 2025 changes), GST, stock market and trading, personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax (30% flat, 1% TDS), credit scores and loans.";
 
 var onboardContext = "";
 
@@ -807,7 +819,8 @@ function send(){
   ur.className="mrow urow";
   ur.innerHTML="<div class='ubub'>"+esc(msg)+"</div>";
   ms.appendChild(ur);
-  var br=document.createElement("div");
+  window.currentBr=document.createElement("div");
+  var br=window.currentBr;
   br.className="mrow";
   br.innerHTML="<div class='brow'><div class='bav spinning' id='av"+id+"'>"+snow(true)+"</div><div class='bcont' id='bc"+id+"'><div class='pdots'><div class='pd'></div><div class='pd'></div><div class='pd'></div><span>Thinking...</span></div></div></div>";
   ms.appendChild(br);
@@ -816,37 +829,8 @@ function send(){
   var activeSYS = currentLang === "hi" ? SYS_HI : SYS;
   var fullSYS = onboardContext ? activeSYS + "\n\nUSER PROFILE: " + onboardContext : activeSYS;
 
-  // ✅ NOW CALLS YOUR SECURE PROXY instead of Groq directly
-  fetch("/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [{role:"system",content:fullSYS}].concat(chatLog)
-    })
-  })
-  .then(function(r){return r.json();})
-  .then(function(d){
-    var reply=d.choices[0].message.content;
-    chatLog.push({role:"assistant",content:reply});
-    // Save chat history to localStorage (keep last 20 messages)
-    if(chatLog.length > 20) chatLog = chatLog.slice(chatLog.length - 20);
-    localStorage.setItem("finly_chat", JSON.stringify(chatLog));
-    var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
-    av.className="bav";av.innerHTML=snow(false);
-    bc.innerHTML=reply;
-    var cr=bc.querySelector(".chartrequest");
-    if(cr){var ct=cr.getAttribute("data-type");cr.remove();renderWidget(br,ct);}
-    document.getElementById("sb").disabled=false;
-    br.scrollIntoView({behavior:"smooth",block:"start"});
-    if(!isPro&&qCount>=FREE)showLimit();
-  })
-  .catch(function(err){
-    var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
-    av.className="bav";av.innerHTML=snow(false);
-    bc.innerHTML="Something went wrong. Please check your connection and try again.";
-    document.getElementById("sb").disabled=false;
-  });
+  // Use streaming response
+  sendStreaming(fullSYS, msg, id);
 }
 
 function showLimit(){
@@ -904,6 +888,104 @@ function toggleLang() {
 window.addEventListener("load", function() {
   if(currentLang === "hi") toggleLang();
 });
+
+// VOICE MODE
+var recognition = null;
+var voiceActive = false;
+
+function toggleVoice() {
+  if(!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    alert("Voice input not supported in this browser. Please use Chrome!");
+    return;
+  }
+  if(voiceActive) {
+    recognition.stop();
+    voiceActive = false;
+    document.getElementById("vb").textContent = "🎤";
+    document.getElementById("vb").style.opacity = "1";
+    return;
+  }
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.lang = currentLang === "hi" ? "hi-IN" : "en-IN";
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.onstart = function() {
+    voiceActive = true;
+    document.getElementById("vb").textContent = "🔴";
+    document.getElementById("vb").style.opacity = "0.7";
+    document.getElementById("ci").placeholder = currentLang === "hi" ? "सुन रहा हूं..." : "Listening...";
+  };
+  recognition.onresult = function(e) {
+    var transcript = e.results[0][0].transcript;
+    document.getElementById("ci").value = transcript;
+    voiceActive = false;
+    document.getElementById("vb").textContent = "🎤";
+    document.getElementById("vb").style.opacity = "1";
+    document.getElementById("ci").placeholder = currentLang === "hi" ? "पैसों के बारे में कुछ भी पूछें..." : "Ask anything about money in India...";
+    send();
+  };
+  recognition.onerror = function() {
+    voiceActive = false;
+    document.getElementById("vb").textContent = "🎤";
+    document.getElementById("vb").style.opacity = "1";
+    document.getElementById("ci").placeholder = currentLang === "hi" ? "पैसों के बारे में कुछ भी पूछें..." : "Ask anything about money in India...";
+  };
+  recognition.onend = function() {
+    voiceActive = false;
+    document.getElementById("vb").textContent = "🎤";
+    document.getElementById("vb").style.opacity = "1";
+  };
+  recognition.start();
+}
+
+// STREAMING RESPONSES
+async function sendStreaming(fullSYS, msg, id) {
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        model: MODEL,
+        messages: [{role:"system",content:fullSYS}].concat(chatLog),
+        stream: false
+      })
+    });
+    const d = await response.json();
+    var reply = d.choices[0].message.content;
+    chatLog.push({role:"assistant",content:reply});
+    if(chatLog.length > 20) chatLog = chatLog.slice(chatLog.length - 20);
+    localStorage.setItem("finly_chat", JSON.stringify(chatLog));
+    var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
+    av.className="bav";av.innerHTML=snow(false);
+    // Type out response word by word for streaming effect
+    bc.innerHTML="";
+    var words = reply.split(" ");
+    var i = 0;
+    var temp = "";
+    function typeWord() {
+      if(i < words.length) {
+        temp += (i > 0 ? " " : "") + words[i];
+        bc.innerHTML = temp;
+        i++;
+        setTimeout(typeWord, 30);
+      } else {
+        bc.innerHTML = reply;
+        var cr=bc.querySelector(".chartrequest");
+        if(cr){var ct=cr.getAttribute("data-type");cr.remove();renderWidget(br,ct);}
+        document.getElementById("sb").disabled=false;
+        br.scrollIntoView({behavior:"smooth",block:"start"});
+        if(!isPro&&qCount>=FREE)showLimit();
+      }
+    }
+    typeWord();
+  } catch(err) {
+    var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
+    av.className="bav";av.innerHTML=snow(false);
+    bc.innerHTML="Something went wrong. Please check your connection and try again.";
+    document.getElementById("sb").disabled=false;
+  }
+}
 
 function clearChat(){
   chatLog=[];
