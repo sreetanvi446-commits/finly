@@ -826,11 +826,16 @@ function send(){
   ms.appendChild(br);
   ms.scrollTop=ms.scrollHeight;
   if(!isPro){ qCount++; localStorage.setItem("finly_qcount", qCount); }
-  var activeSYS = currentLang === "hi" ? SYS_HI : SYS;
-  var fullSYS = onboardContext ? activeSYS + "\n\nUSER PROFILE: " + onboardContext : activeSYS;
 
-  // Use streaming response
-  sendStreaming(fullSYS, msg, id);
+  // Pass language and onboard context as metadata in the first user message if not already set
+  if(chatLog.length === 1 && onboardContext) {
+    chatLog[0].content = "[LANG:" + currentLang + "] [" + onboardContext + "] " + chatLog[0].content;
+  } else if(chatLog.length === 1) {
+    chatLog[0].content = "[LANG:" + currentLang + "] " + chatLog[0].content;
+  }
+
+  // Use streaming response — system prompt now injected server-side in /api/chat
+  sendStreaming(msg, id);
 }
 
 function showLimit(){
@@ -940,14 +945,14 @@ function toggleVoice() {
 }
 
 // STREAMING RESPONSES
-async function sendStreaming(fullSYS, msg, id) {
+async function sendStreaming(msg, id) {
   try {
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         model: MODEL,
-        messages: [{role:"system",content:fullSYS}].concat(chatLog),
+        messages: chatLog,
         stream: false
       })
     });
