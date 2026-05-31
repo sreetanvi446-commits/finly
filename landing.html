@@ -62,7 +62,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:64px;d
   pointer-events:none;
   opacity:0;
   transition:none;
-  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  filter:drop-shadow(0 4px 12px rgba(74,222,128,0.4));
 }
 
 /* ANIMATION WINDOW */
@@ -192,17 +192,31 @@ footer{background:var(--black);padding:60px 48px 32px}
 
 <!-- FLYING RUPEE — overlays entire page during animation -->
 <div id="flying-rupee">
-  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="24" cy="24" r="22" fill="url(#coinGrad)" stroke="#a0701a" stroke-width="2"/>
-    <circle cx="24" cy="24" r="18" fill="none" stroke="#f5c842" stroke-width="1" opacity="0.5"/>
-    <text x="24" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#7a4f00" font-family="serif">₹</text>
+  <svg width="80" height="48" viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <radialGradient id="coinGrad" cx="35%" cy="30%" r="70%">
-        <stop offset="0%" stop-color="#ffe066"/>
-        <stop offset="40%" stop-color="#f5c842"/>
-        <stop offset="100%" stop-color="#c8960a"/>
-      </radialGradient>
+      <linearGradient id="noteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#b8f5c8"/>
+        <stop offset="50%" stop-color="#4ade80"/>
+        <stop offset="100%" stop-color="#16a34a"/>
+      </linearGradient>
+      <filter id="noteShadow">
+        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#16a34a" flood-opacity="0.3"/>
+      </filter>
     </defs>
+    <!-- Note body -->
+    <rect x="8" y="10" width="64" height="34" rx="4" fill="url(#noteGrad)" filter="url(#noteShadow)"/>
+    <!-- Note border -->
+    <rect x="10" y="12" width="60" height="30" rx="3" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.5"/>
+    <!-- ₹ symbol on note -->
+    <text x="40" y="32" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="serif" opacity="0.95">₹500</text>
+    <!-- Left wing -->
+    <path d="M8 22 C0 18, -6 14, -2 10 C2 6, 6 10, 8 16 Z" fill="#4ade80" opacity="0.7"/>
+    <path d="M8 26 C-2 24, -8 22, -6 18 C-4 14, 2 18, 8 22 Z" fill="#4ade80" opacity="0.5"/>
+    <!-- Right wing -->
+    <path d="M72 22 C80 18, 86 14, 82 10 C78 6, 74 10, 72 16 Z" fill="#4ade80" opacity="0.7"/>
+    <path d="M72 26 C82 24, 88 22, 86 18 C84 14, 78 18, 72 22 Z" fill="#4ade80" opacity="0.5"/>
+    <!-- Shine -->
+    <ellipse cx="24" cy="18" rx="6" ry="3" fill="#fff" opacity="0.2" transform="rotate(-15 24 18)"/>
   </svg>
 </div>
 
@@ -505,7 +519,7 @@ function flyRupee(callback){
   rupee.style.left=startX+"px";
   rupee.style.top=startY+"px";
   rupee.style.opacity="1";
-  rupee.style.width='48px';rupee.style.height='48px';
+  rupee.style.width='80px';rupee.style.height='48px';
   
   
   rupee.style.transform="rotate(0deg) scale(1)";
