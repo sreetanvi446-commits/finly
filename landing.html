@@ -344,7 +344,153 @@ footer{background:var(--black);padding:60px 48px 32px}
 </div>
 
 <!-- DESI DROPS -->
-<div style="background:#0f0f0f;width:100vw;margin-left:calc(-50vw + 50%);padding:80px 48px;position:relative;overflow:hidden" id="dd-landing-section">
+<section style="background:#f0ede6;padding:80px 48px" id="dd-landing-section">
+
+  <!-- Flying note animation -->
+  <div id="dd-flying-note" style="position:fixed;pointer-events:none;opacity:0;z-index:9999;top:0;left:0">
+    <svg width="80" height="48" viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ddNG" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#b8f5c8"/><stop offset="50%" stop-color="#4ade80"/><stop offset="100%" stop-color="#16a34a"/>
+        </linearGradient>
+        <filter id="ddNS"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#4ade80" flood-opacity="0.5"/></filter>
+      </defs>
+      <rect x="8" y="10" width="64" height="34" rx="4" fill="url(#ddNG)" filter="url(#ddNS)"/>
+      <rect x="10" y="12" width="60" height="30" rx="3" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.5"/>
+      <text x="40" y="32" text-anchor="middle" font-size="14" font-weight="900" fill="#fff" font-family="serif">₹500</text>
+      <path d="M8 22 C0 18,-6 14,-2 10 C2 6,6 10,8 16 Z" fill="#4ade80" opacity="0.8"/>
+      <path d="M8 27 C-2 25,-8 22,-6 18 C-4 14,2 18,8 23 Z" fill="#4ade80" opacity="0.5"/>
+      <path d="M72 22 C80 18,86 14,82 10 C78 6,74 10,72 16 Z" fill="#4ade80" opacity="0.8"/>
+      <path d="M72 27 C82 25,88 22,86 18 C84 14,78 18,72 23 Z" fill="#4ade80" opacity="0.5"/>
+      <ellipse cx="24" cy="18" rx="6" ry="3" fill="#fff" opacity="0.2" transform="rotate(-15 24 18)"/>
+    </svg>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+
+    <!-- LEFT -->
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#888;margin-bottom:14px;font-family:'DM Sans',sans-serif">Daily Challenge</div>
+      <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3.5vw,40px);font-weight:700;color:#1a1a1a;line-height:1.1;margin-bottom:16px">Learn money<br>one drop <span style="color:#b8860b">at a time.</span></h2>
+      <p style="font-size:15px;color:#555;line-height:1.7;max-width:420px;margin-bottom:32px;font-family:'DM Sans',sans-serif;font-weight:400">A real Indian money scenario every day. Make your choice, see how it plays out over 10 years, and see what India chose.</p>
+
+      <!-- Journey -->
+      <div style="display:flex;flex-direction:column;gap:0;margin-bottom:20px;font-family:'DM Sans',sans-serif">
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;position:relative">
+          <div style="position:absolute;left:17px;top:46px;width:2px;height:20px;background:#e0dcd4"></div>
+          <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e8e4dc;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🍵</div>
+          <div><div style="font-size:14px;font-weight:700;color:#1a1a1a">Chai Money</div><div style="font-size:12px;color:#777;margin-top:2px">You're just getting started</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;position:relative">
+          <div style="position:absolute;left:17px;top:46px;width:2px;height:20px;background:#e0dcd4"></div>
+          <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e8e4dc;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💡</div>
+          <div><div style="font-size:14px;font-weight:700;color:#1a1a1a">Smart Saver</div><div style="font-size:12px;color:#777;margin-top:2px">You think before you spend</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;position:relative">
+          <div style="position:absolute;left:17px;top:46px;width:2px;height:20px;background:#e0dcd4"></div>
+          <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e8e4dc;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🎯</div>
+          <div><div style="font-size:14px;font-weight:700;color:#1a1a1a">Goal Setter</div><div style="font-size:12px;color:#777;margin-top:2px">Your money finally has a direction</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;position:relative">
+          <div style="position:absolute;left:17px;top:46px;width:2px;height:20px;background:#e0dcd4"></div>
+          <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e8e4dc;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">📈</div>
+          <div><div style="font-size:14px;font-weight:700;color:#1a1a1a">Wealth Builder</div><div style="font-size:12px;color:#777;margin-top:2px">Compound interest is working for you</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0">
+          <div style="width:36px;height:36px;border-radius:50%;background:#f5c842;border:1px solid #f5c842;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💎</div>
+          <div><div style="font-size:14px;font-weight:700;color:#b8860b">Old Money Rich</div><div style="font-size:12px;color:#777;margin-top:2px">365 days. You actually made it 👑</div></div>
+        </div>
+      </div>
+
+      <!-- Reward box -->
+      <div style="background:#1a1a1a;border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:12px;font-family:'DM Sans',sans-serif">
+        <div style="font-size:24px;flex-shrink:0">👑</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#fff">Hit Old Money Rich — unlock a surprise</div>
+          <div style="font-size:12px;color:#aaa;margin-top:3px;line-height:1.5">365 days of drops. Something <span style="color:#f5c842;font-weight:800">worth it</span> is waiting. We don't spoil it. Just show up.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Drop card -->
+    <div id="dd-preview-card">
+      <div style="background:#1a1a1a;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.15)">
+        <!-- Card header -->
+        <div style="background:#222;border-bottom:1px solid #2a2a2a;padding:16px 18px;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">💸 Desi Drops</span>
+          <div style="display:flex;align-items:center;gap:5px;background:#333;border:1px solid #444;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif">🔥 5</div>
+        </div>
+        <!-- Drop body -->
+        <div style="padding:18px;font-family:'DM Sans',sans-serif">
+          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#f5c842;margin-bottom:10px">🎆 New Year Drop</div>
+          <div style="background:#222;border-radius:14px;padding:16px;margin-bottom:14px;text-align:center;border:1px solid #2a2a2a">
+            <span style="font-size:40px;display:block;margin-bottom:10px">🎊💰</span>
+            <div style="font-size:16px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:6px;font-family:'Playfair Display',Georgia,serif">New Year, new ₹2000 in your pocket.</div>
+            <div style="font-size:12px;color:#888;line-height:1.5;background:#1a1a1a;border-radius:8px;padding:8px 12px;border:1px solid #333;margin-top:8px">Your friends already booked a party. Your gym WhatsApp group is blowing up. What do you do with the money?</div>
+          </div>
+          <!-- Options -->
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:4px">
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;cursor:pointer" onmouseover="this.style.borderColor='#f5c842'" onmouseout="this.style.borderColor='#2a2a2a'">
+              <span style="font-size:20px">💸</span><div><div style="font-size:13px;font-weight:500;color:#fff">Invest in digital gold</div><div style="font-size:11px;color:#666;margin-top:1px">Future you is watching 👀</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;cursor:pointer" onmouseover="this.style.borderColor='#f5c842'" onmouseout="this.style.borderColor='#2a2a2a'">
+              <span style="font-size:20px">🎉</span><div><div style="font-size:13px;font-weight:500;color:#fff">Party with friends</div><div style="font-size:11px;color:#666;margin-top:1px">YOLO it's New Year 🎆</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;cursor:pointer" onmouseover="this.style.borderColor='#f5c842'" onmouseout="this.style.borderColor='#2a2a2a'">
+              <span style="font-size:20px">🏋️</span><div><div style="font-size:13px;font-weight:500;color:#fff">Gym membership</div><div style="font-size:11px;color:#666;margin-top:1px">New year new me 💪</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;cursor:pointer" onmouseover="this.style.borderColor='#f5c842'" onmouseout="this.style.borderColor='#2a2a2a'">
+              <span style="font-size:20px">🥟</span><div><div style="font-size:13px;font-weight:500;color:#fff">Momos and chill</div><div style="font-size:11px;color:#666;margin-top:1px">Honest king/queen 😂</div></div>
+            </div>
+          </div>
+          <!-- CTA button — white so it stands out on black card -->
+          <a href="desidrops.html" style="display:block;width:100%;background:#ffffff;color:#1a1a1a;text-align:center;padding:14px;border-radius:11px;font-size:14px;font-weight:800;margin-top:12px;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:0.3px;box-sizing:border-box">Play today's Drop 💸</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+  (function(){
+    var triggered=false;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting&&!triggered){
+          triggered=true;
+          var note=document.getElementById("dd-flying-note");
+          var card=document.getElementById("dd-preview-card");
+          if(!note||!card) return;
+          var rect=card.getBoundingClientRect();
+          var sx=-90,sy=window.innerHeight*0.8;
+          var ex=rect.left+rect.width/2-40,ey=rect.top+60;
+          note.style.left=sx+"px";note.style.top=sy+"px";note.style.opacity="1";
+          var t0=null,dur=1400;
+          function step(ts){
+            if(!t0)t0=ts;
+            var p=Math.min((ts-t0)/dur,1);
+            var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+            note.style.left=(sx+(ex-sx)*ease)+"px";
+            note.style.top=(sy+(ey-sy)*ease-Math.sin(Math.PI*ease)*140)+"px";
+            note.style.transform="rotate("+(ease*360)+"deg)";
+            note.style.opacity=p>0.85?""+(1-(p-0.85)/0.15):"1";
+            if(p<1)requestAnimationFrame(step);else note.style.opacity="0";
+          }
+          requestAnimationFrame(step);
+        }
+      });
+    },{threshold:0.3});
+    var sec=document.getElementById("dd-landing-section");
+    if(sec)obs.observe(sec);
+  })();
+  </script>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-label reveal">Pricing</div>
+  <h2 class="section-title reveal">Simple, honest pricing. 💸</h2>
+  <p class="section-sub reveal">Start free, upgrade when ready. No hidden fees. No surprises. Ever.</p>
 
   <!-- Flying note -->
   <div id="dd-flying-note" style="position:fixed;pointer-events:none;opacity:0;z-index:9999;top:0;left:0">
@@ -470,9 +616,6 @@ footer{background:var(--black);padding:60px 48px 32px}
 
 <!-- PRICING -->
 <section id="pricing">
-  <div class="section-label reveal">Pricing</div>
-  <h2 class="section-title reveal">Simple, honest pricing. 💸</h2>
-  <p class="section-sub reveal">Start free, upgrade when ready. No hidden fees. No surprises. Ever.</p>
   <div class="pricing-grid">
     <div class="price-card reveal">
       <div class="price-label">Free</div>
