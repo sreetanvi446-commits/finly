@@ -412,38 +412,53 @@ footer{background:var(--black);padding:60px 48px 32px}
       </div>
     </div>
 
-    <!-- RIGHT — Drop card -->
+    <!-- RIGHT — Animated Drop Demo -->
     <div id="dd-preview-card">
       <div style="background:#1a1a1a;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.15)">
         <!-- Card header -->
         <div style="background:#222;border-bottom:1px solid #2a2a2a;padding:16px 18px;display:flex;align-items:center;justify-content:space-between">
           <span style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">💸 Desi Drops</span>
-          <div style="display:flex;align-items:center;gap:5px;background:#333;border:1px solid #444;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif">🔥 5</div>
+          <div style="display:flex;align-items:center;gap:5px;background:#333;border:1px solid #444;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif">🔥 <span id="dd-streak">5</span></div>
         </div>
-        <!-- Drop body -->
-        <div style="padding:18px;font-family:'DM Sans',sans-serif">
-          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#f5c842;margin-bottom:10px">🎆 New Year Drop</div>
-          <div style="background:#222;border-radius:14px;padding:16px;margin-bottom:14px;text-align:center;border:1px solid #2a2a2a">
-            <span style="font-size:40px;display:block;margin-bottom:10px">🎊💰</span>
-            <div style="font-size:16px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:6px;font-family:'Playfair Display',Georgia,serif">New Year, new ₹2000 in your pocket.</div>
-            <div style="font-size:12px;color:#888;line-height:1.5;background:#1a1a1a;border-radius:8px;padding:8px 12px;border:1px solid #333;margin-top:8px">Your friends already booked a party. Your gym WhatsApp group is blowing up. What do you do with the money?</div>
-          </div>
-          <!-- Options -->
-          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:4px">
-            <div style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;cursor:pointer" onmouseover="this.style.borderColor='#f5c842'" onmouseout="this.style.borderColor='#2a2a2a'">
-              <span style="font-size:20px">💸</span><div><div style="font-size:13px;font-weight:500;color:#fff">Invest in digital gold</div><div style="font-size:11px;color:#666;margin-top:1px">Future you is watching 👀</div></div>
+        <!-- Animated body -->
+        <div style="padding:18px;font-family:'DM Sans',sans-serif" id="dd-anim-body">
+          <!-- Question phase -->
+          <div id="dd-question-phase">
+            <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#f5c842;margin-bottom:10px">🎆 New Year Drop</div>
+            <div style="background:#222;border-radius:14px;padding:16px;margin-bottom:14px;text-align:center;border:1px solid #2a2a2a">
+              <span style="font-size:40px;display:block;margin-bottom:10px">🎊💰</span>
+              <div style="font-size:16px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:6px;font-family:'Playfair Display',Georgia,serif">New Year, new ₹2000 in your pocket.</div>
+              <div style="font-size:12px;color:#888;line-height:1.5;background:#1a1a1a;border-radius:8px;padding:8px 12px;border:1px solid #333;margin-top:8px">Your friends already booked a party. Gym WhatsApp group is blowing up. What do you do?</div>
             </div>
-            <div style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;cursor:pointer" onmouseover="this.style.borderColor='#f5c842'" onmouseout="this.style.borderColor='#2a2a2a'">
-              <span style="font-size:20px">🎉</span><div><div style="font-size:13px;font-weight:500;color:#fff">Party with friends</div><div style="font-size:11px;color:#666;margin-top:1px">YOLO it's New Year 🎆</div></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;cursor:pointer" onmouseover="this.style.borderColor='#f5c842'" onmouseout="this.style.borderColor='#2a2a2a'">
-              <span style="font-size:20px">🏋️</span><div><div style="font-size:13px;font-weight:500;color:#fff">Gym membership</div><div style="font-size:11px;color:#666;margin-top:1px">New year new me 💪</div></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;cursor:pointer" onmouseover="this.style.borderColor='#f5c842'" onmouseout="this.style.borderColor='#2a2a2a'">
-              <span style="font-size:20px">🥟</span><div><div style="font-size:13px;font-weight:500;color:#fff">Momos and chill</div><div style="font-size:11px;color:#666;margin-top:1px">Honest king/queen 😂</div></div>
+            <div style="display:flex;flex-direction:column;gap:8px" id="dd-options">
+              <div class="dd-opt" style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;transition:all 0.3s"><span style="font-size:20px">💸</span><div><div style="font-size:13px;font-weight:500;color:#fff">Invest in digital gold</div><div style="font-size:11px;color:#666;margin-top:1px">Future you is watching 👀</div></div></div>
+              <div class="dd-opt" style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;transition:all 0.3s"><span style="font-size:20px">🎉</span><div><div style="font-size:13px;font-weight:500;color:#fff">Party with friends</div><div style="font-size:11px;color:#666;margin-top:1px">YOLO it's New Year 🎆</div></div></div>
+              <div class="dd-opt" style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;transition:all 0.3s"><span style="font-size:20px">🏋️</span><div><div style="font-size:13px;font-weight:500;color:#fff">Gym membership</div><div style="font-size:11px;color:#666;margin-top:1px">New year new me 💪</div></div></div>
+              <div class="dd-opt" style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;transition:all 0.3s"><span style="font-size:20px">🥟</span><div><div style="font-size:13px;font-weight:500;color:#fff">Momos and chill</div><div style="font-size:11px;color:#666;margin-top:1px">Honest king/queen 😂</div></div></div>
             </div>
           </div>
-          <!-- CTA button — white so it stands out on black card -->
+          <!-- Story phase (hidden initially) -->
+          <div id="dd-story-phase" style="display:none">
+            <div style="text-align:center;margin-bottom:16px">
+              <span style="font-size:40px;display:block;margin-bottom:8px">💸😏</span>
+              <div style="font-size:15px;font-weight:700;color:#fff">You chose gold. Bold move.</div>
+              <div style="font-size:11px;color:#888;margin-top:4px">Let's see how this plays out...</div>
+            </div>
+            <div id="dd-timeline" style="display:flex;flex-direction:column;gap:10px"></div>
+          </div>
+          <!-- Result phase (hidden initially) -->
+          <div id="dd-result-phase" style="display:none;text-align:center;padding:8px 0">
+            <div style="background:linear-gradient(135deg,#1a2a1a,#2a2a1a);border:1px solid #2a4a2a;border-radius:14px;padding:16px;margin-bottom:12px">
+              <span style="font-size:36px;display:block;margin-bottom:8px">👑</span>
+              <div style="font-size:15px;font-weight:700;color:#f5c842;margin-bottom:6px">Old Money Rich era: ACTIVATED</div>
+              <div style="font-size:12px;color:#888;line-height:1.5">₹2000 invested → <b style="color:#4ade80">₹6,200</b> in 10 years at 12% returns. That's a personal trainer for 3 months. 💪</div>
+            </div>
+            <div style="background:#0a1a0a;border:1px solid #1a3a1a;border-radius:12px;padding:12px;margin-bottom:12px">
+              <div style="font-size:11px;color:#4ade80;font-weight:600;margin-bottom:4px">💼 VIRTUAL PORTFOLIO</div>
+              <div style="font-size:22px;font-weight:700;color:#4ade80">+₹2,000</div>
+            </div>
+          </div>
+          <!-- CTA button -->
           <a href="/desidrops.html" style="display:block;width:100%;background:#ffffff;color:#1a1a1a;text-align:center;padding:14px;border-radius:11px;font-size:14px;font-weight:800;margin-top:12px;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:0.3px;box-sizing:border-box">Play today's Drop 💸</a>
         </div>
       </div>
@@ -452,21 +467,23 @@ footer{background:var(--black);padding:60px 48px 32px}
   </div>
 
   <script>
+  // Desi Drops landing animation
   (function(){
-    var triggered=false;
-    var obs=new IntersectionObserver(function(entries){
+    var triggered = false;
+    var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if(e.isIntersecting&&!triggered){
-          triggered=true;
-          var note=document.getElementById("dd-flying-note");
-          var card=document.getElementById("dd-preview-card");
-          if(!note||!card) return;
-          var rect=card.getBoundingClientRect();
-          var sx=-90,sy=window.innerHeight*0.8;
-          var ex=rect.left+rect.width/2-40,ey=rect.top+60;
-          note.style.left=sx+"px";note.style.top=sy+"px";note.style.opacity="1";
-          var t0=null,dur=1400;
-          function step(ts){
+        if(e.isIntersecting && !triggered){
+          triggered = true;
+          // Start flying note then run animation
+          var note = document.getElementById("dd-flying-note");
+          var card = document.getElementById("dd-preview-card");
+          if(!note || !card) return;
+          var rect = card.getBoundingClientRect();
+          var sx = -90, sy = window.innerHeight * 0.8;
+          var ex = rect.left + rect.width/2 - 40, ey = rect.top + 60;
+          note.style.left=sx+"px"; note.style.top=sy+"px"; note.style.opacity="1";
+          var t0=null, dur=1200;
+          function flyStep(ts){
             if(!t0)t0=ts;
             var p=Math.min((ts-t0)/dur,1);
             var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
@@ -474,14 +491,65 @@ footer{background:var(--black);padding:60px 48px 32px}
             note.style.top=(sy+(ey-sy)*ease-Math.sin(Math.PI*ease)*140)+"px";
             note.style.transform="rotate("+(ease*360)+"deg)";
             note.style.opacity=p>0.85?""+(1-(p-0.85)/0.15):"1";
-            if(p<1)requestAnimationFrame(step);else note.style.opacity="0";
+            if(p<1) requestAnimationFrame(flyStep); else { note.style.opacity="0"; runDropAnim(); }
           }
-          requestAnimationFrame(step);
+          requestAnimationFrame(flyStep);
         }
       });
     },{threshold:0.3});
-    var sec=document.getElementById("dd-landing-section");
-    if(sec)obs.observe(sec);
+    var sec = document.getElementById("dd-landing-section");
+    if(sec) obs.observe(sec);
+
+    function runDropAnim(){
+      var opts = document.querySelectorAll(".dd-opt");
+      // Step 1: hover over invest option after 1s
+      setTimeout(function(){
+        if(opts[0]) opts[0].style.borderColor = "#f5c842";
+        if(opts[0]) opts[0].style.background = "#2a2a2a";
+      }, 1000);
+      // Step 2: click it after 2s
+      setTimeout(function(){
+        if(opts[0]) opts[0].style.transform = "scale(0.97)";
+        setTimeout(function(){ if(opts[0]) opts[0].style.transform = "scale(1)"; }, 150);
+      }, 2000);
+      // Step 3: show story after 2.5s
+      setTimeout(function(){
+        document.getElementById("dd-question-phase").style.display = "none";
+        var sp = document.getElementById("dd-story-phase");
+        sp.style.display = "block";
+        // Build timeline items one by one
+        var tl = document.getElementById("dd-timeline");
+        var items = [
+          {dot:"💸", year:"January 1", text:"₹2000 straight to digital gold. No drama. Just gains. 😤"},
+          {dot:"😂", year:"Friends in January", text:"'Bro where's your gym selfie?' 'At the bank' 😂"},
+          {dot:"👑", year:"10 Years Later", text:"₹2000 → <b style='color:#4ade80'>₹6,200</b> 🔥 You hire a personal trainer with the RETURNS alone!"}
+        ];
+        items.forEach(function(item, i){
+          setTimeout(function(){
+            var d = document.createElement("div");
+            d.style.cssText = "display:flex;gap:10px;align-items:flex-start;opacity:0;transition:opacity 0.4s";
+            d.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:#222;border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">'+item.dot+'</div><div><div style="font-size:10px;font-weight:700;color:#f5c842;letter-spacing:1px;margin-bottom:3px">'+item.year+'</div><div style="font-size:12px;color:#ccc;line-height:1.5">'+item.text+'</div></div>';
+            tl.appendChild(d);
+            setTimeout(function(){ d.style.opacity = "1"; }, 50);
+          }, i * 800);
+        });
+      }, 2500);
+      // Step 4: show result after 6s
+      setTimeout(function(){
+        document.getElementById("dd-story-phase").style.display = "none";
+        document.getElementById("dd-result-phase").style.display = "block";
+      }, 6000);
+      // Step 5: loop back to question after 9s
+      setTimeout(function(){
+        document.getElementById("dd-result-phase").style.display = "none";
+        document.getElementById("dd-timeline").innerHTML = "";
+        var opts2 = document.querySelectorAll(".dd-opt");
+        opts2.forEach(function(o){ o.style.borderColor="#2a2a2a"; o.style.background="#222"; o.style.transform="scale(1)"; });
+        document.getElementById("dd-question-phase").style.display = "block";
+        // Run again
+        setTimeout(runDropAnim, 2000);
+      }, 9000);
+    }
   })();
   </script>
 </section>
