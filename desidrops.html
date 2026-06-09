@@ -2,840 +2,855 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finly — India's Finance Brain</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Desi Drops — Finly</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --black:#0f0f0f;--cream:#faf8f4;--warm:#f5f0e8;--accent:#c8a97e;
-  --green:#2d6a4f;--red:#c1440e;--text:#1a1a1a;--muted:#888;--border:#e8e4dc;
-}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:#0f0f0f;color:#fff;min-height:100vh;overflow-x:hidden}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes countdown{from{width:100%}to{width:0%}}
+@keyframes popIn{0%{transform:scale(0.5);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,248,244,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--black)}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{text-decoration:none;font-size:14px;color:var(--muted);font-weight:400;transition:color 0.2s}
-.nav-links a:hover{color:var(--black)}
-.nav-cta{display:flex;gap:12px;align-items:center}
-.btn-outline{padding:8px 20px;border:1.5px solid var(--black);border-radius:999px;font-size:13px;font-weight:500;color:var(--black);background:none;cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none}
-.btn-outline:hover{background:var(--black);color:var(--cream)}
-.btn-solid{padding:8px 20px;border:none;border-radius:999px;font-size:13px;font-weight:600;color:var(--cream);background:var(--black);cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none}
-.btn-solid:hover{background:#333}
-@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}}
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:52px;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.back-btn{color:#888;font-size:20px;cursor:pointer;background:none;border:none;padding:4px 8px}
+.topbar-title{font-size:15px;font-weight:700;color:#fff}
+.streak-badge{display:flex;align-items:center;gap:5px;background:#1a1a1a;border:1px solid #333;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600}
+.streak-fire{font-size:16px}
 
-/* HERO */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:100px 48px 60px;max-width:1200px;margin:0 auto;position:relative}
-@media(max-width:768px){.hero{grid-template-columns:1fr;padding:100px 20px 40px;gap:32px}}
-.hero-left{display:flex;flex-direction:column;gap:24px;position:relative}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--warm);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:500;color:var(--muted);width:fit-content}
-.hero-badge span{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse-dot 2s infinite}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.3}}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,66px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;color:var(--black)}
-.hero-title span{color:var(--accent)}
-.hero-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:420px;font-weight:300}
+/* WEALTH LEVEL */
+.wealth-bar{background:#1a1a1a;border-bottom:1px solid #222;padding:12px 16px 14px}
+.wealth-inner{max-width:500px;margin:0 auto}
+.wealth-level{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.wealth-name{font-size:13px;font-weight:700;color:#f5c842}
+.wealth-days{font-size:11px;color:#666}
+.wealth-progress{height:4px;background:#222;border-radius:999px;overflow:hidden}
+.wealth-fill{height:100%;background:linear-gradient(90deg,#f5c842,#ff9500);border-radius:999px;transition:width 0.5s ease}
 
-/* SEARCH BAR — this is the launch pad */
-.hero-searchbar{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:12px 16px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;cursor:pointer;transition:border-color 0.2s}
-.hero-searchbar:hover{border-color:var(--accent)}
-.sbv-cursor{display:inline-block;width:1.5px;height:14px;background:var(--black);animation:blink 1s infinite;vertical-align:middle;margin-left:1px}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.send-icon{margin-left:auto;width:28px;height:28px;background:var(--black);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;flex-shrink:0}
+/* MAIN */
+.main{padding:120px 16px 40px;max-width:500px;margin:0 auto}
 
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.btn-hero{padding:13px 28px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn-hero-primary{background:var(--black);color:var(--cream);border:none}
-.btn-hero-primary:hover{background:#333;transform:translateY(-1px)}
-.btn-hero-secondary{background:none;color:var(--black);border:1.5px solid var(--border)}
-.btn-hero-secondary:hover{border-color:var(--black)}
-.hero-trust{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
-.hero-trust-dot{width:1px;height:14px;background:var(--border)}
+/* DROP CARD */
+.drop-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:24px;overflow:hidden;animation:fadeUp 0.4s ease}
+.drop-header{padding:20px 20px 0;text-align:center}
+.drop-season{font-size:11px;font-weight:600;letter-spacing:2px;color:#f5c842;text-transform:uppercase;margin-bottom:6px}
+.drop-emoji{font-size:52px;margin-bottom:12px;display:block;animation:pulse 2s infinite}
+.drop-question{font-size:18px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:6px}
+.drop-sub{font-size:13px;color:#666;margin-bottom:20px}
 
-/* FLYING RUPEE — absolutely positioned over full page */
-#flying-rupee{
-  position:fixed;
-  font-size:24px;
-  z-index:9999;
-  pointer-events:none;
-  opacity:0;
-  transition:none;
-  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
+/* OPTIONS */
+.options{display:flex;flex-direction:column;gap:10px;padding:0 20px 20px}
+.option{background:#222;border:1.5px solid #333;border-radius:14px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all 0.2s;animation:fadeUp 0.4s ease}
+.option:hover{border-color:#f5c842;background:#2a2a2a;transform:translateX(4px)}
+.option:active{transform:scale(0.98)}
+.opt-emoji{font-size:24px;flex-shrink:0}
+.opt-text{font-size:14px;font-weight:500;color:#fff;line-height:1.4}
+.opt-sub{font-size:11px;color:#666;margin-top:2px}
 
-/* ANIMATION WINDOW */
-.hero-right{position:relative;display:flex;align-items:center;justify-content:center}
-.anim-window{width:100%;max-width:460px;background:#fff;border-radius:20px;border:1px solid var(--border);box-shadow:0 24px 80px rgba(0,0,0,0.1);overflow:hidden;position:relative}
-.awin-bar{background:var(--warm);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
-.wdot{width:10px;height:10px;border-radius:50%}
-.wdot:nth-child(1){background:#ff5f57}
-.wdot:nth-child(2){background:#febc2e}
-.wdot:nth-child(3){background:#28c840}
-.awin-url{flex:1;text-align:center;font-size:11px;color:var(--muted)}
-.awin-body{padding:16px;min-height:320px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+/* STORY SCREEN */
+.story-screen{display:none;animation:fadeUp 0.4s ease}
+.story-header{text-align:center;padding:20px 20px 0}
+.story-choice{font-size:12px;color:#888;margin-bottom:8px}
+.story-emoji{font-size:48px;display:block;margin-bottom:8px;animation:popIn 0.5s ease}
+.story-title{font-size:20px;font-weight:700;color:#fff;margin-bottom:16px}
 
-/* WINDOW FLASH EFFECT */
-@keyframes window-flash{0%{box-shadow:0 0 0 0 rgba(200,169,126,0.8)}50%{box-shadow:0 0 0 12px rgba(200,169,126,0)}100%{box-shadow:0 0 0 0 rgba(200,169,126,0)}}
-.anim-window.flash{animation:window-flash 0.6s ease-out}
+.timeline{padding:0 20px}
+.titem{display:flex;gap:12px;margin-bottom:20px;opacity:0;animation:slideUp 0.5s ease forwards}
+.tline{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.tdot{width:32px;height:32px;border-radius:50%;background:#222;border:2px solid #333;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.tconnect{width:2px;flex:1;background:#222;margin:4px 0;min-height:20px}
+.tcontent{flex:1;padding-bottom:4px}
+.tyear{font-size:11px;font-weight:700;color:#f5c842;letter-spacing:1px;margin-bottom:4px}
+.ttext{font-size:13px;color:#ccc;line-height:1.6}
+.ttext b{color:#fff}
+.thighlight{background:#1a2a1a;border:1px solid #2a4a2a;border-radius:10px;padding:10px 12px;margin-top:6px;font-size:13px;color:#4ade80;font-weight:500}
+.tsavage{background:#2a1a1a;border:1px solid #4a2a2a;border-radius:10px;padding:10px 12px;margin-top:6px;font-size:13px;color:#f87171}
+.tflex{background:#2a2a1a;border:1px solid #4a4a2a;border-radius:10px;padding:10px 12px;margin-top:6px;font-size:13px;color:#f5c842}
 
-/* CHAT MESSAGES */
-.chat-msg{display:flex;gap:8px;align-items:flex-start;opacity:0;transform:translateY(10px);transition:all 0.4s ease}
-.chat-msg.show{opacity:1;transform:translateY(0)}
-.chat-user{justify-content:flex-end}
-.chat-user .bubble{background:var(--warm);border-radius:16px 16px 4px 16px;padding:9px 13px;font-size:12.5px;max-width:88%;color:var(--text);line-height:1.4}
-.chat-finly .bubble{background:#f2f2f2;border-radius:4px 16px 16px 16px;padding:9px 13px;font-size:12.5px;max-width:88%;color:var(--text);line-height:1.5}
-.finly-avatar{width:22px;height:22px;border-radius:50%;background:var(--black);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--cream);margin-top:2px}
-.thinking-dots{display:flex;gap:4px;padding:3px 0}
-.td{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:td-pulse 1.4s infinite}
-.td:nth-child(2){animation-delay:0.2s}
-.td:nth-child(3){animation-delay:0.4s}
-@keyframes td-pulse{0%,60%,100%{transform:scale(1);opacity:0.4}30%{transform:scale(1.4);opacity:1}}
+/* FINAL RESULT */
+.final-result{background:linear-gradient(135deg,#1a1a2a,#2a1a1a);border:1px solid #333;border-radius:16px;padding:20px;margin:0 20px 20px;text-align:center;display:none;animation:popIn 0.5s ease}
+.final-emoji{font-size:48px;display:block;margin-bottom:8px}
+.final-title{font-size:18px;font-weight:700;color:#f5c842;margin-bottom:6px}
+.final-text{font-size:13px;color:#888;line-height:1.6;margin-bottom:16px}
+.final-wealth{background:#f5c842;color:#000;border-radius:999px;padding:6px 16px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:16px}
 
-/* PROGRESS */
-.progress-box{background:var(--warm);border-radius:10px;padding:12px;margin-top:2px;opacity:0;transform:translateY(8px);transition:all 0.4s ease}
-.progress-box.show{opacity:1;transform:translateY(0)}
-.progress-title{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:8px;letter-spacing:0.5px;text-transform:uppercase}
-.pstep{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px;color:var(--muted);transition:all 0.3s}
-.pstep-icon{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all 0.3s}
-.pstep-icon.done{background:var(--green);border-color:var(--green);color:#fff}
-.pstep.done-step{opacity:0.6}
-.pstep.done-step span{text-decoration:line-through}
+/* INDIA CHOSE */
+.india-chose{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:16px;margin:0 20px 20px;display:none;animation:slideUp 0.5s ease}
+.ic-title{font-size:12px;color:#666;margin-bottom:12px;text-align:center;letter-spacing:1px;text-transform:uppercase}
+.ic-bar{margin-bottom:8px}
+.ic-label{display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:4px}
+.ic-fill-wrap{height:6px;background:#222;border-radius:999px;overflow:hidden}
+.ic-fill{height:100%;border-radius:999px;transition:width 1s ease}
 
-.try-btn-anim{display:none;margin-top:6px;padding:10px 16px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;transition:all 0.2s}
-.try-btn-anim:hover{background:#a33a0c}
+/* PORTFOLIO UPDATE */
+.portfolio-update{background:#0a1a0a;border:1px solid #1a3a1a;border-radius:16px;padding:16px;margin:0 20px 20px;display:none;animation:slideUp 0.5s ease;text-align:center}
+.pu-title{font-size:11px;color:#4ade80;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.pu-amount{font-size:28px;font-weight:700;color:#4ade80;margin-bottom:4px}
+.pu-sub{font-size:12px;color:#666}
 
-/* SECTIONS */
-section{padding:80px 48px;max-width:1200px;margin:0 auto}
-@media(max-width:768px){section{padding:60px 20px}}
-.section-label{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,46px);font-weight:700;color:var(--black);line-height:1.1;letter-spacing:-0.5px;margin-bottom:14px}
-.section-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:560px;font-weight:300}
+/* ACTIONS */
+.actions{padding:0 20px 24px;display:none;flex-direction:column;gap:10px;animation:slideUp 0.5s ease}
+.btn-next{background:#f5c842;color:#000;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;transition:all 0.2s}
+.btn-next:hover{background:#ffd700;transform:translateY(-1px)}
+.btn-share{background:#1a1a1a;color:#fff;border:1px solid #333;border-radius:14px;padding:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;width:100%;transition:all 0.2s}
+.btn-share:hover{border-color:#f5c842;color:#f5c842}
+.btn-challenge{background:#1a1a1a;color:#25D366;border:1px solid #25D366;border-radius:14px;padding:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;width:100%;transition:all 0.2s}
+.btn-challenge:hover{background:#25D366;color:#fff}
 
-/* TRUST */
-.trust-section{background:var(--black);padding:80px 48px}
-.trust-inner{max-width:1200px;margin:0 auto}
-.trust-section .section-title{color:var(--cream)}
-.trust-section .section-sub{color:#888}
-.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;margin-top:48px}
-.trust-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:22px;transition:all 0.2s}
-.trust-card:hover{background:rgba(255,255,255,0.09);transform:translateY(-2px)}
-.trust-icon{font-size:26px;margin-bottom:12px}
-.trust-card h3{font-size:14px;font-weight:600;color:var(--cream);margin-bottom:6px}
-.trust-card p{font-size:12.5px;color:#777;line-height:1.6}
+/* STREAK POPUP */
+.streak-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1a1a1a;border:2px solid #f5c842;border-radius:24px;padding:32px;text-align:center;z-index:999;display:none;animation:popIn 0.5s ease;max-width:300px;width:90%}
+.sp-emoji{font-size:64px;display:block;margin-bottom:12px}
+.sp-title{font-size:22px;font-weight:700;color:#f5c842;margin-bottom:8px}
+.sp-text{font-size:14px;color:#888;margin-bottom:20px;line-height:1.5}
+.sp-btn{background:#f5c842;color:#000;border:none;border-radius:12px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;width:100%}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:998;display:none}
 
-/* FEATURES */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:48px}
-.feat-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:22px;transition:all 0.2s}
-.feat-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.06)}
-.feat-emoji{font-size:26px;margin-bottom:12px}
-.feat-card h3{font-size:14px;font-weight:600;color:var(--black);margin-bottom:5px}
-.feat-card p{font-size:12.5px;color:var(--muted);line-height:1.6}
-
-/* HOW IT WORKS */
-.hiw-section{background:var(--warm);padding:80px 48px}
-.hiw-inner{max-width:1200px;margin:0 auto}
-.hiw-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
-@media(max-width:768px){.hiw-steps{grid-template-columns:1fr}}
-.hiw-step{text-align:center;padding:20px}
-.hiw-num{width:46px;height:46px;border-radius:50%;background:var(--black);color:var(--cream);font-family:'Playfair Display',serif;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-.hiw-step h3{font-size:15px;font-weight:600;color:var(--black);margin-bottom:7px}
-.hiw-step p{font-size:13px;color:var(--muted);line-height:1.6}
-
-/* PRICING */
-.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;max-width:680px}
-@media(max-width:600px){.pricing-grid{grid-template-columns:1fr}}
-.price-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;position:relative}
-.price-card.featured{border-color:var(--black);border-width:2px}
-.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--black);color:var(--cream);font-size:11px;font-weight:600;padding:4px 14px;border-radius:999px;white-space:nowrap}
-.price-label{font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:500}
-.price-amount{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:var(--black);margin-bottom:3px}
-.price-period{font-size:12px;color:var(--muted);margin-bottom:20px}
-.price-feats{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
-.price-feat{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--text)}
-.btn-price{width:100%;padding:11px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;border:none}
-.btn-price-free{background:var(--warm);color:var(--black)}
-.btn-price-free:hover{background:var(--border)}
-.btn-price-pro{background:var(--black);color:var(--cream)}
-.btn-price-pro:hover{background:#333}
-
-/* FAQ */
-.faq-list{margin-top:48px;border-top:1px solid var(--border)}
-.faq-item{border-bottom:1px solid var(--border);padding:20px 0;cursor:pointer}
-.faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.faq-q span:first-child{font-size:15px;font-weight:500;color:var(--black)}
-.faq-icon{font-size:22px;color:var(--muted);transition:transform 0.3s;flex-shrink:0;line-height:1}
-.faq-a{font-size:13.5px;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.3s}
-.faq-item.open .faq-icon{transform:rotate(45deg)}
-.faq-item.open .faq-a{max-height:200px;padding-top:12px}
-
-/* FOOTER */
-footer{background:var(--black);padding:60px 48px 32px}
-.footer-inner{max-width:1200px;margin:0 auto}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
-@media(max-width:768px){.footer-top{grid-template-columns:1fr};footer{padding:40px 20px 24px}}
-.footer-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--cream);margin-bottom:10px}
-.footer-desc{font-size:12.5px;color:#777;line-height:1.6;max-width:260px;margin-bottom:8px}
-.footer-col h4{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:14px}
-.footer-col a{display:block;font-size:13px;color:#999;text-decoration:none;margin-bottom:8px;transition:color 0.2s}
-.footer-col a:hover{color:var(--cream)}
-.footer-bottom{border-top:1px solid #1f1f1f;padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.footer-bottom p{font-size:12px;color:#666}
-
-.full-width{width:100vw;margin-left:calc(-50vw + 50%);max-width:none}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+/* COMPLETED */
+.completed-screen{display:none;text-align:center;padding:40px 20px;animation:fadeUp 0.4s ease}
+.cs-emoji{font-size:80px;display:block;margin-bottom:16px}
+.cs-title{font-size:24px;font-weight:700;color:#fff;margin-bottom:8px}
+.cs-sub{font-size:14px;color:#666;margin-bottom:24px;line-height:1.6}
+.cs-streak{background:#1a1a1a;border:1px solid #f5c842;border-radius:16px;padding:20px;margin-bottom:20px}
+.cs-streak-num{font-size:48px;font-weight:700;color:#f5c842}
+.cs-streak-label{font-size:13px;color:#888}
+.cs-wealth{background:#2a2a1a;border:1px solid #f5c842;border-radius:999px;padding:8px 20px;font-size:13px;font-weight:700;color:#f5c842;display:inline-block;margin-bottom:20px}
+.btn-home{background:#f5c842;color:#000;border:none;border-radius:14px;padding:14px 32px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;width:100%}
 </style>
 </head>
 <body>
 
-<!-- FLYING RUPEE — overlays entire page during animation -->
-<div id="flying-rupee">
-  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="24" cy="24" r="22" fill="url(#coinGrad)" stroke="#a0701a" stroke-width="2"/>
-    <circle cx="24" cy="24" r="18" fill="none" stroke="#f5c842" stroke-width="1" opacity="0.5"/>
-    <text x="24" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#7a4f00" font-family="serif">₹</text>
-    <defs>
-      <radialGradient id="coinGrad" cx="35%" cy="30%" r="70%">
-        <stop offset="0%" stop-color="#ffe066"/>
-        <stop offset="40%" stop-color="#f5c842"/>
-        <stop offset="100%" stop-color="#c8960a"/>
-      </radialGradient>
-    </defs>
-  </svg>
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="back-btn" onclick="window.location.href='index.html'">←</button>
+    <span class="topbar-title">🪙 Desi Drops</span>
+  </div>
+  <div class="streak-badge">
+    <span class="streak-fire">🔥</span>
+    <span id="streak-count">0</span>
+  </div>
 </div>
 
-<nav>
-  <a href="#" class="nav-logo">
-    <svg width="24" height="24" viewBox="0 0 28 28" fill="none" style="margin-right:2px">
-      <circle cx="14" cy="3" r="1.8" fill="#0f0f0f"/><circle cx="14" cy="25" r="1.8" fill="#0f0f0f"/>
-      <circle cx="3" cy="14" r="1.8" fill="#0f0f0f"/><circle cx="25" cy="14" r="1.8" fill="#0f0f0f"/>
-      <circle cx="6" cy="6" r="1.8" fill="#0f0f0f"/><circle cx="22" cy="22" r="1.8" fill="#0f0f0f"/>
-      <circle cx="22" cy="6" r="1.8" fill="#0f0f0f"/><circle cx="6" cy="22" r="1.8" fill="#0f0f0f"/>
-      <line x1="14" y1="3" x2="14" y2="25" stroke="#0f0f0f" stroke-width="1"/>
-      <line x1="3" y1="14" x2="25" y2="14" stroke="#0f0f0f" stroke-width="1"/>
-      <line x1="6" y1="6" x2="22" y2="22" stroke="#0f0f0f" stroke-width="1"/>
-      <line x1="22" y1="6" x2="6" y2="22" stroke="#0f0f0f" stroke-width="1"/>
-      <circle cx="14" cy="14" r="3.5" fill="#0f0f0f"/>
-    </svg>
-    <span class="nav-logo-text">Finly</span>
-  </a>
-  <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#trust">Why trust us</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
-  </div>
-  <div class="nav-cta">
-    <a href="index.html" class="btn-outline">Sign in</a>
-    <a href="index.html" class="btn-solid">Try free 🚀</a>
-  </div>
-</nav>
-
-<div class="hero">
-  <div class="hero-left">
-    <div class="hero-badge"><span></span> Free for every Indian 🇮🇳</div>
-    <h1 class="hero-title">India's finance<br>brain. <span>For every Indian.</span></h1>
-    <p class="hero-sub">Ask anything about taxes, ITR, SIP, GST, crypto, or investing — get clear answers instantly. No CA fees. No confusion. 100% free.</p>
-
-    <!-- THIS IS THE LAUNCH PAD for the rupee -->
-    <div class="hero-searchbar" id="hero-searchbar">
-      <span>💬</span>
-      <span id="typing-text" style="font-size:13px"></span><span class="sbv-cursor"></span>
-      <div class="send-icon">↑</div>
+<div class="wealth-bar">
+  <div class="wealth-inner">
+    <div class="wealth-level">
+      <span class="wealth-name" id="wealth-name">🪙 Chai Money</span>
+      <span class="wealth-days" id="wealth-days">Day 0 of 7</span>
     </div>
-
-    <div class="hero-actions">
-      <a href="index.html" class="btn-hero btn-hero-primary">Start for free 🔥</a>
-      <a href="#features" class="btn-hero btn-hero-secondary">See features</a>
-    </div>
-    <div class="hero-trust">
-      <span>✅ No signup to try</span>
-      <div class="hero-trust-dot"></div>
-      <span>🔒 Data stays private</span>
-      <div class="hero-trust-dot"></div>
-      <span>🎓 IIT Madras</span>
-    </div>
-  </div>
-
-  <div class="hero-right" id="hero-right">
-    <div class="anim-window" id="anim-window">
-      <div class="awin-bar">
-        <div class="wdot"></div><div class="wdot"></div><div class="wdot"></div>
-        <div class="awin-url">finly — India's finance brain</div>
-      </div>
-      <div class="awin-body" id="awin-body"></div>
+    <div class="wealth-progress">
+      <div class="wealth-fill" id="wealth-fill" style="width:0%"></div>
     </div>
   </div>
 </div>
 
-<!-- TRUST -->
-<!-- SOCIAL PROOF BAR -->
-<div style="background:#fff;border-top:1px solid #e8e4dc;border-bottom:1px solid #e8e4dc;padding:28px 48px">
-  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:64px;flex-wrap:wrap">
-    <div style="text-align:center">
-      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#0f0f0f">500+</div>
-      <div style="font-size:12px;color:#888;margin-top:2px">Questions answered</div>
+<div class="main">
+
+  <!-- CHALLENGE CARD -->
+  <div class="drop-card" id="challenge-card">
+    <div class="drop-header">
+      <div class="drop-season" id="drop-season">Today's Drop</div>
+      <span class="drop-emoji" id="drop-emoji">🪔</span>
+      <div class="drop-question" id="drop-question">Loading today's drop...</div>
+      <div class="drop-sub" id="drop-sub"></div>
     </div>
-    <div style="width:1px;height:40px;background:#e8e4dc"></div>
-    <div style="text-align:center">
-      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#0f0f0f">100%</div>
-      <div style="font-size:12px;color:#888;margin-top:2px">Free forever for basics</div>
+    <div class="options" id="options-container"></div>
+  </div>
+
+  <!-- STORY SCREEN -->
+  <div class="story-screen" id="story-screen">
+    <div class="drop-card">
+      <div class="story-header">
+        <div class="story-choice" id="story-choice"></div>
+        <span class="story-emoji" id="story-emoji"></span>
+        <div class="story-title" id="story-title"></div>
+      </div>
+      <div class="timeline" id="timeline"></div>
     </div>
-    <div style="width:1px;height:40px;background:#e8e4dc"></div>
-    <div style="text-align:center">
-      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#0f0f0f">10+</div>
-      <div style="font-size:12px;color:#888;margin-top:2px">Finance tools built in</div>
+
+    <br>
+
+    <div class="final-result" id="final-result">
+      <span class="final-emoji" id="final-emoji"></span>
+      <div class="final-title" id="final-title"></div>
+      <div class="final-text" id="final-text"></div>
+      <div class="final-wealth" id="final-wealth"></div>
     </div>
-    <div style="width:1px;height:40px;background:#e8e4dc"></div>
-    <div style="text-align:center">
-      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#0f0f0f">16 y/o</div>
-      <div style="font-size:12px;color:#888;margin-top:2px">16 y/o Student founder</div>
+
+    <div class="india-chose" id="india-chose">
+      <div class="ic-title">🇮🇳 What India chose</div>
+      <div id="ic-bars"></div>
+    </div>
+
+    <div class="portfolio-update" id="portfolio-update">
+      <div class="pu-title">💼 Your Virtual Portfolio</div>
+      <div class="pu-amount" id="pu-amount">+₹0</div>
+      <div class="pu-sub" id="pu-sub"></div>
+    </div>
+
+    <div class="actions" id="actions">
+      <button class="btn-next" onclick="nextDrop()">Tomorrow's Drop 🔥</button>
+      <button class="btn-challenge" onclick="challengeFriend()">💚 Challenge a Friend on WhatsApp</button>
+      <button class="btn-share" onclick="shareResult()">📸 Share your result</button>
     </div>
   </div>
+
+  <!-- COMPLETED TODAY -->
+  <div class="completed-screen" id="completed-screen">
+    <span class="cs-emoji">🔥</span>
+    <h2 class="cs-title">Drop completed!</h2>
+    <p class="cs-sub">You're done for today. Come back tomorrow for your next drop and keep that streak alive!</p>
+    <div class="cs-streak">
+      <div class="cs-streak-num" id="cs-streak-num">0</div>
+      <div class="cs-streak-label">day streak 🔥</div>
+    </div>
+    <div class="cs-wealth" id="cs-wealth">🪙 Chai Money</div>
+    <button class="btn-home" onclick="window.location.href='index.html'">Back to Finly 💰</button>
+  </div>
+
 </div>
 
-<div class="trust-section full-width" id="trust">
-  <div class="trust-inner">
-    <div class="section-label reveal">Why trust Finly</div>
-    <h2 class="section-title reveal">Built for Indians.<br>Trusted by design. 🔒</h2>
-    <p class="section-sub reveal">Finance is personal. Here's exactly why thousands of Indians trust Finly.</p>
-    <div class="trust-grid">
-      <div class="trust-card reveal"><div class="trust-icon">🎓</div><h3>16 year old · Student founder</h3><p>Built by a student completing Data Science & AI at IIT Madras — one of India's most prestigious institutions.</p></div>
-      <div class="trust-card reveal"><div class="trust-icon">🔒</div><h3>Your data stays private</h3><p>We never store your questions permanently. No selling data. No ads. Ever. Your questions are yours.</p></div>
-      <div class="trust-card reveal"><div class="trust-icon">🤖</div><h3>Powered by advanced AI</h3><p>Built on the latest AI, specifically trained to understand India's complex tax and finance system.</p></div>
-      <div class="trust-card reveal"><div class="trust-icon">📋</div><h3>India-specific knowledge</h3><p>ITR, TDS, Section 80C, GST, SEBI — Finly knows India's full finance system inside out. 🇮🇳</p></div>
-      <div class="trust-card reveal"><div class="trust-icon">💸</div><h3>Always free for basics</h3><p>Core features will always be free. No hidden charges. No credit card required. Promise. ✅</p></div>
-      <div class="trust-card reveal"><div class="trust-icon">⚠️</div><h3>Honest about limits</h3><p>Finly tells you when to consult a real CA. We're a guide, not a replacement for complex decisions.</p></div>
-    </div>
-  </div>
+<!-- STREAK POPUP -->
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="streak-popup" id="streak-popup">
+  <span class="sp-emoji" id="sp-emoji">🔥</span>
+  <div class="sp-title" id="sp-title">7 Day Streak!</div>
+  <div class="sp-text" id="sp-text">You're officially a Week Warrior! Keep going!</div>
+  <button class="sp-btn" onclick="closePopup()">Let's go! 🚀</button>
 </div>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="section-label reveal">What Finly covers</div>
-  <h2 class="section-title reveal">Everything about money<br>in India. 💰</h2>
-  <p class="section-sub reveal">From filing your first ITR to understanding crypto tax — Finly has you covered.</p>
-  <div class="features-grid">
-    <div class="feat-card reveal"><div class="feat-emoji">📋</div><h3>ITR Filing Guide</h3><p>Step-by-step for filing your Income Tax Return. Know which form, what documents, exact deadline. ✅</p></div>
-    <div class="feat-card reveal"><div class="feat-emoji">💡</div><h3>Tax Saving Tips</h3><p>Find every legal deduction — 80C, 80D, HRA, NPS and more. Save thousands every year. 💰</p></div>
-    <div class="feat-card reveal"><div class="feat-emoji">📈</div><h3>SIP & Investing</h3><p>Calculate SIP returns, understand mutual funds, compare investment options. In plain language. 🚀</p></div>
-    <div class="feat-card reveal"><div class="feat-emoji">🏦</div><h3>Old vs New Regime</h3><p>Tell Finly your salary and deductions — get an instant comparison of which saves you more. 🔥</p></div>
-    <div class="feat-card reveal"><div class="feat-emoji">₿</div><h3>Crypto Tax Calculator</h3><p>India's 30% flat tax + 1% TDS calculated exactly. No surprises at filing time. 📊</p></div>
-    <div class="feat-card reveal"><div class="feat-emoji">🏪</div><h3>GST for Business</h3><p>GST obligations, registration thresholds, filing process — for freelancers and business owners. 💼</p></div>
-    <div class="feat-card reveal"><div class="feat-emoji">🏠</div><h3>EMI Calculator</h3><p>Calculate monthly EMI, total interest payable, and whether that loan is actually worth taking. 🧮</p></div>
-    <div class="feat-card reveal"><div class="feat-emoji">💪</div><h3>Financial Health Score</h3><p>Get scored on your savings rate, investments, and debt. Know exactly what to fix. 📊</p></div>
-    <div class="feat-card reveal"><div class="feat-emoji">💼</div><h3>Salary Analyser</h3><p>Know your real in-hand salary from CTC, tax deductions, PF — and if the offer is good. ✅</p></div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<div class="hiw-section full-width">
-  <div class="hiw-inner">
-    <div class="section-label reveal">How it works</div>
-    <h2 class="section-title reveal">Three steps to financial<br>clarity. ✨</h2>
-    <div class="hiw-steps">
-      <div class="hiw-step reveal"><div class="hiw-num">1</div><h3>Ask anything 💬</h3><p>Type your question — taxes, investing, GST, crypto. No forms, no jargon, just plain language.</p></div>
-      <div class="hiw-step reveal"><div class="hiw-num">2</div><h3>Finly thinks 🤔</h3><p>Our AI processes your question with deep knowledge of India's full finance and tax system.</p></div>
-      <div class="hiw-step reveal"><div class="hiw-num">3</div><h3>Get clear answers ✅</h3><p>Receive a detailed, easy answer in seconds. No confusion. No expensive CA fees. 🔥</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- DESI DROPS -->
-<section style="background:#f0ede6;padding:80px 48px" id="dd-landing-section">
-
-  <!-- Flying note animation -->
-  <div id="dd-flying-note" style="position:fixed;pointer-events:none;opacity:0;z-index:9999;top:0;left:0">
-    <svg width="80" height="48" viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="ddNG" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#b8f5c8"/><stop offset="50%" stop-color="#4ade80"/><stop offset="100%" stop-color="#16a34a"/>
-        </linearGradient>
-        <filter id="ddNS"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#4ade80" flood-opacity="0.5"/></filter>
-      </defs>
-      <rect x="8" y="10" width="64" height="34" rx="4" fill="url(#ddNG)" filter="url(#ddNS)"/>
-      <rect x="10" y="12" width="60" height="30" rx="3" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.5"/>
-      <text x="40" y="32" text-anchor="middle" font-size="14" font-weight="900" fill="#fff" font-family="serif">₹500</text>
-      <path d="M8 22 C0 18,-6 14,-2 10 C2 6,6 10,8 16 Z" fill="#4ade80" opacity="0.8"/>
-      <path d="M8 27 C-2 25,-8 22,-6 18 C-4 14,2 18,8 23 Z" fill="#4ade80" opacity="0.5"/>
-      <path d="M72 22 C80 18,86 14,82 10 C78 6,74 10,72 16 Z" fill="#4ade80" opacity="0.8"/>
-      <path d="M72 27 C82 25,88 22,86 18 C84 14,78 18,72 23 Z" fill="#4ade80" opacity="0.5"/>
-      <ellipse cx="24" cy="18" rx="6" ry="3" fill="#fff" opacity="0.2" transform="rotate(-15 24 18)"/>
-    </svg>
-  </div>
-
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
-
-    <!-- LEFT -->
-    <div>
-      <div style="font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#888;margin-bottom:14px;font-family:'DM Sans',sans-serif">Daily Challenge</div>
-      <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3.5vw,40px);font-weight:700;color:#1a1a1a;line-height:1.1;margin-bottom:16px">Learn money<br>one drop <span style="color:#b8860b">at a time.</span></h2>
-      <p style="font-size:15px;color:#555;line-height:1.7;max-width:420px;margin-bottom:32px;font-family:'DM Sans',sans-serif;font-weight:400">A real Indian money scenario every day. Make your choice, see how it plays out over 10 years, and see what India chose.</p>
-
-      <!-- Journey -->
-      <div style="display:flex;flex-direction:column;gap:0;margin-bottom:20px;font-family:'DM Sans',sans-serif">
-        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;position:relative">
-          <div style="position:absolute;left:17px;top:46px;width:2px;height:20px;background:#e0dcd4"></div>
-          <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e8e4dc;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🍵</div>
-          <div><div style="font-size:14px;font-weight:700;color:#1a1a1a">Chai Money</div><div style="font-size:12px;color:#777;margin-top:2px">You're just getting started</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;position:relative">
-          <div style="position:absolute;left:17px;top:46px;width:2px;height:20px;background:#e0dcd4"></div>
-          <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e8e4dc;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💡</div>
-          <div><div style="font-size:14px;font-weight:700;color:#1a1a1a">Smart Saver</div><div style="font-size:12px;color:#777;margin-top:2px">You think before you spend</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;position:relative">
-          <div style="position:absolute;left:17px;top:46px;width:2px;height:20px;background:#e0dcd4"></div>
-          <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e8e4dc;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🎯</div>
-          <div><div style="font-size:14px;font-weight:700;color:#1a1a1a">Goal Setter</div><div style="font-size:12px;color:#777;margin-top:2px">Your money finally has a direction</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;position:relative">
-          <div style="position:absolute;left:17px;top:46px;width:2px;height:20px;background:#e0dcd4"></div>
-          <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #e8e4dc;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">📈</div>
-          <div><div style="font-size:14px;font-weight:700;color:#1a1a1a">Wealth Builder</div><div style="font-size:12px;color:#777;margin-top:2px">Compound interest is working for you</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;padding:10px 0">
-          <div style="width:36px;height:36px;border-radius:50%;background:#f5c842;border:1px solid #f5c842;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💎</div>
-          <div><div style="font-size:14px;font-weight:700;color:#b8860b">Old Money Rich</div><div style="font-size:12px;color:#777;margin-top:2px">365 days. You actually made it 👑</div></div>
-        </div>
-      </div>
-
-      <!-- Reward box -->
-      <div style="background:#1a1a1a;border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:12px;font-family:'DM Sans',sans-serif">
-        <div style="font-size:24px;flex-shrink:0">👑</div>
-        <div>
-          <div style="font-size:13px;font-weight:700;color:#fff">Hit Old Money Rich — unlock a surprise</div>
-          <div style="font-size:12px;color:#aaa;margin-top:3px;line-height:1.5">365 days of drops. Something <span style="color:#f5c842;font-weight:800">worth it</span> is waiting. We don't spoil it. Just show up.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT — Animated Drop Demo -->
-    <div id="dd-preview-card">
-      <div style="background:#1a1a1a;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.15)">
-        <!-- Card header -->
-        <div style="background:#222;border-bottom:1px solid #2a2a2a;padding:16px 18px;display:flex;align-items:center;justify-content:space-between">
-          <span style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">💸 Desi Drops</span>
-          <div style="display:flex;align-items:center;gap:5px;background:#333;border:1px solid #444;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif">🔥 <span id="dd-streak">5</span></div>
-        </div>
-        <!-- Animated body -->
-        <div style="padding:18px;font-family:'DM Sans',sans-serif" id="dd-anim-body">
-          <!-- Question phase -->
-          <div id="dd-question-phase">
-            <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#f5c842;margin-bottom:10px">🎆 New Year Drop</div>
-            <div style="background:#222;border-radius:14px;padding:16px;margin-bottom:14px;text-align:center;border:1px solid #2a2a2a">
-              <span style="font-size:40px;display:block;margin-bottom:10px">🎊💰</span>
-              <div style="font-size:16px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:6px;font-family:'Playfair Display',Georgia,serif">New Year, new ₹2000 in your pocket.</div>
-              <div style="font-size:12px;color:#888;line-height:1.5;background:#1a1a1a;border-radius:8px;padding:8px 12px;border:1px solid #333;margin-top:8px">Your friends already booked a party. Gym WhatsApp group is blowing up. What do you do?</div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:8px" id="dd-options">
-              <div class="dd-opt" style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;transition:all 0.3s"><span style="font-size:20px">💸</span><div><div style="font-size:13px;font-weight:500;color:#fff">Invest in digital gold</div><div style="font-size:11px;color:#666;margin-top:1px">Future you is watching 👀</div></div></div>
-              <div class="dd-opt" style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;transition:all 0.3s"><span style="font-size:20px">🎉</span><div><div style="font-size:13px;font-weight:500;color:#fff">Party with friends</div><div style="font-size:11px;color:#666;margin-top:1px">YOLO it's New Year 🎆</div></div></div>
-              <div class="dd-opt" style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;transition:all 0.3s"><span style="font-size:20px">🏋️</span><div><div style="font-size:13px;font-weight:500;color:#fff">Gym membership</div><div style="font-size:11px;color:#666;margin-top:1px">New year new me 💪</div></div></div>
-              <div class="dd-opt" style="display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;border:1px solid #2a2a2a;background:#222;transition:all 0.3s"><span style="font-size:20px">🥟</span><div><div style="font-size:13px;font-weight:500;color:#fff">Momos and chill</div><div style="font-size:11px;color:#666;margin-top:1px">Honest king/queen 😂</div></div></div>
-            </div>
-          </div>
-          <!-- Story phase (hidden initially) -->
-          <div id="dd-story-phase" style="display:none">
-            <div style="text-align:center;margin-bottom:16px">
-              <span style="font-size:40px;display:block;margin-bottom:8px">💸😏</span>
-              <div style="font-size:15px;font-weight:700;color:#fff">You chose gold. Bold move.</div>
-              <div style="font-size:11px;color:#888;margin-top:4px">Let's see how this plays out...</div>
-            </div>
-            <div id="dd-timeline" style="display:flex;flex-direction:column;gap:10px"></div>
-          </div>
-          <!-- Result phase (hidden initially) -->
-          <div id="dd-result-phase" style="display:none;text-align:center;padding:8px 0">
-            <div style="background:linear-gradient(135deg,#1a2a1a,#2a2a1a);border:1px solid #2a4a2a;border-radius:14px;padding:16px;margin-bottom:12px">
-              <span style="font-size:36px;display:block;margin-bottom:8px">👑</span>
-              <div style="font-size:15px;font-weight:700;color:#f5c842;margin-bottom:6px">Old Money Rich era: ACTIVATED</div>
-              <div style="font-size:12px;color:#888;line-height:1.5">₹2000 invested → <b style="color:#4ade80">₹6,200</b> in 10 years at 12% returns. That's a personal trainer for 3 months. 💪</div>
-            </div>
-            <div style="background:#0a1a0a;border:1px solid #1a3a1a;border-radius:12px;padding:12px;margin-bottom:12px">
-              <div style="font-size:11px;color:#4ade80;font-weight:600;margin-bottom:4px">💼 VIRTUAL PORTFOLIO</div>
-              <div style="font-size:22px;font-weight:700;color:#4ade80">+₹2,000</div>
-            </div>
-          </div>
-          <!-- CTA button -->
-          <a href="/desidrops.html" style="display:block;width:100%;background:#ffffff;color:#1a1a1a;text-align:center;padding:14px;border-radius:11px;font-size:14px;font-weight:800;margin-top:12px;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:0.3px;box-sizing:border-box">Play today's Drop 💸</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-  // Desi Drops landing animation
-  (function(){
-    var triggered = false;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting && !triggered){
-          triggered = true;
-          // Start flying note then run animation
-          var note = document.getElementById("dd-flying-note");
-          var card = document.getElementById("dd-preview-card");
-          if(!note || !card) return;
-          var rect = card.getBoundingClientRect();
-          var sx = -90, sy = window.innerHeight * 0.8;
-          var ex = rect.left + rect.width/2 - 40, ey = rect.top + 60;
-          note.style.left=sx+"px"; note.style.top=sy+"px"; note.style.opacity="1";
-          var t0=null, dur=1200;
-          function flyStep(ts){
-            if(!t0)t0=ts;
-            var p=Math.min((ts-t0)/dur,1);
-            var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
-            note.style.left=(sx+(ex-sx)*ease)+"px";
-            note.style.top=(sy+(ey-sy)*ease-Math.sin(Math.PI*ease)*140)+"px";
-            note.style.transform="rotate("+(ease*360)+"deg)";
-            note.style.opacity=p>0.85?""+(1-(p-0.85)/0.15):"1";
-            if(p<1) requestAnimationFrame(flyStep); else { note.style.opacity="0"; runDropAnim(); }
-          }
-          requestAnimationFrame(flyStep);
-        }
-      });
-    },{threshold:0.3});
-    var sec = document.getElementById("dd-landing-section");
-    if(sec) obs.observe(sec);
-
-    function runDropAnim(){
-      var opts = document.querySelectorAll(".dd-opt");
-      // Step 1: hover over invest option after 1s
-      setTimeout(function(){
-        if(opts[0]) opts[0].style.borderColor = "#f5c842";
-        if(opts[0]) opts[0].style.background = "#2a2a2a";
-      }, 1000);
-      // Step 2: click it after 2s
-      setTimeout(function(){
-        if(opts[0]) opts[0].style.transform = "scale(0.97)";
-        setTimeout(function(){ if(opts[0]) opts[0].style.transform = "scale(1)"; }, 150);
-      }, 2000);
-      // Step 3: show story after 2.5s
-      setTimeout(function(){
-        document.getElementById("dd-question-phase").style.display = "none";
-        var sp = document.getElementById("dd-story-phase");
-        sp.style.display = "block";
-        // Build timeline items one by one
-        var tl = document.getElementById("dd-timeline");
-        var items = [
-          {dot:"💸", year:"January 1", text:"₹2000 straight to digital gold. No drama. Just gains. 😤"},
-          {dot:"😂", year:"Friends in January", text:"'Bro where's your gym selfie?' 'At the bank' 😂"},
-          {dot:"👑", year:"10 Years Later", text:"₹2000 → <b style='color:#4ade80'>₹6,200</b> 🔥 You hire a personal trainer with the RETURNS alone!"}
-        ];
-        items.forEach(function(item, i){
-          setTimeout(function(){
-            var d = document.createElement("div");
-            d.style.cssText = "display:flex;gap:10px;align-items:flex-start;opacity:0;transition:opacity 0.4s";
-            d.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:#222;border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">'+item.dot+'</div><div><div style="font-size:10px;font-weight:700;color:#f5c842;letter-spacing:1px;margin-bottom:3px">'+item.year+'</div><div style="font-size:12px;color:#ccc;line-height:1.5">'+item.text+'</div></div>';
-            tl.appendChild(d);
-            setTimeout(function(){ d.style.opacity = "1"; }, 50);
-          }, i * 800);
-        });
-      }, 2500);
-      // Step 4: show result after 6s
-      setTimeout(function(){
-        document.getElementById("dd-story-phase").style.display = "none";
-        document.getElementById("dd-result-phase").style.display = "block";
-      }, 6000);
-      // Step 5: loop back to question after 9s
-      setTimeout(function(){
-        document.getElementById("dd-result-phase").style.display = "none";
-        document.getElementById("dd-timeline").innerHTML = "";
-        var opts2 = document.querySelectorAll(".dd-opt");
-        opts2.forEach(function(o){ o.style.borderColor="#2a2a2a"; o.style.background="#222"; o.style.transform="scale(1)"; });
-        document.getElementById("dd-question-phase").style.display = "block";
-        // Run again
-        setTimeout(runDropAnim, 2000);
-      }, 9000);
-    }
-  })();
-  </script>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="section-label reveal">Pricing</div>
-  <h2 class="section-title reveal">Simple, honest pricing. 💸</h2>
-  <p class="section-sub reveal">Start free, upgrade when ready. No hidden fees. No surprises. Ever.</p>
-  <div class="pricing-grid">
-    <div class="price-card reveal">
-      <div class="price-label">Free</div>
-      <div class="price-amount">₹0</div>
-      <div class="price-period">Forever free for basics</div>
-      <div class="price-feats">
-        <div class="price-feat">✅ 10 questions per day</div>
-        <div class="price-feat">✅ ITR filing guidance</div>
-        <div class="price-feat">✅ Tax saving calculator</div>
-        <div class="price-feat">✅ SIP & EMI calculator</div>
-        <div class="price-feat">✅ Crypto tax calculator</div>
-        <div class="price-feat">✅ Financial health score</div>
-      </div>
-      <button class="btn-price btn-price-free" onclick="window.location.href='index.html'">Start for free 🚀</button>
-    </div>
-    <div class="price-card featured reveal">
-      <div class="price-badge">Coming soon ✨</div>
-      <div class="price-label">Pro</div>
-      <div class="price-amount">₹99</div>
-      <div class="price-period">/month · or ₹799/year</div>
-      <div class="price-feats">
-        <div class="price-feat">🔥 Unlimited questions</div>
-        <div class="price-feat">🎯 Personalised tax optimisation</div>
-        <div class="price-feat">📞 CA connector — real CA</div>
-        <div class="price-feat">📋 Guided ITR filing</div>
-        <div class="price-feat">⚡ Priority faster answers</div>
-        <div class="price-feat">💎 Early access to features</div>
-      </div>
-      <button class="btn-price btn-price-pro" onclick="window.location.href='index.html'">Join waitlist 🎁</button>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" style="border-top:1px solid var(--border)">
-  <div class="section-label reveal">FAQ</div>
-  <h2 class="section-title reveal">Frequently asked<br>questions 🤔</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span>What is Finly and how does it work?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a">Finly is a free AI-powered finance assistant built specifically for Indians. Ask any question about taxes, investing, GST, or money — get a clear, detailed answer instantly. It's powered by advanced AI with deep knowledge of India's finance system. 🤖</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span>Is Finly really free? What's the catch?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a">Yes, Finly is genuinely free for up to 10 questions per day. No catch. We're building a Pro version with unlimited questions for a small monthly fee, but the core experience will always be free. ✅</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span>Is my data safe? Do you store my questions?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a">Your privacy is our priority. 🔒 We do not permanently store your questions or financial details. We never sell data to anyone. Your questions are processed to give you an answer — that's it.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span>Can I trust Finly's financial advice?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a">Finly is a powerful educational tool, not a registered financial advisor. Our answers are accurate and detailed, but for complex decisions always verify with a registered CA or SEBI advisor. Finly will always tell you when that's the case. 🙏</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span>Who built Finly?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a">Finly was built by Sree Tanvi — a 16 year old founder from Bengaluru, currently pursuing Data Science and AI at IIT Madras. Built from scratch with the mission of making financial knowledge accessible to every Indian. 🚀</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span>What topics does Finly cover?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a">ITR filing, income tax slabs, old vs new tax regime, Section 80C deductions, GST, SIP and mutual funds, crypto tax (30% + 1% TDS), EMI calculations, financial health scoring, salary analysis and much more. 💰</div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="full-width">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-logo">✦ Finly</div>
-        <p class="footer-desc">India's free AI finance assistant. Making financial knowledge accessible to every Indian. 🇮🇳</p>
-        <p style="font-size:12px;color:#555;margin-top:6px">Built by Sree Tanvi · IIT Madras DS&AI · Bengaluru</p>
-      </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <a href="index.html">Try Finly free</a>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="index.html">Privacy Policy</a>
-        <a href="#">Terms of use</a>
-        <a href="mailto:finlyapp.in@gmail.com">Contact us</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Finly. Built with ❤️ in Bengaluru, India.</p>
-      <p>Finly is an educational tool. Not professional financial advice.</p>
-    </div>
-  </div>
-</footer>
 
 <script>
-// TYPING ANIMATION
-var questions=["How do I save tax on my salary? 💰","Which ITR form should I file? 📋","Old or new tax regime for me? 🤔","How much SIP for ₹1 crore? 📈","What is my crypto tax? ₿","Calculate my home loan EMI 🏠"];
-var qi=0,ci=0,deleting=false;
-function typeQ(){
-  var el=document.getElementById("typing-text");
-  if(!el)return;
-  var q=questions[qi];
-  if(!deleting){el.textContent=q.substring(0,ci+1);ci++;if(ci===q.length){deleting=true;setTimeout(typeQ,1600);return;}}
-  else{el.textContent=q.substring(0,ci-1);ci--;if(ci===0){deleting=false;qi=(qi+1)%questions.length;setTimeout(typeQ,300);return;}}
-  setTimeout(typeQ,deleting?35:55);
-}
-typeQ();
-
-// CHAT DEMOS
-var demos=[
-  {q:"How do I save tax? 💰",steps:["📖 Reading India's tax laws","🔍 Finding your deductions","💡 Calculating savings","✅ Building your plan"],answer:"Invest ₹1.5L in 80C (ELSS/PPF), add ₹50K in NPS, claim HRA and health insurance. You can save ₹2L+ in taxable income every year! 💪🔥"},
-  {q:"Which ITR form for freelancer? 📋",steps:["📋 Checking income type","🔍 Analysing your profile","📝 Selecting right form","✅ Guide ready!"],answer:"As a freelancer use ITR-4 (SUGAM) if income under ₹50L and you opt for presumptive tax. Or ITR-3 with proper books. Deadline: 31st July! ⚡"},
-  {q:"SIP needed for ₹1 crore? 📈",steps:["🎯 Setting your goal","📊 Running the math","📈 Optimising returns","✅ Plan is ready!"],answer:"At 12% annual returns, invest ₹43,000/month SIP for 10 years to reach ₹1 crore. Starting early is the real secret! 🚀🔥"}
+// WEALTH LEVELS
+var wealthLevels = [
+  {name:"🍵 Chai Money", days:0, msg:"You know money exists. That's a start 😂"},
+  {name:"📚 Book Sale Rich", days:7, msg:"Selling old textbooks and saving the change. Respect 🙏"},
+  {name:"🎁 Festival Money Investor", days:30, msg:"Investing Dadi's Diwali gift instead of spending it. You're different 👀"},
+  {name:"☕ No Chai No Problem", days:60, msg:"Skipping chai to invest. The sacrifice is real 😤💪"},
+  {name:"💸 Money Minded", days:100, msg:"100 days in. You think about money differently now. Rare breed 👑"},
+  {name:"📈 SIP Starter", days:150, msg:"₹500 SIP started. Compound interest is your best friend 🤝"},
+  {name:"💼 Internship Investor", days:200, msg:"First stipend invested before friends knew what SIP means 🔥"},
+  {name:"🏠 Now Money Rich", days:250, msg:"Building wealth while still in college. Rare breed 👑"},
+  {name:"🚀 Old Money Rich", days:300, msg:"You think in decades not months. Future you is grateful 🙏"},
+  {name:"💎 Ambani Mode", days:365, msg:"Completed the full year. You're unstoppable. Lifetime Pro unlocked 👑🔥"}
 ];
-var di=0,phase=0,charI=0,stepI=0;
-var body,stepEls=[],ansEl;
 
-function getBody(){return document.getElementById("awin-body");}
-
-function clearBody(){
-  var b=getBody();
-  b.innerHTML="";
-  stepEls=[];ansEl=null;charI=0;stepI=0;
-}
-
-function addEl(html,parent){
-  var d=document.createElement("div");
-  d.innerHTML=html;
-  var el=d.firstChild;
-  (parent||getBody()).appendChild(el);
-  return el;
-}
-
-// THE KEY FUNCTION — flies rupee from searchbar to window
-function flyRupee(callback){
-  var rupee=document.getElementById("flying-rupee");
-  var sb=document.getElementById("hero-searchbar");
-  var win=document.getElementById("anim-window");
-  if(!sb||!win){callback();return;}
-
-  var sbRect=sb.getBoundingClientRect();
-  var winRect=win.getBoundingClientRect();
-
-  // Start at send button (right side of search bar)
-  var startX=sbRect.right-20;
-  var startY=sbRect.top+(sbRect.height/2);
-
-  // End at top-center of the window
-  var endX=winRect.left+(winRect.width/2);
-  var endY=winRect.top+60;
-
-  // Place rupee at start
-  rupee.style.transition="none";
-  rupee.style.left=startX+"px";
-  rupee.style.top=startY+"px";
-  rupee.style.opacity="1";
-  rupee.style.width='48px';rupee.style.height='48px';
-  
-  
-  rupee.style.transform="rotate(0deg) scale(1)";
-
-  // Animate along curved path using JS keyframes
-  var startTime=null;
-  var duration=1800;
-
-  function animate(timestamp){
-    if(!startTime)startTime=timestamp;
-    var progress=(timestamp-startTime)/duration;
-    if(progress>=1){
-      rupee.style.opacity="0";
-      // Flash the window
-      var w=document.getElementById("anim-window");
-      w.classList.add("flash");
-      setTimeout(function(){w.classList.remove("flash");},600);
-      setTimeout(callback,300);
-      return;
+// DROPS DATABASE
+var drops = [
+  {
+    season:"🪔 Diwali Drop",
+    emoji:"👵💰",
+    question:"Dadi just handed you ₹1000 cash!",
+    sub:"Your cousin already ordered new Nikes. Your friend is booking a restaurant. What do you do?",
+    options:[
+      {emoji:"👗", text:"New clothes", sub:"Diwali vibes only 💅", type:"spend"},
+      {emoji:"🍕", text:"Pizza with friends", sub:"YOLO it's a festival 🎉", type:"spend2"},
+      {emoji:"👵", text:"Give it back to Dadi", sub:"She'll be proud 🥺", type:"dadi"},
+      {emoji:"🪙", text:"Invest in digital gold", sub:"Future you is watching 👀", type:"invest"}
+    ],
+    stories:{
+      invest:{
+        emoji:"🪙😏",
+        title:"You chose gold. Bold move.",
+        timeline:[
+          {year:"Right now", dot:"😂", text:"Your cousin laughs. 'Bro it's DIWALI. Live a little!'", type:"normal"},
+          {year:"You smile and say nothing", dot:"😏", text:"", type:"normal"},
+          {year:"1 Year Later", dot:"📈", text:"Cousin's Nikes are dirty and torn 👟💀\nYour gold grew <b>11%</b>", highlight:"You buy new shoes AND invest again. Cousin is shook 😳"},
+          {year:"5 Years Later", dot:"💰", text:"₹1000 → <b>₹1,800</b> 📈\nYou treat Dadi to a saree 👵❤️\nShe cries happy tears 🥺", highlight:"Cousin still asking parents for money 😂"},
+          {year:"10 Years Later", dot:"👑", text:"₹1000 → <b>₹3,200</b> 🔥\nGiant pizza party — YOU'RE paying 🍕\nNew clothes for everyone 👗\nAirPods Pro — gifted to yourself 🎧", highlight:"You're not just rich. You're the smart rich friend 😎"}
+        ],
+        finalEmoji:"👑",
+        finalTitle:"Old Money Rich era: ACTIVATED",
+        finalText:"₹1000 invested at 16 became ₹3,200 by 26. Imagine doing this every festival. Every birthday. Every book sale. The math is simple. The discipline is rare. You have both. 💪",
+        portfolioAdd:1000,
+        indiaChose:{invest:34, spend:28, spend2:24, dadi:14}
+      },
+      spend:{
+        emoji:"👗😅",
+        title:"New fit acquired. Respect.",
+        timeline:[
+          {year:"Right now", dot:"✨", text:"Looking FRESH. Diwali secured ✅\nCompliments incoming 💅", type:"normal"},
+          {year:"3 Months Later", dot:"😐", text:"Clothes still nice 👍\nBut your friend who bought gold?\n<b>Their ₹1000 is now ₹1,110 📈</b>", type:"normal"},
+          {year:"1 Year Later", dot:"😬", text:"Clothes getting old now\nFriend's gold: <b>₹1,210</b>\nThey're wearing YOUR type of clothes\nAND still have money growing 😳", type:"savage"}
+        ],
+        finalEmoji:"💡",
+        finalTitle:"No judgement. But now you know.",
+        finalText:"The clothes were fire 🔥 No regrets. But tomorrow's drop is your second chance. One small investment beats a hundred good intentions. Start tomorrow. 😊",
+        portfolioAdd:0,
+        indiaChose:{invest:34, spend:28, spend2:24, dadi:14}
+      },
+      spend2:{
+        emoji:"🍕😂",
+        title:"Pizza hits different on Diwali.",
+        timeline:[
+          {year:"That night", dot:"🎉", text:"Best. Pizza. Ever.\nFriends are happy. You're happy.\nDiwali = secured ✅", type:"normal"},
+          {year:"Next morning", dot:"😮‍💨", text:"₹0 left\nBut the memories tho 😂", type:"normal"},
+          {year:"Meanwhile", dot:"📈", text:"Your other friend invested ₹1000\nIt's now <b>₹1,110</b>\nThey also had pizza\nBut their money is still working 😳", type:"savage"}
+        ],
+        finalEmoji:"🍕",
+        finalTitle:"Great pizza. Better lesson.",
+        finalText:"Next festival — split it. ₹500 for pizza. ₹500 for gold. Best of both worlds. That's not missing out. That's being smart AND fun. 😎",
+        portfolioAdd:0,
+        indiaChose:{invest:34, spend:28, spend2:24, dadi:14}
+      },
+      dadi:{
+        emoji:"👵❤️",
+        title:"Dadi is proud. Actually.",
+        timeline:[
+          {year:"Right now", dot:"❤️", text:"Dadi smiles and hugs you tight\nShe gives it back anyway 😂\n'Beta rakho. Padhai ke kaam aayega'", type:"normal"},
+          {year:"The real lesson", dot:"💡", text:"Dadi just taught you something\nShe saved her whole life\nSmall amounts. Consistently.\nThat's how she afforded your school fees", highlight:"Invest that ₹1000 now. For her. 🪙"},
+        ],
+        finalEmoji:"👵🪙",
+        finalTitle:"Dadi's method. Your future.",
+        finalText:"Dadi saved small amounts her whole life. That's how old money is built. Start your version today — ₹1000 in digital gold. In 10 years it's ₹3,200. Dadi would approve. 😊",
+        portfolioAdd:500,
+        indiaChose:{invest:34, spend:28, spend2:24, dadi:14}
+      }
     }
+  },
+  {
+    season:"🏏 IPL Season Drop",
+    emoji:"🏏💸",
+    question:"IPL is on. Your friend just bet ₹500 on CSK.",
+    sub:"He's pressuring you to join. 'Bro easy money!' What do you do?",
+    options:[
+      {emoji:"🏏", text:"Bet ₹500 on CSK", sub:"Thala for a reason 😂", type:"bet"},
+      {emoji:"📈", text:"Invest ₹500 in index fund", sub:"Boring but building 💪", type:"invest"},
+      {emoji:"🎧", text:"Save for AirPods", sub:"₹500 closer to the dream 🎧", type:"save"},
+      {emoji:"🍿", text:"Watch and eat popcorn", sub:"Free entertainment 😂", type:"watch"}
+    ],
+    stories:{
+      invest:{
+        emoji:"📈😎",
+        title:"Index fund while they bet. Different breed.",
+        timeline:[
+          {year:"IPL Finals night", dot:"😂", text:"Friend lost ₹500 on CSK\nYou're watching with popcorn\nYour ₹500 is working quietly 📈", type:"normal"},
+          {year:"1 Year Later", dot:"💰", text:"Friend bet again. Lost again 😂\nYour ₹500 → <b>₹560</b>\nSmall but growing", type:"normal"},
+          {year:"10 Years Later", dot:"👑", text:"Friend's total betting losses: <b>₹50,000+</b>\nYour ₹500 → <b>₹1,550</b> at 12% returns\nYou buy the AirPods AND invest more", highlight:"You're the plug now 😎 Friend asks for money advice 😂"}
+        ],
+        finalEmoji:"📈",
+        finalTitle:"Boring wins. Always.",
+        finalText:"Every IPL season your friend bets. Every year he loses. You invested instead. 10 years later — you're not just richer. You're the one he calls for advice. 😎",
+        portfolioAdd:500,
+        indiaChose:{invest:41, bet:31, save:18, watch:10}
+      },
+      bet:{
+        emoji:"🏏😬",
+        title:"CSK. Thala. And... lost.",
+        timeline:[
+          {year:"Match night", dot:"😬", text:"CSK lost by 3 runs 😭\n₹500 gone\nFriend also lost\nYou both stare at the screen", type:"savage"},
+          {year:"Next IPL", dot:"🔄", text:"'Bro this time for sure!'\nYou bet again\nLost again\nThe cycle continues 😂", type:"savage"},
+          {year:"Reality check", dot:"💡", text:"₹500 invested instead would be <b>₹1,550</b> in 10 years\nYou funded someone else's profit\nNext time — index fund 📈", type:"normal"}
+        ],
+        finalEmoji:"💡",
+        finalTitle:"Thala forgives. Your wallet doesn't.",
+        finalText:"Betting feels like investing but it's the opposite. One builds wealth slowly. One destroys it fast. Next IPL — ₹250 for the vibe, ₹250 in index fund. Balance. 😊\n\nYour ex moved on. Your gold didn't. 😏",
+        portfolioAdd:0,
+        indiaChose:{invest:41, bet:31, save:18, watch:10}
+      },
+      save:{
+        emoji:"🎧😏",
+        title:"AirPods fund growing. Respect.",
+        timeline:[
+          {year:"3 Months Later", dot:"🎧", text:"Saved ₹2000 total\nAirPods are close 👀", type:"normal"},
+          {year:"Plot twist", dot:"💡", text:"What if you bought digital gold instead?\n₹2000 in gold now\nIn 5 years → <b>₹3,300</b>\nThat's AirPods Pro AND money left", highlight:"Save for things. Invest for freedom. 🪙"}
+        ],
+        finalEmoji:"🎧🪙",
+        finalTitle:"AirPods today. AirPods Max tomorrow.",
+        finalText:"Saving is good. Investing is better. Next time — save half, invest half. You get the AirPods AND build wealth. Future you gets AirPods Max. 😎",
+        portfolioAdd:250,
+        indiaChose:{invest:41, bet:31, save:18, watch:10}
+      },
+      watch:{
+        emoji:"🍿😂",
+        title:"Free entertainment. Underrated move.",
+        timeline:[
+          {year:"That night", dot:"🍿", text:"Best decision honestly\nFriend lost ₹500\nYou spent ₹0\nPopcorn was great 😂", type:"normal"},
+          {year:"Smart next step", dot:"💡", text:"You didn't spend. Great.\nBut you also didn't invest.\nThat ₹500 sitting in your pocket?\nPut it in digital gold NOW 🪙", highlight:"Watching for free + investing the saved money = actually genius 😎"}
+        ],
+        finalEmoji:"🍿🪙",
+        finalTitle:"Free entertainment + investment = 200 IQ move",
+        finalText:"You didn't waste money. Now make it work. ₹500 in digital gold today. Watch it grow while your friend bets again next IPL. 😂",
+        portfolioAdd:250,
+        indiaChose:{invest:41, bet:31, save:18, watch:10}
+      }
+    }
+  },
+  {
+    season:"📝 Board Results Drop",
+    emoji:"📝🎉",
+    question:"95% mila! Relatives are showering gifts!",
+    sub:"Total collected: ₹5000. Friends want a party. Parents want a treat. What do you do?",
+    options:[
+      {emoji:"🎉", text:"Party with friends", sub:"We earned this! 🎊", type:"party"},
+      {emoji:"🍽️", text:"Family dinner treat", sub:"Make parents proud 🥰", type:"family"},
+      {emoji:"🪙", text:"Invest the full ₹5000", sub:"Future flex incoming 😏", type:"invest"},
+      {emoji:"⚡", text:"Split — party + invest", sub:"Smart balance 🧠", type:"split"}
+    ],
+    stories:{
+      split:{
+        emoji:"⚡🧠",
+        title:"Split decision. Big brain move.",
+        timeline:[
+          {year:"That weekend", dot:"🎉", text:"₹2500 on an amazing party 🎊\nFriends hyped. Parents happy.\nMemories made ✅", type:"normal"},
+          {year:"Same time", dot:"🪙", text:"₹2500 in digital gold 🪙\nWorking quietly while you party\nBoth happening simultaneously", highlight:"Living in the present AND building the future 😎"},
+          {year:"5 Years Later", dot:"📈", text:"Party: Great memory 🎉\nGold: ₹2500 → <b>₹4,100</b> 📈\nYou celebrate college placement\nWith YOUR OWN money", type:"normal"},
+          {year:"10 Years Later", dot:"👑", text:"₹2500 → <b>₹6,750</b> 🔥\nAirPods Pro bought\nDadi gets a saree 👵❤️\nFriends remember the legendary party\nYou remember the legendary investment", highlight:"The smartest person in the room was always you 👑"}
+        ],
+        finalEmoji:"⚡",
+        finalTitle:"Balance is not boring. Balance is genius.",
+        finalText:"You celebrated your hard work AND secured your future. That's not compromise — that's wisdom. Most people choose one. You chose both. 💪\n\nYour crush scored someone else 💀 Your investment scored 12% returns. Books and you — it's complicated. Sell them. Watch the money grow. Long distance investment relationship — the only one that actually works. 📚💰",
+        portfolioAdd:2500,
+        indiaChose:{split:45, family:28, party:18, invest:9}
+      },
+      invest:{
+        emoji:"🪙😤",
+        title:"Full send on investment. Respect.",
+        timeline:[
+          {year:"That weekend", dot:"😤", text:"Friends party without you\nYou're watching Netflix at home\nSlightly sad but committed 😅", type:"normal"},
+          {year:"1 Year Later", dot:"📈", text:"₹5000 → <b>₹5,600</b>\nFriends already forgot the party\nYour money remembers", type:"normal"},
+          {year:"10 Years Later", dot:"👑", text:"₹5000 → <b>₹15,500</b> 🔥🔥🔥\nYou throw a party 10x bigger\nWith YOUR money\nFriends finally understand", highlight:"You played the long game. And won. 👑"}
+        ],
+        finalEmoji:"🪙",
+        finalTitle:"Delayed gratification hits DIFFERENT.",
+        finalText:"₹5000 at 12% annual returns for 10 years = ₹15,500. You turned board result money into a small fortune. That's the power of starting early. 🔥\n\nYour ex moved on. Your gold didn't. 😏 Your first investment won't leave you either. 💔📈",
+        portfolioAdd:5000,
+        indiaChose:{split:45, family:28, party:18, invest:9}
+      },
+      party:{
+        emoji:"🎉😅",
+        title:"Party secured. Memories made.",
+        timeline:[
+          {year:"That weekend", dot:"🎊", text:"LEGENDARY party 🎊\nEveryone had the best time\nInstagram full of memories ✅", type:"normal"},
+          {year:"1 Month Later", dot:"😐", text:"₹0 left\nMemories fading\nFriend who invested ₹5000?\nAlready has <b>₹5,600</b> 📈", type:"savage"},
+          {year:"The lesson", dot:"💡", text:"Next result — celebrate ₹2000\nInvest ₹3000\nBest of both worlds 🧠", type:"normal"}
+        ],
+        finalEmoji:"🎉",
+        finalTitle:"Great party. Greater lesson.",
+        finalText:"The party was worth it — we don't judge. But next big moment, split it. Half the celebration, double the wisdom. Tomorrow's drop is your reset. 😊\n\nYour crush forgot your birthday. Your SIP won't. It deposits automatically. On time. Every month. No excuses. No ghosting. 😏",
+        portfolioAdd:0,
+        indiaChose:{split:45, family:28, party:18, invest:9}
+      },
+      family:{
+        emoji:"🍽️❤️",
+        title:"Family dinner. Wholesome king/queen.",
+        timeline:[
+          {year:"That evening", dot:"❤️", text:"Parents smiling\nBest biryani ever ordered\nFamily is proud 🥰\nWorth every rupee", type:"normal"},
+          {year:"Smart upgrade", dot:"💡", text:"What if you kept ₹2000 for dinner\nAnd invested ₹3000?\nParents would be even prouder\nSmart AND loving = rare combo 🧠❤️", highlight:"Invest ₹3000 now. Grow it. Take them to a 5-star in 5 years. 😎"}
+        ],
+        finalEmoji:"🍽️🪙",
+        finalTitle:"Love your family. And invest.",
+        finalText:"Family dinner was beautiful. Next time — dinner for ₹2000, invest ₹3000. In 10 years that ₹3000 becomes ₹9,300. Take them somewhere much nicer. 😊",
+        portfolioAdd:1000,
+        indiaChose:{split:45, family:28, party:18, invest:9}
+      }
+    }
+  },
+  {
+    season:"📚 Book Sale Drop",
+    emoji:"📚💰",
+    question:"School's over. Books collecting dust.",
+    sub:"Your friend is keeping them 'just in case' 😂 You have ₹800 from selling yours. What now?",
+    options:[
+      {emoji:"🛍️", text:"Online shopping spree", sub:"Treat yourself 💅", type:"shop"},
+      {emoji:"🍔", text:"Food with friends", sub:"Celebrate freedom 🎉", type:"food"},
+      {emoji:"🪙", text:"Invest in digital silver", sub:"Long distance gains 📈", type:"invest"},
+      {emoji:"📖", text:"Buy new books", sub:"Knowledge is power 🤓", type:"books"}
+    ],
+    stories:{
+      invest:{
+        emoji:"🪙😏",
+        title:"Long distance investment relationship. The best kind.",
+        timeline:[
+          {year:"Right now", dot:"📚", text:"Books sold. ₹800 in hand.
+Friends think you're boring 😂
+You invest in digital silver 🪙", type:"normal"},
+          {year:"1 Year Later", dot:"📈", text:"Friends forgot about their old books
+Your ₹800 → <b>₹880</b>
+Small but faithful 📈", type:"normal"},
+          {year:"5 Years Later", dot:"💰", text:"₹800 → <b>₹1,400</b> 🔥
+That's new books AND money left
+Friend's books: still collecting dust 😂", highlight:"Books and you — it's complicated. But money? Simple. 💰"},
+          {year:"10 Years Later", dot:"👑", text:"₹800 → <b>₹2,480</b> 🔥
+AirPods bought from silver gains
+Friend still has those dusty books
+And no AirPods 😂", highlight:"School's over. Books collecting dust. Just like texts from your crush. But your investment? Never ghosted you. 😏"}
+        ],
+        finalEmoji:"📚🪙",
+        finalTitle:"Long distance investment relationship — the only one that works.",
+        finalText:"₹800 in digital silver today at 12% growth = ₹2,480 in 10 years. That's 3x your book money. Books gave you knowledge. Investment gives you freedom. Both matter. 💪
 
-    // Cubic easing
-    var t=progress<0.5?2*progress*progress:1-Math.pow(-2*progress+2,2)/2;
+Books and you — it's complicated. Sell them. Watch the money grow. Long distance investment relationship — the only one that actually works. 📚💰",
+        portfolioAdd:800,
+        indiaChose:{invest:48, food:26, shop:18, books:8}
+      },
+      shop:{
+        emoji:"🛍️😅",
+        title:"Online shopping. The trap we all fall into.",
+        timeline:[
+          {year:"That evening", dot:"🛍️", text:"Cart filled instantly 😂
+₹800 spent in 3 minutes
+Free delivery. What a steal.", type:"normal"},
+          {year:"2 weeks later", dot:"😐", text:"Half the stuff still in packaging
+Other half already boring
+₹800: gone 💨", type:"savage"},
+          {year:"If invested instead", dot:"💡", text:"₹800 in digital silver
+10 years → <b>₹2,480</b>
+That's a proper shopping spree
+With YOUR investment returns 😎", type:"normal"}
+        ],
+        finalEmoji:"🛍️",
+        finalTitle:"The cart was full. The wallet is empty.",
+        finalText:"Next time — ₹300 for a treat, ₹500 in silver. You get the dopamine AND the investment. Future you gets the real shopping spree. 😊
 
-    // Curved path — arc upward then down into window
-    var curveX=startX+(endX-startX)*t;
-    var curveY=startY+(endY-startY)*t - Math.sin(Math.PI*t)*160;
+Your ex moved on. Your gold didn't. 😏",
+        portfolioAdd:0,
+        indiaChose:{invest:48, food:26, shop:18, books:8}
+      },
+      food:{
+        emoji:"🍔🎉",
+        title:"Celebrating freedom. Valid.",
+        timeline:[
+          {year:"That day", dot:"🎉", text:"Best meal ever 🍔
+Freedom tastes delicious
+Friends hyped ✅", type:"normal"},
+          {year:"Next day", dot:"😮‍💨", text:"₹800: gone
+Memories: good
+Investment: none", type:"normal"},
+          {year:"Smart version", dot:"💡", text:"₹300 celebration meal 🍔
+₹500 in digital silver 🪙
+Still celebrated
+AND started investing
+10 years: ₹500 → <b>₹1,550</b>", highlight:"Celebrate smart. Invest smarter. 😎"}
+        ],
+        finalEmoji:"🍔🪙",
+        finalTitle:"Celebrate. But make the money work too.",
+        finalText:"Food with friends = memories. But ₹500 invested = freedom. Next time split it. ₹300 food, ₹500 silver. You deserve both. 💪
 
-    rupee.style.left=curveX+"px";
-    rupee.style.top=curveY+"px";
-    rupee.style.transform="rotate("+(t*720)+"deg) scale("+(1+Math.sin(Math.PI*t)*0.3)+")";
-    rupee.style.opacity=progress>0.85?(1-(progress-0.85)/0.15)+"":1;
+Your first one left you. Your first investment won't. 💔📈",
+        portfolioAdd:0,
+        indiaChose:{invest:48, food:26, shop:18, books:8}
+      },
+      books:{
+        emoji:"📖🤓",
+        title:"New books. Knowledge seeker. Respect.",
+        timeline:[
+          {year:"Right now", dot:"📖", text:"New books. Big brain energy 🧠
+Knowledge is power ✅
+We respect the hustle", type:"normal"},
+          {year:"Plot twist", dot:"💡", text:"What if you got the books FREE?
+Library. PDF. YouTube.
+And invested that ₹800 instead?
+Knowledge + investment = unstoppable 😎", highlight:"₹800 in silver today → ₹2,480 in 10 years
+Free knowledge + paid investments = genius 👑"}
+        ],
+        finalEmoji:"📖💰",
+        finalTitle:"Read free. Invest the rest.",
+        finalText:"Books are great. Free books are better. Invested ₹800 is best. Library card + digital silver = the ultimate student combo. 😎
 
-    requestAnimationFrame(animate);
+School's over. Books collecting dust. Sell them. That ₹500 won't ghost you like your crush did. 😂",
+        portfolioAdd:400,
+        indiaChose:{invest:48, food:26, shop:18, books:8}
+      }
+    }
+  },
+  {
+    season:"🎆 New Year Drop",
+    emoji:"🎆😂",
+    question:"New Year, New Me! Gym membership = ₹2000.",
+    sub:"By January 7th you're at the momos stall 😂 What should you have done with that ₹2000?",
+    options:[
+      {emoji:"💪", text:"Buy the gym membership", sub:"This year is different! 😤", type:"gym"},
+      {emoji:"🥟", text:"Enjoy the momos guilt-free", sub:"Honest king/queen 😂", type:"momos"},
+      {emoji:"🪙", text:"Invest the full ₹2000", sub:"Future self is watching 👀", type:"invest"},
+      {emoji:"⚡", text:"₹500 gym + ₹1500 gold", sub:"Optimistic AND smart 😂", type:"split"}
+    ],
+    stories:{
+      split:{
+        emoji:"⚡😂",
+        title:"Optimistic AND smart. Rare combo.",
+        timeline:[
+          {year:"January 1-7", dot:"💪", text:"Gym 3 times! New record!\nActually enjoying it 😮", type:"normal"},
+          {year:"January 8-31", dot:"😅", text:"Gym visits: 1 more\nMomos visits: 7\nBut your ₹1500 in gold?\nStill growing 📈", type:"normal"},
+          {year:"1 Year Later", dot:"💰", text:"Gym membership expired 😂\nGold: ₹1500 → <b>₹1,665</b>\nYou learned something about yourself\nAND your money grew", highlight:"Next year — ₹500 gym, ₹1500 invest. Same plan. It works. 😎"},
+          {year:"10 Years Later", dot:"👑", text:"₹1500 → <b>₹4,650</b> 🔥\nYou can now afford a personal trainer\nWith the returns alone\nThe momos were worth it 😂", type:"normal"}
+        ],
+        finalEmoji:"🥟🪙",
+        finalTitle:"Momos + gold = peak Indian New Year.",
+        finalText:"₹1500 invested every New Year for 10 years at 12% returns = ₹29,000+. That's not a resolution. That's a retirement plan. 😎\n\nYou said new year new me. Your crush said the same and got a new boyfriend/girlfriend 💀 Your investment said new year new gains. And delivered. Gold never plays games. Unlike them. 😏",
+        portfolioAdd:1500,
+        indiaChose:{split:52, invest:28, gym:14, momos:6}
+      },
+      invest:{
+        emoji:"🪙😤",
+        title:"Skipped the gym. Invested instead. Chad.",
+        timeline:[
+          {year:"January 1", dot:"🪙", text:"₹2000 straight to digital gold\nNo gym. No drama.\nJust gains. Financial ones. 😤", type:"normal"},
+          {year:"Friends in January", dot:"😂", text:"'Bro where's your gym selfie?'\n'At the bank' 😂", type:"normal"},
+          {year:"10 Years Later", dot:"👑", text:"₹2000 → <b>₹6,200</b> 🔥\nYou hire a personal trainer\nWith the RETURNS alone\nFriends still buying gym memberships 😂", highlight:"The only resolution that paid off was the investment 👑"}
+        ],
+        finalEmoji:"💪🪙",
+        finalTitle:"Financial fitness > Physical fitness. Sometimes.",
+        finalText:"₹2000 at 12% annual returns for 10 years = ₹6,200. That's a personal trainer for 3 months. Your money went to the gym so you didn't have to. 😂\n\nYour first one left you. Your first investment won't. 💔📈",
+        portfolioAdd:2000,
+        indiaChose:{split:52, invest:28, gym:14, momos:6}
+      },
+      gym:{
+        emoji:"💪😬",
+        title:"January warrior. February ghost.",
+        timeline:[
+          {year:"January 1-15", dot:"💪", text:"GYM MODE ON 🔥\nInstagram stories daily\nFeeling amazing ✅", type:"normal"},
+          {year:"January 16-31", dot:"😅", text:"'I'll go tomorrow'\n'Tomorrow'\n'Next week'", type:"normal"},
+          {year:"February 1", dot:"😂", text:"Last gym visit\nMembership: ₹2000 paid\nVisits: 6 times\nCost per visit: <b>₹333</b> 😭\nMomos at that price = MUCH better", type:"savage"},
+          {year:"If invested instead", dot:"💡", text:"₹2000 in gold\n10 years → <b>₹6,200</b>\nYou can afford a personal trainer then\nWith the returns alone 😎", type:"normal"}
+        ],
+        finalEmoji:"🏋️",
+        finalTitle:"The gym got you. Not this year.",
+        finalText:"Next New Year — ₹500 for a 1 month gym trial. If you love it, continue. If not, ₹1500 goes to gold. Your wallet gets the workout either way. 😊\n\nYour crush has commitment issues. Your index fund doesn't. 😂",
+        portfolioAdd:0,
+        indiaChose:{split:52, invest:28, gym:14, momos:6}
+      },
+      momos:{
+        emoji:"🥟👑",
+        title:"Honest king/queen. We respect it.",
+        timeline:[
+          {year:"January 1", dot:"🥟", text:"Best momos of your life\nNo guilt. No pretending.\nHonesty is underrated 😂", type:"normal"},
+          {year:"The real move", dot:"💡", text:"Momos: ₹50\nRemaining ₹1950: invest in gold 🪙\nHonest AND smart\nRare combo 👑", highlight:"₹1950 in gold today → ₹6,045 in 10 years\nMomos AND investments? Peak life. 😎"}
+        ],
+        finalEmoji:"🥟🪙",
+        finalTitle:"Honest + invested = actually winning.",
+        finalText:"Enjoy the momos. Invest the rest. ₹1950 in digital gold today at 12% growth = ₹6,045 in 10 years. That's 120 plates of momos. Future you is sorted. 😂\n\nSchool's over. Books collecting dust. Just like the texts from your crush 😂 Sell the books. That ₹500 won't ghost you like your crush did.",
+        portfolioAdd:500,
+        indiaChose:{split:52, invest:28, gym:14, momos:6}
+      }
+    }
   }
-  requestAnimationFrame(animate);
+];
+
+// STATE
+var state = {
+  streak: parseInt(localStorage.getItem("dd_streak") || "0"),
+  lastDone: localStorage.getItem("dd_lastdone") || "",
+  portfolio: parseInt(localStorage.getItem("dd_portfolio") || "0"),
+  dropIndex: parseInt(localStorage.getItem("dd_index") || "0"),
+  todayDone: false
+};
+
+// Check if already done today
+var today = new Date().toDateString();
+if(state.lastDone === today) state.todayDone = true;
+
+// Check if streak should reset
+var yesterday = new Date(Date.now() - 86400000).toDateString();
+if(state.lastDone && state.lastDone !== today && state.lastDone !== yesterday) {
+  state.streak = 0;
+  localStorage.setItem("dd_streak", "0");
 }
 
-function runDemo(){
-  var demo=demos[di];
-  if(phase===0){
-    clearBody();
-    // Show "sending" flash on search bar
-    var sb=document.getElementById("hero-searchbar");
-    sb.style.borderColor="#c8a97e";
-    sb.style.boxShadow="0 0 0 3px rgba(200,169,126,0.2)";
-    setTimeout(function(){
-      sb.style.borderColor="";
-      sb.style.boxShadow="";
-    },400);
-    // FLY THE RUPEE!
-    flyRupee(function(){
-      phase=1;runDemo();
+function getWealthLevel(streak) {
+  var level = wealthLevels[0];
+  for(var i = wealthLevels.length - 1; i >= 0; i--) {
+    if(streak >= wealthLevels[i].days) { level = wealthLevels[i]; break; }
+  }
+  return level;
+}
+
+function getNextLevel(streak) {
+  for(var i = 0; i < wealthLevels.length; i++) {
+    if(wealthLevels[i].days > streak) return wealthLevels[i];
+  }
+  return wealthLevels[wealthLevels.length - 1];
+}
+
+function updateUI() {
+  document.getElementById("streak-count").textContent = state.streak;
+  var level = getWealthLevel(state.streak);
+  var next = getNextLevel(state.streak);
+  document.getElementById("wealth-name").textContent = level.name;
+  document.getElementById("wealth-days").textContent = "Day " + state.streak + " of " + next.days;
+  var progress = next.days > 0 ? Math.min(100, (state.streak / next.days) * 100) : 100;
+  document.getElementById("wealth-fill").style.width = progress + "%";
+}
+
+function loadDrop() {
+  if(state.todayDone) {
+    showCompleted();
+    return;
+  }
+  var drop = drops[state.dropIndex % drops.length];
+  document.getElementById("drop-season").textContent = drop.season;
+  document.getElementById("drop-emoji").textContent = drop.emoji;
+  document.getElementById("drop-question").textContent = drop.question;
+  document.getElementById("drop-sub").textContent = drop.sub;
+  var container = document.getElementById("options-container");
+  container.innerHTML = "";
+  drop.options.forEach(function(opt, i) {
+    var btn = document.createElement("button");
+    btn.className = "option";
+    btn.style.animationDelay = (i * 0.1) + "s";
+    btn.innerHTML = '<span class="opt-emoji">' + opt.emoji + '</span><div><div class="opt-text">' + opt.text + '</div><div class="opt-sub">' + opt.sub + '</div></div>';
+    btn.onclick = function() { chooseOption(opt.type); };
+    container.appendChild(btn);
+  });
+}
+
+function chooseOption(type) {
+  var drop = drops[state.dropIndex % drops.length];
+  var story = drop.stories[type];
+  showStory(story, type, drop);
+}
+
+function showStory(story, type, drop) {
+  document.getElementById("challenge-card").style.display = "none";
+  var ss = document.getElementById("story-screen");
+  ss.style.display = "block";
+  document.getElementById("story-choice").textContent = "You chose: " + getOptionText(type, drop);
+  document.getElementById("story-emoji").textContent = story.emoji;
+  document.getElementById("story-title").textContent = story.title;
+
+  // Build timeline
+  var timeline = document.getElementById("timeline");
+  timeline.innerHTML = "";
+  story.timeline.forEach(function(item, i) {
+    var div = document.createElement("div");
+    div.className = "titem";
+    div.style.animationDelay = (0.3 + i * 0.4) + "s";
+    var highlight = item.highlight ? '<div class="' + (item.type === "savage" ? "tsavage" : item.type === "normal" && item.highlight ? "thighlight" : "tflex") + '">' + item.highlight + '</div>' : '';
+    var textFormatted = item.text.replace(/\n/g, '<br>');
+    div.innerHTML = '<div class="tline"><div class="tdot">' + item.dot + '</div><div class="tconnect"></div></div><div class="tcontent"><div class="tyear">' + item.year + '</div><div class="ttext">' + textFormatted + '</div>' + highlight + '</div>';
+    timeline.appendChild(div);
+  });
+
+  // Show final result after timeline
+  setTimeout(function() {
+    var fr = document.getElementById("final-result");
+    fr.style.display = "block";
+    document.getElementById("final-emoji").textContent = story.finalEmoji;
+    document.getElementById("final-title").textContent = story.finalTitle;
+    document.getElementById("final-text").innerHTML = story.finalText.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+    var level = getWealthLevel(state.streak + 1);
+    document.getElementById("final-wealth").textContent = level.name;
+  }, story.timeline.length * 400 + 500);
+
+  // Show India chose
+  setTimeout(function() {
+    var ic = document.getElementById("india-chose");
+    ic.style.display = "block";
+    var bars = document.getElementById("ic-bars");
+    bars.innerHTML = "";
+    var drop2 = drops[state.dropIndex % drops.length];
+    drop2.options.forEach(function(opt) {
+      var pct = story.indiaChose[opt.type] || 0;
+      var isChosen = opt.type === type;
+      var div = document.createElement("div");
+      div.className = "ic-bar";
+      div.innerHTML = '<div class="ic-label"><span>' + opt.emoji + ' ' + opt.text + (isChosen ? ' ← you' : '') + '</span><span>' + pct + '%</span></div><div class="ic-fill-wrap"><div class="ic-fill" style="width:0%;background:' + (isChosen ? '#f5c842' : '#444') + '" data-width="' + pct + '"></div></div>';
+      bars.appendChild(div);
     });
-  } else if(phase===1){
-    var um=addEl('<div class="chat-msg chat-user"><div class="bubble">'+demo.q+'</div></div>');
-    setTimeout(function(){um.classList.add("show");},50);
-    phase=2;setTimeout(runDemo,700);
-  } else if(phase===2){
-    var tm=addEl('<div class="chat-msg chat-finly" id="think-msg"><div class="finly-avatar">F</div><div class="bubble"><div class="thinking-dots"><div class="td"></div><div class="td"></div><div class="td"></div></div></div></div>');
-    setTimeout(function(){tm.classList.add("show");},50);
-    phase=3;setTimeout(runDemo,1100);
-  } else if(phase===3){
-    var th=document.getElementById("think-msg");
-    if(th)th.remove();
-    var pb=addEl('<div class="progress-box"><div class="progress-title">Progress</div></div>');
-    demo.steps.forEach(function(s,i){
-      var st=document.createElement("div");
-      st.className="pstep";
-      st.innerHTML='<div class="pstep-icon">'+(i+1)+'</div><span>'+s+'</span>';
-      pb.appendChild(st);
-      stepEls.push(st);
-    });
-    setTimeout(function(){pb.classList.add("show");},50);
-    phase=4;stepI=0;setTimeout(runDemo,500);
-  } else if(phase===4){
-    if(stepI<stepEls.length){
-      var ic=stepEls[stepI].querySelector(".pstep-icon");
-      ic.className="pstep-icon done";
-      ic.textContent="✓";
-      stepEls[stepI].classList.add("done-step");
-      stepI++;setTimeout(runDemo,650);
-    } else {phase=5;setTimeout(runDemo,300);}
-  } else if(phase===5){
-    var am=addEl('<div class="chat-msg chat-finly"><div class="finly-avatar">F</div><div class="bubble" id="ans-b"></div></div>');
-    setTimeout(function(){am.classList.add("show");},50);
-    ansEl=document.getElementById("ans-b");
-    charI=0;phase=6;setTimeout(runDemo,200);
-  } else if(phase===6){
-    if(charI<demo.answer.length){
-      ansEl.textContent=demo.answer.substring(0,charI+1);
-      charI++;setTimeout(runDemo,16);
-    } else {phase=7;setTimeout(runDemo,500);}
-  } else if(phase===7){
-    var tb=addEl('<button class="try-btn-anim" onclick="window.location.href=\'index.html\'">Try Finly free 🚀 →</button>');
-    tb.style.display="block";
-    phase=8;setTimeout(runDemo,2800);
-  } else if(phase===8){
-    di=(di+1)%demos.length;phase=0;setTimeout(runDemo,400);
+    setTimeout(function() {
+      document.querySelectorAll(".ic-fill").forEach(function(el) {
+        el.style.width = el.getAttribute("data-width") + "%";
+      });
+    }, 100);
+  }, story.timeline.length * 400 + 900);
+
+  // Show portfolio
+  setTimeout(function() {
+    if(story.portfolioAdd > 0) {
+      state.portfolio += story.portfolioAdd;
+      localStorage.setItem("dd_portfolio", state.portfolio);
+      var pu = document.getElementById("portfolio-update");
+      pu.style.display = "block";
+      document.getElementById("pu-amount").textContent = "+₹" + story.portfolioAdd.toLocaleString("en-IN");
+      document.getElementById("pu-sub").textContent = "Virtual portfolio total: ₹" + state.portfolio.toLocaleString("en-IN") + " 📈";
+    }
+  }, story.timeline.length * 400 + 1300);
+
+  // Show actions
+  setTimeout(function() {
+    document.getElementById("actions").style.display = "flex";
+    // Update streak
+    state.streak++;
+    state.lastDone = today;
+    state.todayDone = true;
+    state.dropIndex++;
+    localStorage.setItem("dd_streak", state.streak);
+    localStorage.setItem("dd_lastdone", today);
+    localStorage.setItem("dd_index", state.dropIndex);
+    updateUI();
+    // Check milestones
+    checkMilestone();
+  }, story.timeline.length * 400 + 1700);
+}
+
+function getOptionText(type, drop) {
+  for(var i = 0; i < drop.options.length; i++) {
+    if(drop.options[i].type === type) return drop.options[i].emoji + " " + drop.options[i].text;
+  }
+  return type;
+}
+
+function checkMilestone() {
+  var milestones = {
+    7: {emoji:"🏆", title:"Week Warrior!", text:"7 day streak! You're officially consistent. Keep going — 30 days unlocks Festival Money Investor! 🪙"},
+    30: {emoji:"🪙", title:"Festival Money Investor!", text:"30 days strong! You think about money differently now. 60 days unlocks No Chai No Problem! ☕"},
+    100: {emoji:"🥇", title:"Digital Gold Gang!", text:"100 DAYS! You're in rare company. Most people quit at day 3. You're still here. 👑"},
+    365: {emoji:"💎", title:"AMBANI MODE UNLOCKED!", text:"365 days. A full year. You did it. Lifetime Pro is yours. You're not just rich in knowledge — you're unstoppable. 🔥"}
+  };
+  if(milestones[state.streak]) {
+    var m = milestones[state.streak];
+    setTimeout(function() {
+      document.getElementById("sp-emoji").textContent = m.emoji;
+      document.getElementById("sp-title").textContent = m.title;
+      document.getElementById("sp-text").textContent = m.text;
+      document.getElementById("streak-popup").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }, 500);
   }
 }
 
-// Start after page loads so we can get element positions
-window.addEventListener("load",function(){
-  setTimeout(runDemo,1500);
-});
-
-// FAQ
-function toggleFaq(el){
-  var isOpen=el.classList.contains("open");
-  document.querySelectorAll(".faq-item").forEach(function(f){f.classList.remove("open");});
-  if(!isOpen)el.classList.add("open");
+function closePopup() {
+  document.getElementById("streak-popup").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
 }
 
-// Scroll reveal
-var observer=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add("visible");});
-},{threshold:0.1});
-document.querySelectorAll(".reveal").forEach(function(el){observer.observe(el);});
+function showCompleted() {
+  document.getElementById("challenge-card").style.display = "none";
+  document.getElementById("story-screen").style.display = "none";
+  var cs = document.getElementById("completed-screen");
+  cs.style.display = "block";
+  document.getElementById("cs-streak-num").textContent = state.streak;
+  document.getElementById("cs-wealth").textContent = getWealthLevel(state.streak).name;
+}
+
+function nextDrop() {
+  showCompleted();
+}
+
+function challengeFriend() {
+  var level = getWealthLevel(state.streak);
+  var text = "I just completed Day " + state.streak + " of Desi Drops on Finly! 🔥\n\nI'm at " + level.name + " level 💰\n\nCan you beat my streak? Try it 👉 finly-hazel.vercel.app/desidrops.html\n\n(It's free and actually teaches you how to invest 😎)";
+  var url = "https://wa.me/?text=" + encodeURIComponent(text);
+  window.open(url, "_blank");
+}
+
+function shareResult() {
+  var level = getWealthLevel(state.streak);
+  var text = "Day " + state.streak + " on Finly Desi Drops! 🔥\n" + level.name + "\nLearn to invest the desi way 👉 finly-hazel.vercel.app";
+  if(navigator.share) {
+    navigator.share({title:"Finly Desi Drops", text:text, url:"https://finly-hazel.vercel.app/desidrops.html"});
+  } else {
+    navigator.clipboard.writeText(text);
+    alert("Result copied! Paste it anywhere 😊");
+  }
+}
+
+// INIT
+// Clear todayDone if drop index changed (so new drops always show)
+updateUI();
+loadDrop();
 </script>
 </body>
 </html>
