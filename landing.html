@@ -421,7 +421,9 @@ footer{background:var(--black);padding:60px 48px 32px}
           <div style="display:flex;align-items:center;gap:5px;background:#333;border:1px solid #444;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif">🔥 <span id="dd-streak">5</span></div>
         </div>
         <!-- Animated body -->
-        <div style="padding:18px;font-family:'DM Sans',sans-serif" id="dd-anim-body">
+        <div style="padding:18px;font-family:'DM Sans',sans-serif;position:relative" id="dd-anim-body">
+          <!-- Cursor -->
+          <div id="dd-cursor" style="position:absolute;width:12px;height:12px;pointer-events:none;z-index:10;opacity:0;transition:transform 0.2s;background:#fff;border:2px solid #333;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.4)"></div>
           <!-- Question phase -->
           <div id="dd-question-phase">
             <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#f5c842;margin-bottom:10px">🎆 New Year Drop</div>
@@ -440,8 +442,8 @@ footer{background:var(--black);padding:60px 48px 32px}
           <!-- Story phase (hidden initially) -->
           <div id="dd-story-phase" style="display:none">
             <div style="text-align:center;margin-bottom:16px">
-              <span style="font-size:40px;display:block;margin-bottom:8px">💸😏</span>
-              <div style="font-size:15px;font-weight:700;color:#fff">You chose gold. Bold move.</div>
+              <span style="font-size:40px;display:block;margin-bottom:8px">🍕😅</span>
+              <div style="font-size:15px;font-weight:700;color:#fff" id="dd-story-title">Pizza hits different on Diwali.</div>
               <div style="font-size:11px;color:#888;margin-top:4px">Let's see how this plays out...</div>
             </div>
             <div id="dd-timeline" style="display:flex;flex-direction:column;gap:10px"></div>
@@ -502,53 +504,114 @@ footer{background:var(--black);padding:60px 48px 32px}
 
     function runDropAnim(){
       var opts = document.querySelectorAll(".dd-opt");
-      // Step 1: hover over invest option after 1s
+      var cursor = document.getElementById("dd-cursor");
+
+      // Reset everything
+      opts.forEach(function(o){ o.style.borderColor="#2a2a2a"; o.style.background="#222"; o.style.transform="scale(1)"; });
+
+      // Step 1: Move cursor to "Party with friends" (index 1) slowly
       setTimeout(function(){
-        if(opts[0]) opts[0].style.borderColor = "#f5c842";
-        if(opts[0]) opts[0].style.background = "#2a2a2a";
-      }, 1000);
-      // Step 2: click it after 2s
+        cursor.style.opacity = "1";
+        cursor.style.transition = "top 1.5s ease, left 1.5s ease";
+        var card = document.getElementById("dd-preview-card");
+        var opt1 = opts[1];
+        if(!opt1||!card) return;
+        var cr = card.getBoundingClientRect();
+        var or = opt1.getBoundingClientRect();
+        cursor.style.left = (or.left - cr.left + or.width/2) + "px";
+        cursor.style.top = (or.top - cr.top + or.height/2 - 60) + "px";
+      }, 1500);
+
+      // Step 2: Hover party option
       setTimeout(function(){
-        if(opts[0]) opts[0].style.transform = "scale(0.97)";
-        setTimeout(function(){ if(opts[0]) opts[0].style.transform = "scale(1)"; }, 150);
-      }, 2000);
-      // Step 3: show story after 2.5s
+        if(opts[1]){ opts[1].style.borderColor = "#f5c842"; opts[1].style.background = "#2a2a2a"; }
+      }, 3200);
+
+      // Step 3: Click party
       setTimeout(function(){
+        if(opts[1]) opts[1].style.transform = "scale(0.96)";
+        cursor.style.transform = "scale(0.8)";
+        setTimeout(function(){
+          if(opts[1]) opts[1].style.transform = "scale(1)";
+          cursor.style.transform = "scale(1)";
+        }, 200);
+      }, 4000);
+
+      // Step 4: Show party story
+      setTimeout(function(){
+        cursor.style.opacity = "0";
         document.getElementById("dd-question-phase").style.display = "none";
-        var sp = document.getElementById("dd-story-phase");
-        sp.style.display = "block";
-        // Build timeline items one by one
+        document.getElementById("dd-story-title").textContent = "Pizza hits different on Diwali. 🍕";
+        document.getElementById("dd-story-phase").style.display = "block";
         var tl = document.getElementById("dd-timeline");
+        tl.innerHTML = "";
         var items = [
-          {dot:"💸", year:"January 1", text:"₹2000 straight to digital gold. No drama. Just gains. 😤"},
-          {dot:"😂", year:"Friends in January", text:"'Bro where's your gym selfie?' 'At the bank' 😂"},
-          {dot:"👑", year:"10 Years Later", text:"₹2000 → <b style='color:#4ade80'>₹6,200</b> 🔥 You hire a personal trainer with the RETURNS alone!"}
+          {dot:"🎉", year:"That night", text:"Best pizza ever. Friends happy. Money gone. 😂"},
+          {dot:"😐", year:"Next morning", text:"₹2000: gone. Friend who invested? <b style='color:#4ade80'>₹2,240</b> already 📈"},
+          {dot:"💡", year:"The lesson", text:"Next time — split it. ₹500 pizza, ₹1500 gold. Smart AND fun 😎"}
         ];
         items.forEach(function(item, i){
           setTimeout(function(){
             var d = document.createElement("div");
-            d.style.cssText = "display:flex;gap:10px;align-items:flex-start;opacity:0;transition:opacity 0.4s";
+            d.style.cssText = "display:flex;gap:10px;align-items:flex-start;opacity:0;transition:opacity 0.6s";
             d.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:#222;border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">'+item.dot+'</div><div><div style="font-size:10px;font-weight:700;color:#f5c842;letter-spacing:1px;margin-bottom:3px">'+item.year+'</div><div style="font-size:12px;color:#ccc;line-height:1.5">'+item.text+'</div></div>';
             tl.appendChild(d);
-            setTimeout(function(){ d.style.opacity = "1"; }, 50);
-          }, i * 800);
+            setTimeout(function(){ d.style.opacity = "1"; }, 80);
+          }, i * 1400);
         });
-      }, 2500);
-      // Step 4: show result after 6s
+      }, 4800);
+
+      // Step 5: Back to question, now click invest
       setTimeout(function(){
         document.getElementById("dd-story-phase").style.display = "none";
+        document.getElementById("dd-timeline").innerHTML = "";
+        opts.forEach(function(o){ o.style.borderColor="#2a2a2a"; o.style.background="#222"; });
+        document.getElementById("dd-question-phase").style.display = "block";
+      }, 10000);
+
+      // Step 6: Move cursor to invest (index 0)
+      setTimeout(function(){
+        cursor.style.opacity = "1";
+        cursor.style.transition = "top 1.8s ease, left 1.8s ease";
+        var card = document.getElementById("dd-preview-card");
+        var opt0 = opts[0];
+        if(!opt0||!card) return;
+        var cr = card.getBoundingClientRect();
+        var or = opt0.getBoundingClientRect();
+        cursor.style.left = (or.left - cr.left + or.width/2) + "px";
+        cursor.style.top = (or.top - cr.top + or.height/2 - 60) + "px";
+      }, 11000);
+
+      // Step 7: Hover invest
+      setTimeout(function(){
+        if(opts[0]){ opts[0].style.borderColor = "#f5c842"; opts[0].style.background = "#2a2a2a"; }
+      }, 13000);
+
+      // Step 8: Click invest
+      setTimeout(function(){
+        if(opts[0]) opts[0].style.transform = "scale(0.96)";
+        cursor.style.transform = "scale(0.8)";
+        setTimeout(function(){
+          if(opts[0]) opts[0].style.transform = "scale(1)";
+          cursor.style.transform = "scale(1)";
+        }, 200);
+      }, 14000);
+
+      // Step 9: Show invest result
+      setTimeout(function(){
+        cursor.style.opacity = "0";
+        document.getElementById("dd-question-phase").style.display = "none";
+        document.getElementById("dd-story-phase").style.display = "none";
         document.getElementById("dd-result-phase").style.display = "block";
-      }, 6000);
-      // Step 5: loop back to question after 9s
+      }, 15000);
+
+      // Step 10: Loop
       setTimeout(function(){
         document.getElementById("dd-result-phase").style.display = "none";
-        document.getElementById("dd-timeline").innerHTML = "";
-        var opts2 = document.querySelectorAll(".dd-opt");
-        opts2.forEach(function(o){ o.style.borderColor="#2a2a2a"; o.style.background="#222"; o.style.transform="scale(1)"; });
         document.getElementById("dd-question-phase").style.display = "block";
-        // Run again
+        opts.forEach(function(o){ o.style.borderColor="#2a2a2a"; o.style.background="#222"; o.style.transform="scale(1)"; });
         setTimeout(runDropAnim, 2000);
-      }, 9000);
+      }, 19000);
     }
   })();
   </script>
