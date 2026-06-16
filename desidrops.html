@@ -209,6 +209,7 @@ body{font-family:'DM Sans',sans-serif;background:#0f0f0f;color:#fff;min-height:1
     </div>
     <div class="cs-wealth" id="cs-wealth">🪙 Chai Money</div>
     <button class="btn-home" onclick="window.location.href='index.html'">Back to Finly 💰</button>
+    <button onclick="replayDrop()" style="margin-top:10px;background:none;border:1px solid #333;color:#888;border-radius:14px;padding:12px 32px;font-size:13px;cursor:pointer;font-family:inherit;width:100%">Replay today's drop 🔄</button>
   </div>
 
 </div>
@@ -675,11 +676,12 @@ function updateUI() {
 }
 
 function loadDrop() {
+  var drop = drops[state.dropIndex % drops.length];
+  if(!drop) { console.error("No drop found at index", state.dropIndex); return; }
   if(state.todayDone) {
     showCompleted();
     return;
   }
-  var drop = drops[state.dropIndex % drops.length];
   document.getElementById("drop-season").textContent = drop.season;
   document.getElementById("drop-emoji").textContent = drop.emoji;
   document.getElementById("drop-question").textContent = drop.question;
@@ -847,10 +849,18 @@ function shareResult() {
   }
 }
 
+function replayDrop() {
+  state.todayDone = false;
+  document.getElementById("completed-screen").style.display = "none";
+  document.getElementById("challenge-card").style.display = "block";
+  loadDrop();
+}
+
 // INIT
-// Clear todayDone if drop index changed (so new drops always show)
-updateUI();
-loadDrop();
+document.addEventListener("DOMContentLoaded", function(){
+  updateUI();
+  loadDrop();
+});
 </script>
 </body>
 </html>
