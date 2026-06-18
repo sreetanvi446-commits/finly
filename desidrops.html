@@ -678,10 +678,6 @@ function updateUI() {
 function loadDrop() {
   var drop = drops[state.dropIndex % drops.length];
   if(!drop) { console.error("No drop found at index", state.dropIndex); return; }
-  if(state.todayDone) {
-    showCompleted();
-    return;
-  }
   document.getElementById("drop-season").textContent = drop.season;
   document.getElementById("drop-emoji").textContent = drop.emoji;
   document.getElementById("drop-question").textContent = drop.question;
@@ -858,6 +854,8 @@ function replayDrop() {
 
 // INIT
 document.addEventListener("DOMContentLoaded", function(){
+  // Always show the drop — reset todayDone so users can always play
+  state.todayDone = false;
   updateUI();
   loadDrop();
 });
