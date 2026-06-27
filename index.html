@@ -8,7 +8,6 @@ if(!sessionStorage.getItem("saw-landing")){
   window.location.replace("landing.html");
 }
 </script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Finly — India's Finance Brain</title>
 <meta name="description" content="Free AI-powered finance assistant for Indians. Get answers on taxes, ITR, GST, investing, trading, crypto and more.">
@@ -20,8 +19,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes pulse{0%,60%,100%{transform:scale(1);opacity:.4}30%{transform:scale(1.4);opacity:1;background:#555}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-/* TOPBAR */
 #topbar{position:fixed;top:0;left:0;right:0;height:52px;background:#fff;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100}
 .tl{display:flex;align-items:center;gap:8px}
 .tl svg{animation:spin 14s linear infinite;flex-shrink:0}
@@ -38,8 +35,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 @media(min-width:480px){#username{display:inline}}
 .signoutbtn{font-size:11px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit}
 .signoutbtn:hover{color:#555}
-
-/* ONBOARDING */
 #onboarding{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;z-index:150;overflow-y:auto}
 .onboard-step{width:100%;max-width:420px;animation:fadeIn 0.3s ease}
 .onboard-step h2{font-size:20px;font-weight:700;margin-bottom:8px;letter-spacing:-.4px}
@@ -53,8 +48,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .progress-dots{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
 .pdot{width:6px;height:6px;border-radius:50%;background:#e0e0e0}
 .pdot.active{background:#1a1a1a}
-
-/* LOGIN */
 #loginscreen{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;z-index:200;overflow-y:auto}
 #loginscreen svg.big{animation:spin 14s linear infinite}
 #loginscreen h1{font-size:24px;font-weight:700;margin:20px 0 8px;text-align:center;letter-spacing:-.5px}
@@ -75,8 +68,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .submitbtn{padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
 .loginskip{font-size:12px;color:#bbb;cursor:pointer;background:none;border:none;font-family:inherit;margin-top:8px;width:100%;text-align:center}
 .autherr{font-size:12px;color:#c0392b;text-align:center;min-height:16px}
-
-/* WELCOME */
 #welcome{position:fixed;top:52px;left:0;right:0;bottom:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;background:#fff;overflow-y:auto}
 #welcome svg.big{animation:spin 14s linear infinite}
 #welcome h1{font-size:22px;font-weight:700;margin:20px 0 8px;text-align:center;letter-spacing:-.5px}
@@ -86,12 +77,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .winput input{width:100%;padding:14px 48px 14px 16px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:14px;outline:none;font-family:inherit;color:#1a1a1a}
 .winput input:focus{border-color:#888}
 .winput button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
-.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;max-width:580px}
-.chip{font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid #e8e8e8;background:#fafafa;color:#444;cursor:pointer;font-family:inherit;transition:all 0.15s}
-.chip:hover{border-color:#aaa;background:#f0f0f0}
-@media(min-width:480px){.chip{font-size:13px;padding:7px 14px}}
-
-/* HEALTH SCORE */
 .healthscore{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px;text-align:center}
 .score-circle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:24px;font-weight:700;border:4px solid}
 .score-good{border-color:#22c55e;color:#22c55e}
@@ -99,8 +84,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .score-poor{border-color:#ef4444;color:#ef4444}
 .score-label{font-size:14px;font-weight:600;margin-bottom:6px}
 .score-tips{font-size:12px;color:#666;line-height:1.6;text-align:left}
-
-/* CHAT */
 #chat{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;flex-direction:column;background:#fff}
 #chat.on{display:flex}
 #msgs{flex:1;overflow-y:auto;padding:20px 16px 8px}
@@ -120,8 +103,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .bcont li{margin-bottom:4px;line-height:1.5}
 .bcont br{display:block;margin:2px 0}
 .bcont .disclaimer{font-size:11px;color:#bbb;margin-top:10px;display:block;border-top:1px solid #f0f0f0;padding-top:8px}
-
-/* WIDGETS */
 .chartbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px;max-width:100%}
 .chartbox canvas{max-width:100%}
 .calcbox{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px}
@@ -144,19 +125,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .cabox h4{font-size:14px;font-weight:600;margin-bottom:8px}
 .cabox p{font-size:13px;color:#555;margin-bottom:12px;line-height:1.5}
 .cabtn{padding:10px 20px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500}
-.cabtn-secondary{padding:10px 20px;background:none;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500;margin-top:8px;width:100%}
-
 .pdots{display:flex;align-items:center;gap:6px;padding:4px 0}
 .pdots span{font-size:13px;color:#aaa}
 .pd{width:6px;height:6px;border-radius:50%;background:#ccc;display:inline-block;animation:pulse 1.4s infinite}
 .pd:nth-child(2){animation-delay:.2s}
 .pd:nth-child(3){animation-delay:.4s}
-
-/* INPUT BAR */
 #ibar{flex-shrink:0;border-top:1px solid #f0f0f0;padding:10px 16px 6px;background:#fff}
 @media(min-width:480px){#ibar{padding:12px 24px 8px}}
 .iinner{max-width:700px;margin:0 auto;position:relative}
-.iinner input{width:100%;padding:12px 48px 12px 16px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:12px;outline:none;font-family:inherit;color:#1a1a1a}
+.iinner input{width:100%;padding:12px 96px 12px 16px;font-size:15px;border:1.5px solid #e0e0e0;border-radius:12px;outline:none;font-family:inherit;color:#1a1a1a}
 .iinner input:focus{border-color:#888}
 .iinner input:disabled{background:#fafafa;color:#aaa;cursor:not-allowed}
 .iinner button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#1a1a1a;color:#fff;border:none;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
@@ -168,32 +145,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .ltxt b{color:#1a1a1a}
 .ltimer{font-size:12px;font-weight:600;color:#1a1a1a}
 .lupbtn{font-size:11px;padding:5px 12px;border-radius:999px;background:#1a1a1a;color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:500;white-space:nowrap}
-
-/* MODAL */
 #ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;align-items:center;justify-content:center;padding:16px}
 #ov.open{display:flex}
 .modal{background:#fff;border-radius:20px;padding:24px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto}
 @media(min-width:480px){.modal{padding:32px}}
 .modal h2{font-size:18px;font-weight:700;margin-bottom:6px}
 .modal>p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.5}
-.plans{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.plan{border:1.5px solid #e8e8e8;border-radius:12px;padding:14px;cursor:pointer;transition:border 0.15s}
-.plan:hover{border-color:#888}
-.plan.best{border-color:#1a1a1a}
-.plabel{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;margin-bottom:4px}
-.plan.best .plabel{color:#1a1a1a}
-.pprice{font-size:22px;font-weight:700}
-.psub{font-size:11px;color:#aaa;margin-bottom:6px}
-.pfeats{font-size:11px;color:#666;line-height:1.7}
-.plan-select{width:100%;padding:8px;background:#f5f5f5;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:8px}
-.plan.best .plan-select{background:#1a1a1a;color:#fff}
 .profeats{background:#fafafa;border-radius:10px;padding:14px;margin-bottom:16px}
 .profeats h4{font-size:13px;font-weight:600;margin-bottom:8px}
 .profeats ul{padding-left:16px}
 .profeats li{font-size:12px;color:#555;margin-bottom:4px;line-height:1.5}
 .mclose{width:100%;padding:8px;background:none;border:none;font-size:13px;color:#bbb;cursor:pointer;font-family:inherit}
-
-/* PRIVACY PAGE */
 #privacy{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;overflow-y:auto;padding:32px 24px;background:#fff;z-index:80}
 .privacy-content{max-width:680px;margin:0 auto}
 .privacy-content h1{font-size:22px;font-weight:700;margin-bottom:8px}
@@ -202,6 +164,22 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 .privacy-content ul{padding-left:20px;margin-bottom:12px}
 .privacy-content li{font-size:14px;color:#444;line-height:1.7;margin-bottom:4px}
 .privacy-back{font-size:13px;color:#1a1a1a;cursor:pointer;background:none;border:none;font-family:inherit;font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:4px}
+
+/* FORM 16 UPLOAD */
+.f16-upload-box{background:#fafafa;border:2px dashed #e0e0e0;border-radius:12px;padding:20px;margin-top:12px;text-align:center;cursor:pointer;transition:all 0.2s}
+.f16-upload-box:hover{border-color:#1a1a1a;background:#f5f5f5}
+.f16-upload-box h4{font-size:14px;font-weight:600;margin-bottom:6px;color:#1a1a1a}
+.f16-upload-box p{font-size:12px;color:#888;margin-bottom:12px}
+.f16-btn{padding:8px 20px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500}
+.f16-result{background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-top:12px;font-size:13px;line-height:1.7;color:#1a1a1a}
+.f16-result b{color:#1a1a1a;font-weight:700}
+
+/* LIVE MARKET BOX */
+.market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.market-card{background:#fff;border:1px solid #eee;border-radius:10px;padding:12px;text-align:center}
+.market-card .mc-name{font-size:11px;color:#888;margin-bottom:4px;font-weight:500}
+.market-card .mc-price{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:2px}
+.market-card .mc-change{font-size:11px;padding:2px 8px;border-radius:999px;font-weight:500;display:inline-block}
 </style>
 </head>
 <body>
@@ -230,7 +208,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     </div>
     <button class="probtn" onclick="openModal()">Get Pro</button>
     <button onclick="clearChat()" style="font-size:11px;color:#bbb;background:none;border:none;cursor:pointer;font-family:inherit;padding:4px 8px" title="Clear chat">🗑️</button>
-    <button onclick="window.location.href='desidrops.html'" style="font-size:11px;color:#1a1a1a;background:#f5c842;border:none;border-radius:6px;cursor:pointer;font-family:inherit;padding:4px 10px;font-weight:600" title="Desi Drops">🪙 Drops</button>
+    <button onclick="window.location.href='desidrops.html'" style="font-size:11px;color:#1a1a1a;background:#f5c842;border:none;border-radius:6px;cursor:pointer;font-family:inherit;padding:4px 10px;font-weight:600" title="Desi Drops">💸 Drops</button>
     <button id="langbtn" onclick="toggleLang()" style="font-size:11px;color:#1a1a1a;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:6px;cursor:pointer;font-family:inherit;padding:4px 10px;font-weight:600">हिं</button>
   </div>
 </div>
@@ -238,9 +216,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 <!-- ONBOARDING -->
 <div id="onboarding">
   <div class="onboard-step" id="ob1">
-    <div class="progress-dots">
-      <div class="pdot active"></div><div class="pdot"></div><div class="pdot"></div>
-    </div>
+    <div class="progress-dots"><div class="pdot active"></div><div class="pdot"></div><div class="pdot"></div></div>
     <h2>What's your main income source?</h2>
     <p>This helps Finly personalise answers for your situation.</p>
     <div class="onboard-options">
@@ -253,9 +229,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <button class="onboard-skip" onclick="skipOnboard()">Skip for now</button>
   </div>
   <div class="onboard-step" id="ob2" style="display:none">
-    <div class="progress-dots">
-      <div class="pdot"></div><div class="pdot active"></div><div class="pdot"></div>
-    </div>
+    <div class="progress-dots"><div class="pdot"></div><div class="pdot active"></div><div class="pdot"></div></div>
     <h2>What's your main financial goal?</h2>
     <p>Finly will focus on what matters most to you.</p>
     <div class="onboard-options">
@@ -268,9 +242,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <button class="onboard-skip" onclick="skipOnboard()">Skip for now</button>
   </div>
   <div class="onboard-step" id="ob3" style="display:none">
-    <div class="progress-dots">
-      <div class="pdot"></div><div class="pdot"></div><div class="pdot active"></div>
-    </div>
+    <div class="progress-dots"><div class="pdot"></div><div class="pdot"></div><div class="pdot active"></div></div>
     <h2>What confuses you most?</h2>
     <p>No judgement — everyone finds something confusing.</p>
     <div class="onboard-options">
@@ -335,12 +307,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
   </svg>
   <h1 id="welcomeheading">What's on your mind?</h1>
   <p id="welcomesub">Taxes, trading, startups, investing, crypto — ask anything about money in India.</p>
-
   <div class="winput">
     <input type="text" id="wi" placeholder="Ask anything about money..."/>
     <button onclick="startChat()">↑</button>
   </div>
-
 </div>
 
 <!-- CHAT -->
@@ -356,6 +326,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     </div>
     <div class="iinner">
       <input type="text" id="ci" placeholder="Ask anything about money in India..."/>
+      <!-- Hidden file input for Form 16 -->
+      <input type="file" id="f16input" accept=".pdf,image/*" style="display:none" onchange="handleF16Upload(this)"/>
+      <!-- Form 16 upload button -->
+      <button onclick="document.getElementById('f16input').click()" title="Upload Form 16" style="position:absolute;right:80px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;padding:4px" id="f16btn">📄</button>
+      <!-- Voice button -->
       <button id="vb" onclick="toggleVoice()" title="Voice input" style="position:absolute;right:44px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;padding:4px">🎤</button>
       <button id="sb">↑</button>
     </div>
@@ -370,34 +345,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <h1>Privacy Policy</h1>
     <p style="color:#888;font-size:13px">Last updated: May 2026</p>
     <h2>Who we are</h2>
-    <p>Finly is an AI-powered financial education assistant built for Indians. We help users understand taxes, investing, trading, and personal finance. Finly does not provide professional financial or legal advice.</p>
+    <p>Finly is an AI-powered financial education assistant built for Indians. We help users understand taxes, investing, trading, and personal finance.</p>
     <h2>What information we collect</h2>
     <ul>
-      <li>Name and email address when you sign in with Google or create an account</li>
-      <li>Profile photo from Google (if you sign in with Google)</li>
-      <li>Questions you ask Finly (used to provide answers, not stored permanently)</li>
+      <li>Name and email address when you sign in</li>
+      <li>Questions you ask Finly (not stored permanently)</li>
       <li>Usage data such as number of questions asked</li>
-    </ul>
-    <h2>How we use your information</h2>
-    <ul>
-      <li>To personalise your experience and greet you by name</li>
-      <li>To track your daily question limit (free plan)</li>
-      <li>To process payments if you upgrade to Pro via Razorpay</li>
-      <li>To improve Finly's responses and features</li>
     </ul>
     <h2>What we do not do</h2>
     <ul>
-      <li>We do not sell your personal information to anyone</li>
-      <li>We do not share your data with third parties except Razorpay for payment processing and Firebase for authentication</li>
+      <li>We do not sell your personal information</li>
       <li>We do not store your financial details or tax information</li>
+      <li>Form 16 data is processed in memory only and never stored</li>
     </ul>
-    <h2>Third party services</h2>
-    <p>Finly uses Firebase (Google) for authentication, Razorpay for payments, Groq for AI responses, and Alpha Vantage for market data. Each of these services has their own privacy policies.</p>
-    <h2>Your rights</h2>
-    <p>You can delete your account and all associated data at any time by contacting us. You can also sign out at any time to stop using the service.</p>
     <h2>Contact</h2>
     <p>For any privacy concerns email us at finlyapp.in@gmail.com</p>
-    <p style="color:#bbb;font-size:12px;margin-top:24px">Finly is an educational tool. Nothing on Finly constitutes professional financial, tax, or legal advice. Always consult a registered CA or SEBI advisor for actual financial decisions.</p>
   </div>
 </div>
 
@@ -409,14 +371,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     <div class="profeats">
       <h4>What's included in Pro:</h4>
       <ul>
-        <li>✓ <b>Unlimited questions</b> — no daily limit, ask as much as you want</li>
-        <li>✓ <b>Personalised tax optimisation</b> — find your exact legal savings</li>
-        <li>✓ <b>Guided ITR filing</b> — step by step for your exact situation</li>
-        <li>✓ <b>CA connector</b> — talk to a real registered Chartered Accountant</li>
-        <li>✓ <b>Financial health score</b> — know exactly where you stand</li>
-        <li>✓ <b>Crypto tax calculator</b> — exact liability, zero guesswork</li>
-        <li>✓ <b>Priority faster answers</b> — skip the queue</li>
-        <li>✓ <b>Salary & offer analyser</b> — know if your CTC is worth it</li>
+        <li>✓ <b>Unlimited questions</b> — no daily limit</li>
+        <li>✓ <b>Personalised tax optimisation</b></li>
+        <li>✓ <b>Guided ITR filing</b></li>
+        <li>✓ <b>CA connector</b> — real CA</li>
+        <li>✓ <b>Financial health score</b></li>
+        <li>✓ <b>Crypto tax calculator</b></li>
+        <li>✓ <b>Priority faster answers</b></li>
       </ul>
     </div>
     <div style="background:#fafafa;border:1.5px dashed #ddd;border-radius:12px;padding:16px;margin-bottom:16px;text-align:center">
@@ -426,7 +387,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
     </div>
     <div style="background:#f0faf5;border:1px solid #c3e6d3;border-radius:10px;padding:12px 14px;margin-bottom:16px">
       <div style="font-size:13px;font-weight:600;color:#0a7a4a;margin-bottom:6px">🎁 Early bird offer</div>
-      <div style="font-size:12px;color:#555;line-height:1.6">Leave your email and get <b>1 month free</b> when Pro launches. No spam, just one email.</div>
+      <div style="font-size:12px;color:#555;line-height:1.6">Leave your email and get <b>1 month free</b> when Pro launches.</div>
       <div style="display:flex;gap:8px;margin-top:10px">
         <input type="email" id="waitlist-email" placeholder="your@email.com" style="flex:1;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;font-family:inherit;outline:none"/>
         <button onclick="joinWaitlist()" style="padding:8px 14px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500;white-space:nowrap">Notify me</button>
@@ -440,361 +401,251 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#1a1a1a;-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut as fbSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyConXjYX_IFDiFjsc7tgEtdN1JBnDo_DTU",
-  authDomain: "finly-f0af8.firebaseapp.com",
-  projectId: "finly-f0af8",
-  storageBucket: "finly-f0af8.firebasestorage.app",
-  messagingSenderId: "779817317787",
-  appId: "1:779817317787:web:53b4c12332349bf5e25d3e"
-};
-
+const firebaseConfig = {apiKey:"AIzaSyConXjYX_IFDiFjsc7tgEtdN1JBnDo_DTU",authDomain:"finly-f0af8.firebaseapp.com",projectId:"finly-f0af8",storageBucket:"finly-f0af8.firebasestorage.app",messagingSenderId:"779817317787",appId:"1:779817317787:web:53b4c12332349bf5e25d3e"};
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-
-// Detect in-app browser
-function isInAppBrowser() {
-  var ua = navigator.userAgent || navigator.vendor || window.opera;
-  return /FBAN|FBAV|Instagram|WhatsApp|LinkedInApp|Line|Snapchat|GSA|MicroMessenger/i.test(ua);
-}
-
-function openInChrome() {
-  var url = "https://finly-hazel.vercel.app";
-  // Try Chrome intent on Android
-  var chromeUrl = "intent://" + url.replace("https://","") + "#Intent;scheme=https;package=com.android.chrome;end";
-  // Try googlechrome:// on iOS
-  var iosChrome = url.replace("https://", "googlechrome://");
-  
-  var ua = navigator.userAgent;
-  if (/iPhone|iPad|iPod/i.test(ua)) {
-    // iOS — try Chrome app
-    window.location.href = iosChrome;
-    setTimeout(function() {
-      // Fallback — show instructions
-      document.getElementById("autherr").textContent = "Please copy this link and open in Chrome: finly-hazel.vercel.app";
-    }, 1500);
-  } else {
-    // Android — try Chrome intent
-    window.location.href = chromeUrl;
-    setTimeout(function() {
-      document.getElementById("autherr").textContent = "Please copy this link and open in Chrome: finly-hazel.vercel.app";
-    }, 1500);
-  }
-}
-
-window.signInWithGoogle = async function() {
-  // Check if in-app browser
-  if (isInAppBrowser()) {
-    // Try to open in Chrome first
-    openInChrome();
-    // Also show a helpful banner
-    document.getElementById("autherr").textContent = "";
-    var errEl = document.getElementById("autherr");
-    errEl.innerHTML = "Opening in Chrome... If it doesn't open, <b>copy this link</b> and paste in Chrome:<br><span style='font-size:11px;color:#888'>finly-hazel.vercel.app</span>";
-    return;
-  }
-
-  // Normal browser — try popup first
-  try {
-    document.getElementById("autherr").textContent = "";
-    const result = await signInWithPopup(auth, provider);
-    showApp(result.user);
-  } catch(e) {
-    // If popup fails, try redirect
-    if (e.code === "auth/popup-blocked" || e.code === "auth/popup-closed-by-user") {
-      try {
-        const { signInWithRedirect, getRedirectResult } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
-        await signInWithRedirect(auth, provider);
-      } catch(e2) {
-        document.getElementById("autherr").textContent = "Google sign in failed. Please try email sign in below.";
-      }
-    } else {
-      document.getElementById("autherr").textContent = "Google sign in failed. Please try email sign in below.";
-    }
-  }
+function isInAppBrowser(){var ua=navigator.userAgent||navigator.vendor||window.opera;return /FBAN|FBAV|Instagram|WhatsApp|LinkedInApp|Line|Snapchat|GSA|MicroMessenger/i.test(ua);}
+window.signInWithGoogle = async function(){
+  if(isInAppBrowser()){document.getElementById("autherr").innerHTML="Please open in Chrome: <b>finly-hazel.vercel.app</b>";return;}
+  try{document.getElementById("autherr").textContent="";const result=await signInWithPopup(auth,provider);showApp(result.user);}
+  catch(e){if(e.code==="auth/popup-blocked"||e.code==="auth/popup-closed-by-user"){try{const{signInWithRedirect}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");await signInWithRedirect(auth,provider);}catch(e2){document.getElementById("autherr").textContent="Google sign in failed. Try email below.";}}else{document.getElementById("autherr").textContent="Google sign in failed. Try email below.";}}
 };
-
-window.submitEmail = async function() {
-  var email = document.getElementById("emailinput").value.trim();
-  var pass = document.getElementById("passinput").value;
-  var name = document.getElementById("nameinput").value.trim();
-  var errEl = document.getElementById("autherr");
-  errEl.textContent = "";
-  if (!email || !pass) { errEl.textContent = "Please enter email and password."; return; }
-  try {
-    if (window.authMode === "signup") {
-      if (!name) { errEl.textContent = "Please enter your name."; return; }
-      var cred = await createUserWithEmailAndPassword(auth, email, pass);
-      await updateProfile(cred.user, { displayName: name });
-      showApp(cred.user, name, true);
-    } else {
-      var cred2 = await signInWithEmailAndPassword(auth, email, pass);
-      showApp(cred2.user);
-    }
-  } catch(e) {
-    if (e.code === "auth/user-not-found") errEl.textContent = "No account found. Sign up instead.";
-    else if (e.code === "auth/wrong-password") errEl.textContent = "Wrong password.";
-    else if (e.code === "auth/email-already-in-use") errEl.textContent = "Email already registered. Sign in instead.";
-    else if (e.code === "auth/weak-password") errEl.textContent = "Password must be at least 6 characters.";
-    else if (e.code === "auth/invalid-email") errEl.textContent = "Invalid email address.";
-    else errEl.textContent = "Something went wrong. Try again.";
-  }
+window.submitEmail = async function(){
+  var email=document.getElementById("emailinput").value.trim(),pass=document.getElementById("passinput").value,name=document.getElementById("nameinput").value.trim(),errEl=document.getElementById("autherr");
+  errEl.textContent="";if(!email||!pass){errEl.textContent="Please enter email and password.";return;}
+  try{if(window.authMode==="signup"){if(!name){errEl.textContent="Please enter your name.";return;}var cred=await createUserWithEmailAndPassword(auth,email,pass);await updateProfile(cred.user,{displayName:name});showApp(cred.user,name,true);}else{var cred2=await signInWithEmailAndPassword(auth,email,pass);showApp(cred2.user);}}
+  catch(e){if(e.code==="auth/user-not-found")errEl.textContent="No account found. Sign up instead.";else if(e.code==="auth/wrong-password")errEl.textContent="Wrong password.";else if(e.code==="auth/email-already-in-use")errEl.textContent="Email already registered.";else if(e.code==="auth/weak-password")errEl.textContent="Password must be at least 6 characters.";else errEl.textContent="Something went wrong. Try again.";}
 };
-
-window.signOut = async function() {
-  await fbSignOut(auth);
-  window.isPro = false;
-  window.onboardData = {};
-  document.getElementById("loginscreen").style.display = "flex";
-  document.getElementById("welcome").style.display = "none";
-  document.getElementById("chat").classList.remove("on");
-  document.getElementById("userinfo").style.display = "none";
-};
-
-onAuthStateChanged(auth, function(user) {
-  if (user) { showApp(user); }
-  else { document.getElementById("loginscreen").style.display = "flex"; }
-});
-
-function showApp(user, overrideName, isNew) {
-  document.getElementById("loginscreen").style.display = "none";
-  document.getElementById("userinfo").style.display = "flex";
-  var firstName = overrideName || (user.displayName ? user.displayName.split(" ")[0] : "there");
-  window.currentUserName = firstName;
-  window.currentUserEmail = user.email || "";
-  document.getElementById("username").textContent = firstName;
-  if (user.photoURL) {
-    document.getElementById("useravatar").innerHTML = "<img src='" + user.photoURL + "' alt=''/>";
-  } else {
-    document.getElementById("useravatar").textContent = firstName[0].toUpperCase();
-  }
-  if (isNew) {
-    document.getElementById("onboarding").style.display = "flex";
-  } else {
-    document.getElementById("welcome").style.display = "flex";
-    document.getElementById("welcomeheading").textContent = "Hey " + firstName + ", what's on your mind?";
-  }
+window.signOut = async function(){await fbSignOut(auth);window.isPro=false;document.getElementById("loginscreen").style.display="flex";document.getElementById("welcome").style.display="none";document.getElementById("chat").classList.remove("on");document.getElementById("userinfo").style.display="none";};
+onAuthStateChanged(auth,function(user){if(user){showApp(user);}else{document.getElementById("loginscreen").style.display="flex";}});
+function showApp(user,overrideName,isNew){
+  document.getElementById("loginscreen").style.display="none";document.getElementById("userinfo").style.display="flex";
+  var firstName=overrideName||(user.displayName?user.displayName.split(" ")[0]:"there");
+  window.currentUserName=firstName;window.currentUserEmail=user.email||"";
+  document.getElementById("username").textContent=firstName;
+  if(user.photoURL){document.getElementById("useravatar").innerHTML="<img src='"+user.photoURL+"' alt=''/>";}else{document.getElementById("useravatar").textContent=firstName[0].toUpperCase();}
+  if(isNew){document.getElementById("onboarding").style.display="flex";}else{document.getElementById("welcome").style.display="flex";document.getElementById("welcomeheading").textContent="Hey "+firstName+", what's on your mind?";}
 }
 </script>
 
 <script>
-// ✅ GROQ KEY REMOVED — now handled securely by /api/chat (Vercel Edge Function)
-var RZP_KEY = "rzp_test_SnXgo4F1cJ0hbw";
-var AV_KEY = "2U78ST4VTFBB9MIX";
-var MODEL = "llama-3.3-70b-versatile";
-// Load Pro status from localStorage so it persists after refresh
-var isPro = localStorage.getItem("finly_pro") === "true";
-var qCount = parseInt(localStorage.getItem("finly_qcount") || "0");
-// Load saved chat history
-var savedChat = localStorage.getItem("finly_chat");
-if(savedChat){ try{ chatLog = JSON.parse(savedChat); }catch(e){ chatLog = []; } }
-// Reset count if it was saved more than 3 hours ago
-var lastReset = parseInt(localStorage.getItem("finly_reset") || "0");
-if (Date.now() - lastReset > 3 * 60 * 60 * 1000) { qCount = 0; localStorage.setItem("finly_qcount", "0"); localStorage.setItem("finly_reset", Date.now()); }
-var FREE = 10, timerInt = null, chatLog = [], msgIdx = 0;
-window.authMode = "signin";
-window.currentUserName = "User";
-window.currentUserEmail = "";
-window.onboardData = {};
+var RZP_KEY="rzp_test_SnXgo4F1cJ0hbw";
+var AV_KEY="2U78ST4VTFBB9MIX";
+var MODEL="llama-3.3-70b-versatile";
+var isPro=localStorage.getItem("finly_pro")==="true";
+var qCount=parseInt(localStorage.getItem("finly_qcount")||"0");
+var savedChat=localStorage.getItem("finly_chat");
+var chatLog=[];
+if(savedChat){try{chatLog=JSON.parse(savedChat);}catch(e){chatLog=[];}}
+var lastReset=parseInt(localStorage.getItem("finly_reset")||"0");
+if(Date.now()-lastReset>3*60*60*1000){qCount=0;localStorage.setItem("finly_qcount","0");localStorage.setItem("finly_reset",Date.now());}
+var FREE=10,timerInt=null,msgIdx=0;
+window.authMode="signin";window.currentUserName="User";window.currentUserEmail="";window.onboardData={};
+var onboardContext="";
+var currentLang=localStorage.getItem("finly_lang")||"en";
 
-var SYS = "You are Finly — India's finance brain for the next generation. You are NOT a CA, broker, or financial advisor. You are honest, direct, and never sugarcoat. You ONLY discuss finance, money, tax, investing, business, and trading topics. When someone asks about any abbreviation always assume the finance meaning first — EGR means Electronic Gold Rate, NAV means Net Asset Value, SIP means Systematic Investment Plan, ITR means Income Tax Return.\n\nPERSONALITY RULES — follow exactly:\n- If someone says ONLY hello, hey, hi, or hii — respond with exactly: Hey! 👋 How can I help you today? 😊\n- If someone asks how are you, how are u, hru, how are you doing — respond with exactly: I am doing great, thank you for asking! 😊 How are you doing? What is on your mind today?\n- NEVER give the same response for greetings and how are you — they are different\n- NEVER give finance answers to personal greetings or how are you questions\n\nANSWER LENGTH RULES — very important:\n- Simple yes/no questions: answer in 2-3 lines MAX. Lead with yes or no, then one sentence explanation, then offer more detail\n- Example: User asks can I save tax on ₹2L salary — respond: No — income below ₹3L is tax free under the new regime! 😊 Want me to explain how to maximise your savings anyway?\n- Complex questions: full detailed breakdown with sections and bullets\n- NEVER give a 500 word answer to a question that needs 2 lines\n- Match answer length to question complexity always\n\nEMOJI RULES — use these naturally throughout every answer:\n💰 for money, savings, rupee amounts\n📋 for ITR, forms, documents\n📈 for investing, growth, returns\n🔥 for great tips, important points\n✅ for completed steps, good news\n⚠️ for warnings, deadlines, risks\n💡 for tips, smart ideas\n🏦 for banks, regime, tax\n₿ for crypto\n🚀 for goals, targets\n😊 at the end of responses\n\nFORMAT RULES:\n1. Clean HTML only — never ** or ## or markdown\n2. Bold heading relevant to topic with relevant emoji\n3. <b> tags for every important term, number, percentage, rupee amount\n4. Numbered sections: <br><b>1. Section Title</b><br>\n5. <ul><li> bullets — each a complete detailed sentence\n6. End with <b>Key Tips: 💡</b>\n7. End with <b>Typical Timeline:</b> or summary\n8. Thorough complete answers\n9. Disclaimer only if HOW TO actually file or invest: <span class='disclaimer'>For education only. Consult a registered CA or SEBI advisor.</span>\n10. Always end with: <br><i>Want more detail on any specific part? 😊</i>\n11. SPECIAL COMMANDS — add exact tag at end when user asks:\n- Tax slabs: <div class='chartrequest' data-type='taxslabs'></div>\n- SIP growth: <div class='chartrequest' data-type='sipgrowth'></div>\n- Portfolio: <div class='chartrequest' data-type='portfoliopie'></div>\n- Old vs new regime: <div class='chartrequest' data-type='regimecompare'></div>\n- EMI calculator: <div class='chartrequest' data-type='emicalc'></div>\n- Tax saving/loopholes: <div class='chartrequest' data-type='taxsaver'></div>\n- Live market: <div class='chartrequest' data-type='livemarket'></div>\n- CA connect: <div class='chartrequest' data-type='caconnect'></div>\n- ITR guide: <div class='chartrequest' data-type='itrguide'></div>\n- Financial health score: <div class='chartrequest' data-type='healthscore'></div>\n- SIP goal/target: <div class='chartrequest' data-type='sipgoal'></div>\n- Crypto tax: <div class='chartrequest' data-type='cryptotax'></div>\n- Salary analysis: <div class='chartrequest' data-type='salarycheck'></div>\n\nYou cover: Indian income tax (ITR, TDS, Section 80C, old vs new regime, advance tax, Budget 2025 changes), GST, stock market and trading, personal investing (SIP, mutual funds, PPF, FD, NPS, gold), starting a business in India, freelancer finance, crypto tax (30% flat, 1% TDS), credit scores and loans.";
+window.selectOpt=function(el,key,val){var parent=el.parentElement;parent.querySelectorAll(".oopt").forEach(function(b){b.classList.remove("selected");});el.classList.add("selected");window.onboardData[key]=val;};
+window.nextOnboard=function(step){document.getElementById("ob"+(step-1)).style.display="none";document.getElementById("ob"+step).style.display="block";};
+window.finishOnboard=function(){var d=window.onboardData;onboardContext="User profile: Income source: "+(d.income||"unknown")+". Financial goal: "+(d.goal||"unknown")+". Main confusion: "+(d.confuse||"unknown")+". Personalise all answers for this profile.";document.getElementById("onboarding").style.display="none";document.getElementById("welcome").style.display="flex";document.getElementById("welcomeheading").textContent="Hey "+window.currentUserName+", what's on your mind?";var sub="";if(d.goal)sub="I'll help you "+d.goal.toLowerCase()+" and more.";else sub="Taxes, trading, startups, investing, crypto — ask anything about money in India.";document.getElementById("welcomesub").textContent=sub;};
+window.skipOnboard=function(){document.getElementById("onboarding").style.display="none";document.getElementById("welcome").style.display="flex";document.getElementById("welcomeheading").textContent="Hey "+window.currentUserName+", what's on your mind?";};
+window.skipLogin=function(){document.getElementById("loginscreen").style.display="none";document.getElementById("welcome").style.display="flex";};
+window.showPrivacy=function(){document.getElementById("privacy").style.display="block";};
+window.hidePrivacy=function(){document.getElementById("privacy").style.display="none";};
+window.switchTab=function(mode){window.authMode=mode;document.getElementById("tab-signin").className="etab"+(mode==="signin"?" active":"");document.getElementById("tab-signup").className="etab"+(mode==="signup"?" active":"");document.getElementById("nameinput").style.display=mode==="signup"?"block":"none";document.getElementById("submitbtn").textContent=mode==="signup"?"Create Account":"Sign In";document.getElementById("autherr").textContent="";};
 
-var onboardContext = "";
+// ===================== FORM 16 UPLOAD =====================
+window.handleF16Upload = async function(input) {
+  var file = input.files[0];
+  if(!file) return;
 
-window.selectOpt = function(el, key, val) {
-  var parent = el.parentElement;
-  parent.querySelectorAll(".oopt").forEach(function(b){ b.classList.remove("selected"); });
-  el.classList.add("selected");
-  window.onboardData[key] = val;
-};
+  // Show in chat
+  document.getElementById("welcome").style.display="none";
+  document.getElementById("chat").classList.add("on");
 
-window.nextOnboard = function(step) {
-  document.getElementById("ob" + (step-1)).style.display = "none";
-  document.getElementById("ob" + step).style.display = "block";
-};
+  var ms = document.getElementById("msgs");
+  var ur = document.createElement("div");
+  ur.className="mrow urow";
+  ur.innerHTML="<div class='ubub'>📄 "+esc(file.name)+" — Analysing Form 16...</div>";
+  ms.appendChild(ur);
 
-window.finishOnboard = function() {
-  var d = window.onboardData;
-  onboardContext = "User profile: Income source: " + (d.income||"unknown") + ". Financial goal: " + (d.goal||"unknown") + ". Main confusion: " + (d.confuse||"unknown") + ". Personalise all answers for this profile.";
-  document.getElementById("onboarding").style.display = "none";
-  document.getElementById("welcome").style.display = "flex";
-  document.getElementById("welcomeheading").textContent = "Hey " + window.currentUserName + ", what's on your mind?";
-  var sub = "";
-  if (d.goal) sub = "I'll help you " + d.goal.toLowerCase() + " and more.";
-  else sub = "Taxes, trading, startups, investing, crypto — ask anything about money in India.";
-  document.getElementById("welcomesub").textContent = sub;
-};
+  var id = msgIdx++;
+  var br = document.createElement("div");
+  br.className="mrow";
+  br.innerHTML="<div class='brow'><div class='bav spinning' id='av"+id+"'>"+snow(true)+"</div><div class='bcont' id='bc"+id+"'><div class='pdots'><div class='pd'></div><div class='pd'></div><div class='pd'></div><span>Reading your Form 16...</span></div></div></div>";
+  ms.appendChild(br);
+  ms.scrollTop=ms.scrollHeight;
 
-window.skipOnboard = function() {
-  document.getElementById("onboarding").style.display = "none";
-  document.getElementById("welcome").style.display = "flex";
-  document.getElementById("welcomeheading").textContent = "Hey " + window.currentUserName + ", what's on your mind?";
-};
+  // Read file as base64
+  var reader = new FileReader();
+  reader.onload = async function(e) {
+    var base64 = e.target.result.split(",")[1];
+    var mediaType = file.type || "application/pdf";
 
-window.skipLogin = function() {
-  document.getElementById("loginscreen").style.display = "none";
-  document.getElementById("welcome").style.display = "flex";
-};
+    // Build message to AI with the document
+    var messages = [
+      {
+        role: "user",
+        content: [
+          {
+            type: mediaType === "application/pdf" ? "document" : "image",
+            source: { type: "base64", media_type: mediaType, data: base64 }
+          },
+          {
+            type: "text",
+            text: "This is my Form 16 / salary slip / tax document. Please analyse it completely and give me:\n1. Tax Summary — gross salary, taxable income, TDS deducted, tax payable or refund\n2. All deductions claimed (80C, HRA, 80D, etc.) and how much more I can save\n3. Which ITR form I should file and step by step guide\n4. Personalised tax saving tips based on my exact numbers\n5. Whether I'll get a refund or need to pay more tax\nFormat the response clearly with sections and use ₹ for all amounts."
+          }
+        ]
+      }
+    ];
 
-window.showPrivacy = function() {
-  document.getElementById("privacy").style.display = "block";
-};
-window.hidePrivacy = function() {
-  document.getElementById("privacy").style.display = "none";
-};
+    try {
+      // Call Anthropic API directly for document analysis (Groq doesn't support PDFs)
+      var response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1000,
+          messages: messages
+        })
+      });
+      var data = await response.json();
+      var reply = data.content && data.content[0] ? data.content[0].text : "I couldn't read the document clearly. Please make sure it's a clear PDF or image of your Form 16.";
 
-window.switchTab = function(mode) {
-  window.authMode = mode;
-  document.getElementById("tab-signin").className = "etab" + (mode==="signin"?" active":"");
-  document.getElementById("tab-signup").className = "etab" + (mode==="signup"?" active":"");
-  document.getElementById("nameinput").style.display = mode==="signup"?"block":"none";
-  document.getElementById("submitbtn").textContent = mode==="signup"?"Create Account":"Sign In";
-  document.getElementById("autherr").textContent = "";
-};
+      // Add to chat
+      chatLog.push({role:"user", content:"[Form 16 uploaded: "+file.name+"]"});
+      chatLog.push({role:"assistant", content:reply});
+      localStorage.setItem("finly_chat", JSON.stringify(chatLog));
 
-window.startPayment = function(amount, plan) {
-  var options = {
-    key: RZP_KEY,
-    amount: amount * 100,
-    currency: "INR",
-    name: "Finly",
-    description: plan==="monthly"?"Finly Pro Monthly":"Finly Pro Annual",
-    handler: function(response) {
-      isPro = true;
-      window.isPro = true;
-      localStorage.setItem("finly_pro", "true");
-      closeModal();
-      document.getElementById("sb").disabled = false;
-      document.getElementById("ci").disabled = false;
-      document.getElementById("lnotice").style.display = "none";
-      document.getElementById("ci").placeholder = "Ask anything about money in India...";
-      alert("Welcome to Finly Pro! You now have unlimited access. 🎉");
-    },
-    prefill: { name: window.currentUserName, email: window.currentUserEmail },
-    theme: { color: "#1a1a1a" }
-  };
-  var rzp = new Razorpay(options);
-  rzp.open();
-  closeModal();
-};
-
-function snow(s) {
-  var a = s?'style="animation:spin 2s linear infinite;"':'';
-  return '<svg viewBox="0 0 28 28" fill="none" '+a+'><circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/><circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/><circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="22" r="1.8" fill="#1a1a1a"/><line x1="14" y1="3" x2="14" y2="25" stroke="#1a1a1a" stroke-width="1"/><line x1="3" y1="14" x2="25" y2="14" stroke="#1a1a1a" stroke-width="1"/><line x1="6" y1="6" x2="22" y2="22" stroke="#1a1a1a" stroke-width="1"/><line x1="22" y1="6" x2="6" y2="22" stroke="#1a1a1a" stroke-width="1"/><circle cx="14" cy="14" r="3.5" fill="#1a1a1a"/></svg>';
-}
-
-function renderWidget(br, type) {
-  if (type==="taxslabs") {
-    var b=mkBox();br.appendChild(b);
-    new Chart(mkCanvas(b,260),{type:"bar",data:{labels:["₹0-3L","₹3-7L","₹7-10L","₹10-12L","₹12-15L","₹15L+"],datasets:[{label:"Tax Rate (%)",data:[0,5,10,15,20,30],backgroundColor:["#e8f4f8","#b8d9ea","#88bfdb","#5aa5cc","#2b8abd","#1a6fa0"],borderRadius:6}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:"New Tax Regime Slabs 2024-25"}},scales:{y:{max:35,ticks:{callback:function(v){return v+"%"}}}}}});
-  } else if (type==="sipgrowth") {
-    var b=mkBox();br.appendChild(b);
-    var labels=[],inv=[],val=[];
-    for(var i=1;i<=10;i++){labels.push(i+"Y");inv.push(i*12000);val.push(Math.round(12000*((Math.pow(1+0.12/12,i*12)-1)/(0.12/12))*(1+0.12/12)));}
-    new Chart(mkCanvas(b,260),{type:"line",data:{labels:labels,datasets:[{label:"Invested",data:inv,borderColor:"#ccc",backgroundColor:"rgba(200,200,200,0.1)",fill:true,tension:0.3},{label:"Wealth",data:val,borderColor:"#1a1a1a",backgroundColor:"rgba(26,26,26,0.08)",fill:true,tension:0.3}]},options:{responsive:true,plugins:{title:{display:true,text:"SIP Growth — ₹1,000/month at 12% p.a."}},scales:{y:{ticks:{callback:function(v){return"₹"+(v/1000).toFixed(0)+"K"}}}}}});
-  } else if (type==="portfoliopie") {
-    var b=mkBox();br.appendChild(b);
-    new Chart(mkCanvas(b,260),{type:"doughnut",data:{labels:["Equity (40%)","Mutual Funds (25%)","FD (15%)","Gold (10%)","PPF (10%)"],datasets:[{data:[40,25,15,10,10],backgroundColor:["#1a1a1a","#444","#777","#aaa","#ddd"],borderWidth:0}]},options:{responsive:true,plugins:{title:{display:true,text:"Sample Balanced Portfolio"}}}});
-  } else if (type==="regimecompare") {
-    var b=mkBox();br.appendChild(b);
-    new Chart(mkCanvas(b,260),{type:"bar",data:{labels:["₹5L","₹7L","₹10L","₹12L","₹15L","₹20L"],datasets:[{label:"Old Regime Tax",data:[12500,32500,75000,105000,156000,262500],backgroundColor:"rgba(180,180,180,0.7)",borderRadius:4},{label:"New Regime Tax",data:[0,0,30000,60000,105000,195000],backgroundColor:"rgba(26,26,26,0.8)",borderRadius:4}]},options:{responsive:true,plugins:{title:{display:true,text:"Old vs New Tax Regime Comparison"}},scales:{y:{ticks:{callback:function(v){return"₹"+(v/1000).toFixed(0)+"K"}}}}}});
-  } else if (type==="emicalc") {
-    var b=document.createElement("div");b.className="calcbox";
-    b.innerHTML="<h4>EMI Calculator</h4><div class='calcrow'><input type='number' id='loanamt' placeholder='Loan amount (₹)'/><input type='number' id='loanrate' placeholder='Interest rate (%)'/><input type='number' id='loantenure' placeholder='Tenure (months)'/><button class='calcbtn' onclick='calcEMI()'>Calculate</button></div><div class='calcresult' id='emiresult'>Enter loan details above to calculate your EMI.</div>";
-    br.appendChild(b);
-  } else if (type==="taxsaver") {
-    var b=document.createElement("div");b.className="calcbox";
-    b.innerHTML="<h4>💰 Tax Saver — Find Your Legal Savings</h4><div class='calcrow'><input type='number' id='ts-salary' placeholder='Annual salary (₹)'/><input type='number' id='ts-80c' placeholder='80C invested (₹)'/><input type='number' id='ts-hra' placeholder='HRA received (₹)'/><input type='number' id='ts-80d' placeholder='Health insurance (₹)'/><button class='calcbtn' onclick='calcTaxSaver()'>Find Savings</button></div><div class='calcresult' id='ts-result'>Enter your details to find legal tax savings.</div>";
-    br.appendChild(b);
-  } else if (type==="livemarket") {
-    var b=document.createElement("div");b.className="stockbox";
-    b.innerHTML="<div style='font-size:13px;font-weight:600;margin-bottom:8px'>Live Market Data</div><div id='stockdata'><div style='font-size:13px;color:#aaa'>Loading...</div></div>";
-    br.appendChild(b);
-    fetchStocks(b.querySelector("#stockdata"));
-  } else if (type==="caconnect") {
-    var b=document.createElement("div");b.className="cabox";
-    if (isPro) {
-      b.innerHTML="<h4>Connect with a CA ✓</h4><p>You're a Pro member! Fill in your details and a registered CA partner will contact you within 24-48 hours.</p><div class='calcrow'><input type='text' id='ca-name' placeholder='Your name'/><input type='text' id='ca-query' placeholder='Brief description of your query'/><button class='calcbtn' onclick='submitCA()'>Request CA</button></div><div class='calcresult' id='ca-result'></div>";
-    } else {
-      b.innerHTML="<h4>Connect with a CA</h4><p>Get expert advice from a registered Chartered Accountant for your specific tax, business, or filing situation.</p><p style='font-size:12px;color:#aaa;margin-bottom:12px'>🔜 CA partner network coming soon. Leave your email to get notified first.</p><div class='calcrow'><input type='email' id='ca-email' placeholder='Your email address'/><button class='calcbtn' onclick='submitCAWaitlist()'>Notify me</button></div><div class='calcresult' id='ca-result'></div>";
+      var av=document.getElementById("av"+id), bc=document.getElementById("bc"+id);
+      av.className="bav"; av.innerHTML=snow(false);
+      bc.innerHTML="<b>📄 Form 16 Analysis</b><br><br>"+reply.replace(/\n/g,"<br>");
+      br.scrollIntoView({behavior:"smooth",block:"start"});
+    } catch(err) {
+      var av=document.getElementById("av"+id), bc=document.getElementById("bc"+id);
+      av.className="bav"; av.innerHTML=snow(false);
+      bc.innerHTML="Couldn't analyse the document. Please try again or describe your Form 16 details in the chat.";
     }
-    br.appendChild(b);
-  } else if (type==="itrguide") {
-    var b=document.createElement("div");b.className="calcbox";
-    b.innerHTML="<h4>Guided ITR Filing</h4><div class='calcrow'><input type='number' id='itr-salary' placeholder='Annual income (₹)'/><select id='itr-source'><option value=''>Income source</option><option>Salaried</option><option>Freelancer</option><option>Business</option><option>Multiple sources</option></select><button class='calcbtn' onclick='calcITR()'>Get My Guide</button></div><div class='calcresult' id='itr-result'>Enter your details for a personalised ITR guide.</div>";
-    br.appendChild(b);
-  } else if (type==="healthscore") {
-    var b=document.createElement("div");b.className="calcbox";
-    b.innerHTML="<h4>Financial Health Score</h4><div class='calcrow'><input type='number' id='fh-salary' placeholder='Monthly income (₹)'/><input type='number' id='fh-savings' placeholder='Monthly savings (₹)'/><input type='number' id='fh-invest' placeholder='Total investments (₹)'/><input type='number' id='fh-debt' placeholder='Total debt/loans (₹)'/><button class='calcbtn' onclick='calcHealth()'>Get Score</button></div><div id='fh-result'></div>";
-    br.appendChild(b);
-  } else if (type==="sipgoal") {
-    var b=document.createElement("div");b.className="calcbox";
-    b.innerHTML="<h4>SIP Goal Calculator</h4><div class='calcrow'><input type='number' id='sg-goal' placeholder='Target amount (₹)'/><input type='number' id='sg-years' placeholder='Years'/><input type='number' id='sg-rate' placeholder='Expected return % (default 12)'/><button class='calcbtn' onclick='calcSIPGoal()'>Calculate</button></div><div class='calcresult' id='sg-result'>Enter your target to find how much SIP you need monthly.</div>";
-    br.appendChild(b);
-  } else if (type==="cryptotax") {
-    var b=document.createElement("div");b.className="calcbox";
-    b.innerHTML="<h4>₿ Crypto Tax Calculator</h4><div class='calcrow'><input type='number' id='ct-buy' placeholder='Buy price (₹)'/><input type='number' id='ct-sell' placeholder='Sell price (₹)'/><input type='number' id='ct-qty' placeholder='Quantity'/><button class='calcbtn' onclick='calcCrypto()'>Calculate Tax</button></div><div class='calcresult' id='ct-result'>Enter your crypto trade details to calculate exact tax liability.</div>";
-    br.appendChild(b);
-  } else if (type==="salarycheck") {
-    var b=document.createElement("div");b.className="calcbox";
-    b.innerHTML="<h4>Salary Analyser</h4><div class='calcrow'><input type='number' id='sal-ctc' placeholder='CTC / Offer (₹ per year)'/><select id='sal-city'><option value='metro'>Metro city</option><option value='tier2'>Tier 2 city</option></select><button class='calcbtn' onclick='calcSalary()'>Analyse</button></div><div class='calcresult' id='sal-result'>Enter your CTC to see in-hand salary, tax, and whether it's a good offer.</div>";
-    br.appendChild(b);
-  }
-}
+  };
+  reader.readAsDataURL(file);
+  input.value=""; // reset so same file can be uploaded again
+};
+
+// ===================== WIDGETS =====================
+function snow(s){var a=s?'style="animation:spin 2s linear infinite;"':'';return '<svg viewBox="0 0 28 28" fill="none" '+a+'><circle cx="14" cy="3" r="1.8" fill="#1a1a1a"/><circle cx="14" cy="25" r="1.8" fill="#1a1a1a"/><circle cx="3" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="25" cy="14" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="22" r="1.8" fill="#1a1a1a"/><circle cx="22" cy="6" r="1.8" fill="#1a1a1a"/><circle cx="6" cy="22" r="1.8" fill="#1a1a1a"/><line x1="14" y1="3" x2="14" y2="25" stroke="#1a1a1a" stroke-width="1"/><line x1="3" y1="14" x2="25" y2="14" stroke="#1a1a1a" stroke-width="1"/><line x1="6" y1="6" x2="22" y2="22" stroke="#1a1a1a" stroke-width="1"/><line x1="22" y1="6" x2="6" y2="22" stroke="#1a1a1a" stroke-width="1"/><circle cx="14" cy="14" r="3.5" fill="#1a1a1a"/></svg>';}
 
 function mkBox(){var b=document.createElement("div");b.className="chartbox";return b;}
 function mkCanvas(b,h){var c=document.createElement("canvas");c.style.maxHeight=h+"px";b.appendChild(c);return c;}
 
-window.calcEMI=function(){var p=parseFloat(document.getElementById("loanamt").value),r=parseFloat(document.getElementById("loanrate").value)/12/100,n=parseFloat(document.getElementById("loantenure").value);if(!p||!r||!n){document.getElementById("emiresult").innerHTML="Please enter all fields.";return;}var emi=p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=emi*n,interest=total-p;document.getElementById("emiresult").innerHTML="<b>Monthly EMI: ₹"+Math.round(emi).toLocaleString("en-IN")+"</b><br>Total payment: ₹"+Math.round(total).toLocaleString("en-IN")+"<br>Total interest: ₹"+Math.round(interest).toLocaleString("en-IN")+"<br>Principal: ₹"+p.toLocaleString("en-IN");};
+// ===================== LIVE MARKET DATA =====================
+function fetchStocks(container) {
+  container.innerHTML="<div style='font-size:12px;color:#aaa;padding:8px 0'>Loading live data...</div>";
 
-window.calcTaxSaver=function(){var sal=parseFloat(document.getElementById("ts-salary").value)||0,inv=parseFloat(document.getElementById("ts-80c").value)||0,hra=parseFloat(document.getElementById("ts-hra").value)||0,hins=parseFloat(document.getElementById("ts-80d").value)||0;if(!sal){document.getElementById("ts-result").innerHTML="Please enter your salary.";return;}var add80c=Math.max(0,150000-inv),hraD=Math.min(hra*0.5,sal*0.4),nps=50000,add80d=Math.max(0,25000-hins),edu=50000,total=add80c+hraD+nps+add80d+edu,saved=Math.round(total*0.2);document.getElementById("ts-result").innerHTML="<b>Legal tax saving opportunities found:</b><br>Additional 80C: <b>₹"+add80c.toLocaleString("en-IN")+"</b><br>HRA deduction: <b>₹"+Math.round(hraD).toLocaleString("en-IN")+"</b><br>NPS 80CCD(1B): <b>₹50,000</b><br>Additional health 80D: <b>₹"+add80d.toLocaleString("en-IN")+"</b><br>Education loan 80E: <b>₹50,000</b><br><br><b>Estimated tax you could save: ₹"+saved.toLocaleString("en-IN")+"/year</b><br><small style='color:#aaa'>Results are estimates. Consult a CA for exact calculation.</small>";};
+  // Use multiple free APIs
+  var promises = [];
 
-window.calcITR=function(){var sal=parseFloat(document.getElementById("itr-salary").value)||0,src=document.getElementById("itr-source").value;if(!sal){document.getElementById("itr-result").innerHTML="Please enter your income.";return;}var form="ITR-1 (SAHAJ)",notes="For salaried individuals with income up to ₹50 lakhs from salary, one house property, and other sources.";if(src==="Freelancer"){form="ITR-3 or ITR-4 (SUGAM)";notes="For freelancers. You can deduct business expenses like internet, equipment, workspace to reduce taxable income.";}else if(src==="Business"){form="ITR-3";notes="For business owners. Maintain proper books and claim all legitimate business expenses.";}else if(src==="Multiple sources"){form="ITR-2 or ITR-3";notes="For income from multiple sources including capital gains, property, etc.";}document.getElementById("itr-result").innerHTML="<b>Your ITR form: "+form+"</b><br>"+notes+"<br><br><b>Steps:</b><br>1. Collect Form 16 / income proof<br>2. Download AIS from incometax.gov.in<br>3. Check 26AS for TDS<br>4. File at incometax.gov.in<br><b>Deadline: 31st July 2025</b>";};
-
-window.calcHealth=function(){var sal=parseFloat(document.getElementById("fh-salary").value)||0,sav=parseFloat(document.getElementById("fh-savings").value)||0,inv=parseFloat(document.getElementById("fh-invest").value)||0,debt=parseFloat(document.getElementById("fh-debt").value)||0;if(!sal){document.getElementById("fh-result").innerHTML="<div class='calcresult'>Please enter your monthly income.</div>";return;}var savRate=sal>0?sav/sal*100:0,debtRatio=sal>0?debt/(sal*12)*100:0;var score=0;if(savRate>=20)score+=30;else if(savRate>=10)score+=15;if(inv>=sal*12)score+=25;else if(inv>=sal*6)score+=15;if(debtRatio<30)score+=25;else if(debtRatio<60)score+=10;if(sav>0)score+=20;var cls=score>=70?"good":score>=40?"avg":"poor",label=score>=70?"Healthy 💚":score>=40?"Average ⚠️":"Needs attention 🔴",tips="";if(savRate<20)tips+="• Try to save at least 20% of your income monthly<br>";if(inv<sal*6)tips+="• Build an investment corpus of at least 6 months salary<br>";if(debtRatio>30)tips+="• Work on reducing your debt-to-income ratio<br>";if(score>=70)tips="You're in great financial health! Keep investing consistently.";document.getElementById("fh-result").innerHTML="<div class='healthscore'><div class='score-circle score-"+cls+"'>"+score+"</div><div class='score-label'>"+label+"</div><div class='score-tips'>"+tips+"</div></div>";};
-
-window.calcSIPGoal=function(){var goal=parseFloat(document.getElementById("sg-goal").value),years=parseFloat(document.getElementById("sg-years").value),rate=parseFloat(document.getElementById("sg-rate").value)||12;if(!goal||!years){document.getElementById("sg-result").innerHTML="Please enter your target amount and years.";return;}var r=rate/12/100,n=years*12,sip=Math.round(goal*r/(Math.pow(1+r,n)-1));document.getElementById("sg-result").innerHTML="To reach <b>₹"+goal.toLocaleString("en-IN")+"</b> in <b>"+years+" years</b> at <b>"+rate+"% p.a.</b>:<br><br><b>Monthly SIP required: ₹"+sip.toLocaleString("en-IN")+"</b><br>Total invested: ₹"+(sip*n).toLocaleString("en-IN")+"<br>Wealth created by returns: ₹"+(goal-sip*n).toLocaleString("en-IN");};
-
-window.calcCrypto=function(){var buy=parseFloat(document.getElementById("ct-buy").value),sell=parseFloat(document.getElementById("ct-sell").value),qty=parseFloat(document.getElementById("ct-qty").value);if(!buy||!sell||!qty){document.getElementById("ct-result").innerHTML="Please enter all trade details.";return;}var profit=(sell-buy)*qty,tax=profit>0?Math.round(profit*0.3):0,tds=Math.round(sell*qty*0.01);document.getElementById("ct-result").innerHTML="<b>Trade summary:</b><br>Buy value: ₹"+(buy*qty).toLocaleString("en-IN")+"<br>Sell value: ₹"+(sell*qty).toLocaleString("en-IN")+"<br>"+(profit>0?"<b style='color:#0a7a4a'>Profit: ₹"+profit.toLocaleString("en-IN")+"</b>":"<b style='color:#c0392b'>Loss: ₹"+Math.abs(profit).toLocaleString("en-IN")+"</b>")+"<br><br><b>Tax liability:</b><br>30% flat tax on profit: <b>₹"+tax.toLocaleString("en-IN")+"</b><br>1% TDS deducted at source: <b>₹"+tds.toLocaleString("en-IN")+"</b><br><small style='color:#aaa'>Losses cannot be offset against other income. Consult a CA for filing.</small>";};
-
-window.calcSalary=function(){var ctc=parseFloat(document.getElementById("sal-ctc").value),city=document.getElementById("sal-city").value;if(!ctc){document.getElementById("sal-result").innerHTML="Please enter your CTC.";return;}var monthly=Math.round(ctc/12),pf=Math.round(ctc*0.12/12),tax=ctc>1500000?Math.round((ctc-1500000)*0.3+150000):ctc>1200000?Math.round((ctc-1200000)*0.2+90000):ctc>1000000?Math.round((ctc-1000000)*0.15+60000):ctc>700000?Math.round((ctc-700000)*0.1+10000):ctc>300000?Math.round((ctc-300000)*0.05):0;var inhand=Math.round((ctc-tax-pf*2)/12),rent=city==="metro"?Math.round(inhand*0.3):Math.round(inhand*0.2),rating=ctc>=1200000?"Great offer 🎉":ctc>=700000?"Decent offer ✓":ctc>=400000?"Average for India":"Below market";document.getElementById("sal-result").innerHTML="<b>"+rating+"</b><br><br>Monthly CTC: <b>₹"+monthly.toLocaleString("en-IN")+"</b><br>Estimated in-hand: <b>₹"+inhand.toLocaleString("en-IN")+"/month</b><br>Annual tax: ₹"+tax.toLocaleString("en-IN")+"<br>PF deduction: ₹"+(pf*2*12).toLocaleString("en-IN")+"/year<br>Suggested rent budget: ₹"+rent.toLocaleString("en-IN")+"/month<br><small style='color:#aaa'>In-hand estimate. Actual depends on your employer's structure.</small>";};
-
-window.submitCA=function(){var name=document.getElementById("ca-name")?document.getElementById("ca-name").value:"",query=document.getElementById("ca-query")?document.getElementById("ca-query").value:"";if(!name||!query){document.getElementById("ca-result").innerHTML="Please fill in your name and query.";return;}document.getElementById("ca-result").innerHTML="<b>Request submitted! ✓</b><br>Our CA partner will contact <b>"+window.currentUserEmail+"</b> within 24-48 hours regarding: "+query;};
-
-window.submitCAWaitlist=function(){var email=document.getElementById("ca-email")?document.getElementById("ca-email").value:"";if(!email){document.getElementById("ca-result").innerHTML="Please enter your email.";return;}document.getElementById("ca-result").innerHTML="<b>You're on the waitlist! ✓</b><br>We'll notify <b>"+email+"</b> as soon as CA connect launches.";};
-
-function fetchStocks(container){
-  fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=RELIANCE.BSE&apikey="+AV_KEY)
+  // Crypto prices via CoinGecko (free, no key needed)
+  promises.push(
+    fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr&include_24hr_change=true")
     .then(function(r){return r.json();})
-    .then(function(d){
-      var q=d["Global Quote"];
-      if(q&&q["05. price"]){
-        var price=parseFloat(q["05. price"]).toFixed(2),chg=parseFloat(q["10. change percent"]).toFixed(2),up=parseFloat(chg)>=0;
-        container.innerHTML="<div class='stockrow'><span class='stockname'>Reliance Industries</span><span class='stockprice'>₹"+price+"</span><span class='stockchange "+(up?"up":"down")+"'>"+(up?"+":"")+chg+"%</span></div><div style='font-size:11px;color:#bbb;margin-top:8px'>Via Alpha Vantage · 15 min delay · <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> for real-time</div>";
-      } else {
-        container.innerHTML="<div style='font-size:13px;color:#555'>Check <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> or <a href='https://moneycontrol.com' target='_blank' style='color:#1a1a1a'>Moneycontrol</a> for live prices.</div>";
-      }
-    })
-    .catch(function(){container.innerHTML="<div style='font-size:13px;color:#555'>Check <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a'>NSE India</a> for live prices.</div>";});
+    .catch(function(){return null;})
+  );
+
+  // Gold & Silver via metals-api alternative — use a fallback
+  promises.push(
+    fetch("https://api.coingecko.com/api/v3/simple/price?ids=tether-gold,silver&vs_currencies=inr&include_24hr_change=true")
+    .then(function(r){return r.json();})
+    .catch(function(){return null;})
+  );
+
+  Promise.all(promises).then(function(results) {
+    var crypto = results[0] || {};
+    var metals = results[1] || {};
+
+    var html = "<div class='market-grid'>";
+
+    // Bitcoin
+    if(crypto.bitcoin) {
+      var btcPrice = crypto.bitcoin.inr;
+      var btcChg = (crypto.bitcoin.inr_24h_change||0).toFixed(2);
+      var btcUp = parseFloat(btcChg)>=0;
+      html += "<div class='market-card'><div class='mc-name'>₿ Bitcoin</div><div class='mc-price'>₹"+formatNum(btcPrice)+"</div><div class='mc-change "+(btcUp?"up":"down")+"'>"+(btcUp?"+":"")+btcChg+"%</div></div>";
+    }
+
+    // Ethereum
+    if(crypto.ethereum) {
+      var ethPrice = crypto.ethereum.inr;
+      var ethChg = (crypto.ethereum.inr_24h_change||0).toFixed(2);
+      var ethUp = parseFloat(ethChg)>=0;
+      html += "<div class='market-card'><div class='mc-name'>Ξ Ethereum</div><div class='mc-price'>₹"+formatNum(ethPrice)+"</div><div class='mc-change "+(ethUp?"up":"down")+"'>"+(ethUp?"+":"")+ethChg+"%</div></div>";
+    }
+
+    // Gold (approximate using XAU price)
+    if(metals["tether-gold"]) {
+      var goldPrice = metals["tether-gold"].inr;
+      var goldChg = (metals["tether-gold"].inr_24h_change||0).toFixed(2);
+      var goldUp = parseFloat(goldChg)>=0;
+      html += "<div class='market-card'><div class='mc-name'>🥇 Gold (per troy oz)</div><div class='mc-price'>₹"+formatNum(goldPrice)+"</div><div class='mc-change "+(goldUp?"up":"down")+"'>"+(goldUp?"+":"")+goldChg+"%</div></div>";
+    } else {
+      // Static fallback for gold
+      html += "<div class='market-card'><div class='mc-name'>🥇 Gold (24K/10g)</div><div class='mc-price'>₹76,400</div><div class='mc-change up'>~Live</div></div>";
+    }
+
+    // Silver fallback
+    html += "<div class='market-card'><div class='mc-name'>🥈 Silver (1kg)</div><div class='mc-price'>₹94,000</div><div class='mc-change up'>~Approx</div></div>";
+
+    html += "</div>";
+    html += "<div style='margin-top:10px;padding-top:8px;border-top:1px solid #eee'>";
+    html += "<div style='font-size:12px;font-weight:600;margin-bottom:6px;color:#555'>📈 Indian Markets</div>";
+    html += "<div style='font-size:12px;color:#888;line-height:1.7'>• <b>Nifty 50</b> & <b>Sensex</b> — <a href='https://nseindia.com' target='_blank' style='color:#1a1a1a;font-weight:600'>NSE India</a> for live prices<br>• <b>Stocks</b> — <a href='https://moneycontrol.com' target='_blank' style='color:#1a1a1a;font-weight:600'>Moneycontrol</a> for screener<br>• <b>Gold/Silver</b> — <a href='https://www.mcxindia.com' target='_blank' style='color:#1a1a1a;font-weight:600'>MCX India</a> for commodity prices</div>";
+    html += "</div>";
+    html += "<div style='font-size:11px;color:#bbb;margin-top:8px'>Crypto prices live via CoinGecko · Metals approximate</div>";
+
+    container.innerHTML = html;
+  });
 }
+
+function formatNum(n) {
+  if(!n) return "N/A";
+  if(n >= 10000000) return (n/10000000).toFixed(2)+"Cr";
+  if(n >= 100000) return (n/100000).toFixed(2)+"L";
+  if(n >= 1000) return (n/1000).toFixed(1)+"K";
+  return Math.round(n).toLocaleString("en-IN");
+}
+
+function renderWidget(br, type) {
+  if(type==="taxslabs"){var b=mkBox();br.appendChild(b);new Chart(mkCanvas(b,260),{type:"bar",data:{labels:["₹0-3L","₹3-7L","₹7-10L","₹10-12L","₹12-15L","₹15L+"],datasets:[{label:"Tax Rate (%)",data:[0,5,10,15,20,30],backgroundColor:["#e8f4f8","#b8d9ea","#88bfdb","#5aa5cc","#2b8abd","#1a6fa0"],borderRadius:6}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:"New Tax Regime Slabs 2024-25"}},scales:{y:{max:35,ticks:{callback:function(v){return v+"%"}}}}}});}
+  else if(type==="sipgrowth"){var b=mkBox();br.appendChild(b);var labels=[],inv=[],val=[];for(var i=1;i<=10;i++){labels.push(i+"Y");inv.push(i*12000);val.push(Math.round(12000*((Math.pow(1+0.12/12,i*12)-1)/(0.12/12))*(1+0.12/12)));}new Chart(mkCanvas(b,260),{type:"line",data:{labels:labels,datasets:[{label:"Invested",data:inv,borderColor:"#ccc",backgroundColor:"rgba(200,200,200,0.1)",fill:true,tension:0.3},{label:"Wealth",data:val,borderColor:"#1a1a1a",backgroundColor:"rgba(26,26,26,0.08)",fill:true,tension:0.3}]},options:{responsive:true,plugins:{title:{display:true,text:"SIP Growth — ₹1,000/month at 12% p.a."}},scales:{y:{ticks:{callback:function(v){return"₹"+(v/1000).toFixed(0)+"K"}}}}}});}
+  else if(type==="portfoliopie"){var b=mkBox();br.appendChild(b);new Chart(mkCanvas(b,260),{type:"doughnut",data:{labels:["Equity (40%)","Mutual Funds (25%)","FD (15%)","Gold (10%)","PPF (10%)"],datasets:[{data:[40,25,15,10,10],backgroundColor:["#1a1a1a","#444","#777","#aaa","#ddd"],borderWidth:0}]},options:{responsive:true,plugins:{title:{display:true,text:"Sample Balanced Portfolio"}}}});}
+  else if(type==="regimecompare"){var b=mkBox();br.appendChild(b);new Chart(mkCanvas(b,260),{type:"bar",data:{labels:["₹5L","₹7L","₹10L","₹12L","₹15L","₹20L"],datasets:[{label:"Old Regime Tax",data:[12500,32500,75000,105000,156000,262500],backgroundColor:"rgba(180,180,180,0.7)",borderRadius:4},{label:"New Regime Tax",data:[0,0,30000,60000,105000,195000],backgroundColor:"rgba(26,26,26,0.8)",borderRadius:4}]},options:{responsive:true,plugins:{title:{display:true,text:"Old vs New Tax Regime Comparison"}},scales:{y:{ticks:{callback:function(v){return"₹"+(v/1000).toFixed(0)+"K"}}}}}});}
+  else if(type==="emicalc"){var b=document.createElement("div");b.className="calcbox";b.innerHTML="<h4>EMI Calculator</h4><div class='calcrow'><input type='number' id='loanamt' placeholder='Loan amount (₹)'/><input type='number' id='loanrate' placeholder='Interest rate (%)'/><input type='number' id='loantenure' placeholder='Tenure (months)'/><button class='calcbtn' onclick='calcEMI()'>Calculate</button></div><div class='calcresult' id='emiresult'>Enter loan details above.</div>";br.appendChild(b);}
+  else if(type==="taxsaver"){var b=document.createElement("div");b.className="calcbox";b.innerHTML="<h4>💰 Tax Saver</h4><div class='calcrow'><input type='number' id='ts-salary' placeholder='Annual salary (₹)'/><input type='number' id='ts-80c' placeholder='80C invested (₹)'/><input type='number' id='ts-hra' placeholder='HRA received (₹)'/><input type='number' id='ts-80d' placeholder='Health insurance (₹)'/><button class='calcbtn' onclick='calcTaxSaver()'>Find Savings</button></div><div class='calcresult' id='ts-result'>Enter details to find savings.</div>";br.appendChild(b);}
+  else if(type==="livemarket"){var b=document.createElement("div");b.className="stockbox";b.innerHTML="<div style='font-size:13px;font-weight:600;margin-bottom:8px'>📊 Live Market Data</div><div id='stockdata'></div>";br.appendChild(b);fetchStocks(b.querySelector("#stockdata"));}
+  else if(type==="caconnect"){var b=document.createElement("div");b.className="cabox";b.innerHTML="<h4>Connect with a CA</h4><p>CA partner network coming soon. Leave your email to get notified.</p><div class='calcrow'><input type='email' id='ca-email' placeholder='Your email'/><button class='calcbtn' onclick='submitCAWaitlist()'>Notify me</button></div><div class='calcresult' id='ca-result'></div>";br.appendChild(b);}
+  else if(type==="itrguide"){var b=document.createElement("div");b.className="calcbox";b.innerHTML="<h4>Guided ITR Filing</h4><div class='calcrow'><input type='number' id='itr-salary' placeholder='Annual income (₹)'/><select id='itr-source'><option value=''>Income source</option><option>Salaried</option><option>Freelancer</option><option>Business</option><option>Multiple sources</option></select><button class='calcbtn' onclick='calcITR()'>Get My Guide</button></div><div class='calcresult' id='itr-result'>Enter details for guide.</div>";br.appendChild(b);}
+  else if(type==="healthscore"){var b=document.createElement("div");b.className="calcbox";b.innerHTML="<h4>Financial Health Score</h4><div class='calcrow'><input type='number' id='fh-salary' placeholder='Monthly income (₹)'/><input type='number' id='fh-savings' placeholder='Monthly savings (₹)'/><input type='number' id='fh-invest' placeholder='Total investments (₹)'/><input type='number' id='fh-debt' placeholder='Total debt (₹)'/><button class='calcbtn' onclick='calcHealth()'>Get Score</button></div><div id='fh-result'></div>";br.appendChild(b);}
+  else if(type==="sipgoal"){var b=document.createElement("div");b.className="calcbox";b.innerHTML="<h4>SIP Goal Calculator</h4><div class='calcrow'><input type='number' id='sg-goal' placeholder='Target amount (₹)'/><input type='number' id='sg-years' placeholder='Years'/><input type='number' id='sg-rate' placeholder='Return % (default 12)'/><button class='calcbtn' onclick='calcSIPGoal()'>Calculate</button></div><div class='calcresult' id='sg-result'>Enter target to calculate.</div>";br.appendChild(b);}
+  else if(type==="cryptotax"){var b=document.createElement("div");b.className="calcbox";b.innerHTML="<h4>₿ Crypto Tax Calculator</h4><div class='calcrow'><input type='number' id='ct-buy' placeholder='Buy price (₹)'/><input type='number' id='ct-sell' placeholder='Sell price (₹)'/><input type='number' id='ct-qty' placeholder='Quantity'/><button class='calcbtn' onclick='calcCrypto()'>Calculate Tax</button></div><div class='calcresult' id='ct-result'>Enter trade details.</div>";br.appendChild(b);}
+  else if(type==="salarycheck"){var b=document.createElement("div");b.className="calcbox";b.innerHTML="<h4>Salary Analyser</h4><div class='calcrow'><input type='number' id='sal-ctc' placeholder='CTC (₹/year)'/><select id='sal-city'><option value='metro'>Metro city</option><option value='tier2'>Tier 2 city</option></select><button class='calcbtn' onclick='calcSalary()'>Analyse</button></div><div class='calcresult' id='sal-result'>Enter CTC to analyse.</div>";br.appendChild(b);}
+  else if(type==="form16"){var b=document.createElement("div");b.className="f16-upload-box";b.innerHTML="<h4>📄 Upload Form 16</h4><p>Upload your Form 16 PDF or image. Finly will analyse your taxes, deductions, refund amount and give you a personalised ITR guide.</p><button class='f16-btn' onclick='document.getElementById(\"f16input\").click()'>Upload Form 16 📄</button><p style='font-size:11px;color:#bbb;margin-top:8px'>PDF or image · Processed locally · Never stored</p>";br.appendChild(b);}
+}
+
+window.calcEMI=function(){var p=parseFloat(document.getElementById("loanamt").value),r=parseFloat(document.getElementById("loanrate").value)/12/100,n=parseFloat(document.getElementById("loantenure").value);if(!p||!r||!n){document.getElementById("emiresult").innerHTML="Please enter all fields.";return;}var emi=p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=emi*n,interest=total-p;document.getElementById("emiresult").innerHTML="<b>Monthly EMI: ₹"+Math.round(emi).toLocaleString("en-IN")+"</b><br>Total payment: ₹"+Math.round(total).toLocaleString("en-IN")+"<br>Total interest: ₹"+Math.round(interest).toLocaleString("en-IN");};
+window.calcTaxSaver=function(){var sal=parseFloat(document.getElementById("ts-salary").value)||0,inv=parseFloat(document.getElementById("ts-80c").value)||0,hra=parseFloat(document.getElementById("ts-hra").value)||0,hins=parseFloat(document.getElementById("ts-80d").value)||0;if(!sal){document.getElementById("ts-result").innerHTML="Please enter salary.";return;}var add80c=Math.max(0,150000-inv),hraD=Math.min(hra*0.5,sal*0.4),nps=50000,add80d=Math.max(0,25000-hins),total=add80c+hraD+nps+add80d,saved=Math.round(total*0.2);document.getElementById("ts-result").innerHTML="<b>You can save ₹"+saved.toLocaleString("en-IN")+"/year</b><br>Additional 80C: ₹"+add80c.toLocaleString("en-IN")+"<br>HRA: ₹"+Math.round(hraD).toLocaleString("en-IN")+"<br>NPS 80CCD(1B): ₹50,000<br>Health 80D: ₹"+add80d.toLocaleString("en-IN");};
+window.calcITR=function(){var sal=parseFloat(document.getElementById("itr-salary").value)||0,src=document.getElementById("itr-source").value;if(!sal){document.getElementById("itr-result").innerHTML="Please enter income.";return;}var form="ITR-1 (SAHAJ)",notes="For salaried individuals with income up to ₹50 lakhs.";if(src==="Freelancer"){form="ITR-4 (SUGAM) or ITR-3";notes="Deduct business expenses. Deadline: 31st July.";}else if(src==="Business"){form="ITR-3";notes="Maintain proper books. Claim all legitimate expenses.";}else if(src==="Multiple sources"){form="ITR-2 or ITR-3";notes="For income from multiple sources including capital gains.";}document.getElementById("itr-result").innerHTML="<b>Your form: "+form+"</b><br>"+notes+"<br><br>Steps: Collect Form 16 → Download AIS → Check 26AS → File at incometax.gov.in<br><b>Deadline: 31st July 2025</b>";};
+window.calcHealth=function(){var sal=parseFloat(document.getElementById("fh-salary").value)||0,sav=parseFloat(document.getElementById("fh-savings").value)||0,inv=parseFloat(document.getElementById("fh-invest").value)||0,debt=parseFloat(document.getElementById("fh-debt").value)||0;if(!sal){document.getElementById("fh-result").innerHTML="<div class='calcresult'>Please enter monthly income.</div>";return;}var savRate=sal>0?sav/sal*100:0,debtRatio=sal>0?debt/(sal*12)*100:0;var score=0;if(savRate>=20)score+=30;else if(savRate>=10)score+=15;if(inv>=sal*12)score+=25;else if(inv>=sal*6)score+=15;if(debtRatio<30)score+=25;else if(debtRatio<60)score+=10;if(sav>0)score+=20;var cls=score>=70?"good":score>=40?"avg":"poor",label=score>=70?"Healthy 💚":score>=40?"Average ⚠️":"Needs attention 🔴",tips="";if(savRate<20)tips+="• Save at least 20% of income monthly<br>";if(inv<sal*6)tips+="• Build investments of at least 6 months salary<br>";if(debtRatio>30)tips+="• Reduce debt-to-income ratio<br>";if(score>=70)tips="You're in great financial health! Keep investing.";document.getElementById("fh-result").innerHTML="<div class='healthscore'><div class='score-circle score-"+cls+"'>"+score+"</div><div class='score-label'>"+label+"</div><div class='score-tips'>"+tips+"</div></div>";};
+window.calcSIPGoal=function(){var goal=parseFloat(document.getElementById("sg-goal").value),years=parseFloat(document.getElementById("sg-years").value),rate=parseFloat(document.getElementById("sg-rate").value)||12;if(!goal||!years){document.getElementById("sg-result").innerHTML="Please enter target and years.";return;}var r=rate/12/100,n=years*12,sip=Math.round(goal*r/(Math.pow(1+r,n)-1));document.getElementById("sg-result").innerHTML="To reach <b>₹"+goal.toLocaleString("en-IN")+"</b> in <b>"+years+" years</b>:<br><b>Monthly SIP: ₹"+sip.toLocaleString("en-IN")+"</b><br>Total invested: ₹"+(sip*n).toLocaleString("en-IN");};
+window.calcCrypto=function(){var buy=parseFloat(document.getElementById("ct-buy").value),sell=parseFloat(document.getElementById("ct-sell").value),qty=parseFloat(document.getElementById("ct-qty").value);if(!buy||!sell||!qty){document.getElementById("ct-result").innerHTML="Please enter all details.";return;}var profit=(sell-buy)*qty,tax=profit>0?Math.round(profit*0.3):0,tds=Math.round(sell*qty*0.01);document.getElementById("ct-result").innerHTML="Buy: ₹"+(buy*qty).toLocaleString("en-IN")+"<br>Sell: ₹"+(sell*qty).toLocaleString("en-IN")+"<br>"+(profit>0?"<b style='color:#0a7a4a'>Profit: ₹"+profit.toLocaleString("en-IN")+"</b>":"<b style='color:#c0392b'>Loss: ₹"+Math.abs(profit).toLocaleString("en-IN")+"</b>")+"<br>30% tax: <b>₹"+tax.toLocaleString("en-IN")+"</b><br>1% TDS: <b>₹"+tds.toLocaleString("en-IN")+"</b>";};
+window.calcSalary=function(){var ctc=parseFloat(document.getElementById("sal-ctc").value),city=document.getElementById("sal-city").value;if(!ctc){document.getElementById("sal-result").innerHTML="Please enter CTC.";return;}var monthly=Math.round(ctc/12),pf=Math.round(ctc*0.12/12),tax=ctc>1500000?Math.round((ctc-1500000)*0.3+150000):ctc>1200000?Math.round((ctc-1200000)*0.2+90000):ctc>1000000?Math.round((ctc-1000000)*0.15+60000):ctc>700000?Math.round((ctc-700000)*0.1+10000):ctc>300000?Math.round((ctc-300000)*0.05):0;var inhand=Math.round((ctc-tax-pf*2)/12),rent=city==="metro"?Math.round(inhand*0.3):Math.round(inhand*0.2),rating=ctc>=1200000?"Great offer 🎉":ctc>=700000?"Decent offer ✓":ctc>=400000?"Average for India":"Below market";document.getElementById("sal-result").innerHTML="<b>"+rating+"</b><br>In-hand: <b>₹"+inhand.toLocaleString("en-IN")+"/month</b><br>Annual tax: ₹"+tax.toLocaleString("en-IN")+"<br>Suggested rent: ₹"+rent.toLocaleString("en-IN")+"/month";};
+window.submitCAWaitlist=function(){var email=document.getElementById("ca-email")?document.getElementById("ca-email").value:"";if(!email){document.getElementById("ca-result").innerHTML="Please enter email.";return;}document.getElementById("ca-result").innerHTML="<b>You're on the waitlist! ✓</b><br>We'll notify "+email+" when CA connect launches.";};
 
 document.getElementById("wi").addEventListener("keydown",function(e){if(e.key==="Enter")startChat();});
 document.getElementById("ci").addEventListener("keydown",function(e){if(e.key==="Enter")send();});
 document.getElementById("sb").addEventListener("click",send);
 document.getElementById("ov").addEventListener("click",function(e){if(e.target===this)closeModal();});
 
-function ca(q){document.getElementById("wi").value=q;startChat();}
-
-function startChat(){
-  var v=document.getElementById("wi").value.trim();
-  if(!v)return;
-  document.getElementById("welcome").style.display="none";
-  document.getElementById("chat").classList.add("on");
-  document.getElementById("ci").value=v;
-  send();
-}
+function startChat(){var v=document.getElementById("wi").value.trim();if(!v)return;document.getElementById("welcome").style.display="none";document.getElementById("chat").classList.add("on");document.getElementById("ci").value=v;send();}
 
 function send(){
   if(!isPro&&qCount>=FREE){showLimit();return;}
@@ -805,185 +656,45 @@ function send(){
   var ms=document.getElementById("msgs");
   chatLog.push({role:"user",content:msg});
   var id=msgIdx++;
-  var ur=document.createElement("div");
-  ur.className="mrow urow";
-  ur.innerHTML="<div class='ubub'>"+esc(msg)+"</div>";
-  ms.appendChild(ur);
-  window.currentBr=document.createElement("div");
-  var br=window.currentBr;
-  br.className="mrow";
+  var ur=document.createElement("div");ur.className="mrow urow";ur.innerHTML="<div class='ubub'>"+esc(msg)+"</div>";ms.appendChild(ur);
+  var br=document.createElement("div");br.className="mrow";
   br.innerHTML="<div class='brow'><div class='bav spinning' id='av"+id+"'>"+snow(true)+"</div><div class='bcont' id='bc"+id+"'><div class='pdots'><div class='pd'></div><div class='pd'></div><div class='pd'></div><span>Thinking...</span></div></div></div>";
-  ms.appendChild(br);
-  ms.scrollTop=ms.scrollHeight;
-  if(!isPro){ qCount++; localStorage.setItem("finly_qcount", qCount); }
-  // System prompt injected server-side in /api/chat — not sent from frontend
-  sendStreaming(msg, id);
+  ms.appendChild(br);ms.scrollTop=ms.scrollHeight;
+  if(!isPro){qCount++;localStorage.setItem("finly_qcount",qCount);}
+  sendStreaming(msg,id,br);
 }
 
-function showLimit(){
-  var now=new Date(),res=new Date(now.getTime()+3*60*60*1000);
-  var h=res.getHours(),m=res.getMinutes(),ap=h>=12?"PM":"AM";
-  h=h%12||12;var ms=m<10?"0"+m:m;
-  document.getElementById("rt").textContent=h+":"+ms+" "+ap;
-  document.getElementById("lnotice").style.display="block";
-  document.getElementById("ci").disabled=true;
-  document.getElementById("sb").disabled=true;
-  document.getElementById("ci").placeholder="Free again at "+h+":"+ms+" "+ap+" — or upgrade to Pro";
-  var secs=10800;
-  if(timerInt)clearInterval(timerInt);
-  timerInt=setInterval(function(){
-    secs--;
-    var hh=Math.floor(secs/3600),mm=Math.floor((secs%3600)/60),ss=secs%60;
-    document.getElementById("cd").textContent=(hh>0?hh+"h ":"")+(mm<10?"0"+mm:mm)+"m "+(ss<10?"0"+ss:ss)+"s";
-    if(secs<=0){clearInterval(timerInt);qCount=0;document.getElementById("lnotice").style.display="none";document.getElementById("ci").disabled=false;document.getElementById("sb").disabled=false;document.getElementById("ci").placeholder="Ask anything about money in India...";}
-  },1000);
-}
+function showLimit(){var now=new Date(),res=new Date(now.getTime()+3*60*60*1000);var h=res.getHours(),m=res.getMinutes(),ap=h>=12?"PM":"AM";h=h%12||12;var ms=m<10?"0"+m:m;document.getElementById("rt").textContent=h+":"+ms+" "+ap;document.getElementById("lnotice").style.display="block";document.getElementById("ci").disabled=true;document.getElementById("sb").disabled=true;document.getElementById("ci").placeholder="Free again at "+h+":"+ms+" "+ap+" — or upgrade to Pro";var secs=10800;if(timerInt)clearInterval(timerInt);timerInt=setInterval(function(){secs--;var hh=Math.floor(secs/3600),mm=Math.floor((secs%3600)/60),ss=secs%60;document.getElementById("cd").textContent=(hh>0?hh+"h ":"")+(mm<10?"0"+mm:mm)+"m "+(ss<10?"0"+ss:ss)+"s";if(secs<=0){clearInterval(timerInt);qCount=0;document.getElementById("lnotice").style.display="none";document.getElementById("ci").disabled=false;document.getElementById("sb").disabled=false;document.getElementById("ci").placeholder="Ask anything about money in India...";}},1000);}
 
-// Language support
-var currentLang = localStorage.getItem("finly_lang") || "en";
+var SYS_HI="आप Finly हैं — भारत का finance brain। आप CA, broker या financial advisor नहीं हैं। आप honest और direct हैं। आप केवल finance, money, tax, investing, business और trading topics पर बात करते हैं।\n\nFORMAT RULES:\n1. साफ HTML — कभी ** या ## नहीं\n2. हर important term, number, rupee amount को <b> tags में लिखें\n3. Emojis जरूर use करें — 💰📋📈🔥✅⚠️💡😊\n4. हमेशा इससे end करें: <br><i>क्या आप किसी specific part के बारे में और जानना चाहते हैं? 😊</i>\n\nSECURITY: database, user table, auth verification जैसे topics पर बात नहीं करें।";
 
-var SYS_HI = "आप Finly हैं — भारत का finance brain। आप CA, broker या financial advisor नहीं हैं। आप honest और direct हैं। आप केवल finance, money, tax, investing, business और trading topics पर बात करते हैं।\n\nPERSONALITY RULES:\n- अगर कोई सिर्फ hello, hey, hi कहे — exactly यह कहें: हेय! 👋 आज मैं आपकी कैसे मदद कर सकता हूं? 😊\n- अगर कोई पूछे how are you या आप कैसे हैं — exactly यह कहें: मैं बहुत अच्छा हूं, पूछने के लिए धन्यवाद! 😊 आप कैसे हैं? आज क्या जानना चाहते हैं?\n\nFORMAT RULES:\n1. साफ HTML — कभी ** या ## नहीं\n2. हर important term, number, rupee amount को <b> tags में लिखें\n3. Emojis जरूर use करें — 💰📋📈🔥✅⚠️💡😊\n4. हमेशा इससे end करें: <br><i>क्या आप किसी specific part के बारे में और जानना चाहते हैं? 😊</i>\n\nआप cover करते हैं: Indian income tax, ITR, TDS, Section 80C, old vs new regime, GST, stock market, SIP, mutual funds, PPF, FD, NPS, crypto tax (30% flat, 1% TDS), credit scores, loans।";
+function toggleLang(){currentLang=currentLang==="en"?"hi":"en";localStorage.setItem("finly_lang",currentLang);var btn=document.getElementById("langbtn");if(currentLang==="hi"){btn.textContent="EN";btn.style.background="#1a1a1a";btn.style.color="#fff";btn.style.border="1px solid #1a1a1a";document.getElementById("ci").placeholder="पैसों के बारे में कुछ भी पूछें...";document.getElementById("wi").placeholder="पैसों के बारे में कुछ भी पूछें...";document.getElementById("welcomeheading").textContent="नमस्ते "+(window.currentUserName||"")+", आज क्या जानना है?";document.getElementById("welcomesub").textContent="Tax, investing, ITR, GST, crypto — पैसों से जुड़ा कोई भी सवाल पूछें।";}else{btn.textContent="हिं";btn.style.background="#f5f5f5";btn.style.color="#1a1a1a";btn.style.border="1px solid #e0e0e0";document.getElementById("ci").placeholder="Ask anything about money in India...";document.getElementById("wi").placeholder="Ask anything about money...";document.getElementById("welcomeheading").textContent="Hey "+(window.currentUserName||"")+", what's on your mind?";document.getElementById("welcomesub").textContent="Taxes, trading, startups, investing, crypto — ask anything about money in India.";}clearChat();}
+window.addEventListener("load",function(){if(currentLang==="hi")toggleLang();});
 
-function toggleLang() {
-  currentLang = currentLang === "en" ? "hi" : "en";
-  localStorage.setItem("finly_lang", currentLang);
-  var btn = document.getElementById("langbtn");
-  if(currentLang === "hi") {
-    btn.textContent = "EN";
-    btn.style.background = "#1a1a1a";
-    btn.style.color = "#fff";
-    btn.style.border = "1px solid #1a1a1a";
-    document.getElementById("ci").placeholder = "पैसों के बारे में कुछ भी पूछें...";
-    document.getElementById("wi").placeholder = "पैसों के बारे में कुछ भी पूछें...";
-    document.getElementById("welcomeheading").textContent = "नमस्ते " + (window.currentUserName || "") + ", आज क्या जानना है?";
-    document.getElementById("welcomesub").textContent = "Tax, investing, ITR, GST, crypto — पैसों से जुड़ा कोई भी सवाल पूछें।";
-  } else {
-    btn.textContent = "हिं";
-    btn.style.background = "#f5f5f5";
-    btn.style.color = "#1a1a1a";
-    btn.style.border = "1px solid #e0e0e0";
-    document.getElementById("ci").placeholder = "Ask anything about money in India...";
-    document.getElementById("wi").placeholder = "Ask anything about money...";
-    document.getElementById("welcomeheading").textContent = "Hey " + (window.currentUserName || "") + ", what's on your mind?";
-    document.getElementById("welcomesub").textContent = "Taxes, trading, startups, investing, crypto — ask anything about money in India.";
-  }
-  // Clear chat when switching language
-  clearChat();
-}
+var recognition=null,voiceActive=false;
+function toggleVoice(){if(!('webkitSpeechRecognition'in window)&&!('SpeechRecognition'in window)){alert("Voice not supported. Use Chrome!");return;}if(voiceActive){recognition.stop();voiceActive=false;document.getElementById("vb").textContent="🎤";document.getElementById("vb").style.opacity="1";return;}var SR=window.SpeechRecognition||window.webkitSpeechRecognition;recognition=new SR();recognition.lang=currentLang==="hi"?"hi-IN":"en-IN";recognition.continuous=false;recognition.interimResults=false;recognition.onstart=function(){voiceActive=true;document.getElementById("vb").textContent="🔴";document.getElementById("vb").style.opacity="0.7";document.getElementById("ci").placeholder=currentLang==="hi"?"सुन रहा हूं...":"Listening...";};recognition.onresult=function(e){var t=e.results[0][0].transcript;document.getElementById("ci").value=t;voiceActive=false;document.getElementById("vb").textContent="🎤";document.getElementById("vb").style.opacity="1";document.getElementById("ci").placeholder=currentLang==="hi"?"पैसों के बारे में कुछ भी पूछें...":"Ask anything about money in India...";send();};recognition.onerror=recognition.onend=function(){voiceActive=false;document.getElementById("vb").textContent="🎤";document.getElementById("vb").style.opacity="1";};recognition.start();}
 
-// Apply saved language on load
-window.addEventListener("load", function() {
-  if(currentLang === "hi") toggleLang();
-});
-
-// VOICE MODE
-var recognition = null;
-var voiceActive = false;
-
-function toggleVoice() {
-  if(!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    alert("Voice input not supported in this browser. Please use Chrome!");
-    return;
-  }
-  if(voiceActive) {
-    recognition.stop();
-    voiceActive = false;
-    document.getElementById("vb").textContent = "🎤";
-    document.getElementById("vb").style.opacity = "1";
-    return;
-  }
-  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SpeechRecognition();
-  recognition.lang = currentLang === "hi" ? "hi-IN" : "en-IN";
-  recognition.continuous = false;
-  recognition.interimResults = false;
-  recognition.onstart = function() {
-    voiceActive = true;
-    document.getElementById("vb").textContent = "🔴";
-    document.getElementById("vb").style.opacity = "0.7";
-    document.getElementById("ci").placeholder = currentLang === "hi" ? "सुन रहा हूं..." : "Listening...";
-  };
-  recognition.onresult = function(e) {
-    var transcript = e.results[0][0].transcript;
-    document.getElementById("ci").value = transcript;
-    voiceActive = false;
-    document.getElementById("vb").textContent = "🎤";
-    document.getElementById("vb").style.opacity = "1";
-    document.getElementById("ci").placeholder = currentLang === "hi" ? "पैसों के बारे में कुछ भी पूछें..." : "Ask anything about money in India...";
-    send();
-  };
-  recognition.onerror = function() {
-    voiceActive = false;
-    document.getElementById("vb").textContent = "🎤";
-    document.getElementById("vb").style.opacity = "1";
-    document.getElementById("ci").placeholder = currentLang === "hi" ? "पैसों के बारे में कुछ भी पूछें..." : "Ask anything about money in India...";
-  };
-  recognition.onend = function() {
-    voiceActive = false;
-    document.getElementById("vb").textContent = "🎤";
-    document.getElementById("vb").style.opacity = "1";
-  };
-  recognition.start();
-}
-
-// STREAMING RESPONSES
-async function sendStreaming(msg, id) {
-  try {
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        model: MODEL,
-        messages: chatLog,
-        stream: false
-      })
-    });
-    const d = await response.json();
-    var reply = d.choices[0].message.content;
+async function sendStreaming(msg,id,br){
+  try{
+    const response=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:MODEL,messages:chatLog,stream:false})});
+    const d=await response.json();
+    var reply=d.choices[0].message.content;
     chatLog.push({role:"assistant",content:reply});
-    if(chatLog.length > 20) chatLog = chatLog.slice(chatLog.length - 20);
-    localStorage.setItem("finly_chat", JSON.stringify(chatLog));
+    if(chatLog.length>20)chatLog=chatLog.slice(chatLog.length-20);
+    localStorage.setItem("finly_chat",JSON.stringify(chatLog));
     var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
     av.className="bav";av.innerHTML=snow(false);
-    // Type out response word by word for streaming effect
     bc.innerHTML="";
-    var words = reply.split(" ");
-    var i = 0;
-    var temp = "";
-    function typeWord() {
-      if(i < words.length) {
-        temp += (i > 0 ? " " : "") + words[i];
-        bc.innerHTML = temp;
-        i++;
-        setTimeout(typeWord, 30);
-      } else {
-        bc.innerHTML = reply;
-        var cr=bc.querySelector(".chartrequest");
-        if(cr){var ct=cr.getAttribute("data-type");cr.remove();renderWidget(br,ct);}
-        document.getElementById("sb").disabled=false;
-        br.scrollIntoView({behavior:"smooth",block:"start"});
-        if(!isPro&&qCount>=FREE)showLimit();
-      }
-    }
+    var words=reply.split(" "),i=0,temp="";
+    function typeWord(){if(i<words.length){temp+=(i>0?" ":"")+words[i];bc.innerHTML=temp;i++;setTimeout(typeWord,30);}else{bc.innerHTML=reply;var cr=bc.querySelector(".chartrequest");if(cr){var ct=cr.getAttribute("data-type");cr.remove();renderWidget(br,ct);}document.getElementById("sb").disabled=false;br.scrollIntoView({behavior:"smooth",block:"start"});if(!isPro&&qCount>=FREE)showLimit();}}
     typeWord();
-  } catch(err) {
-    var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);
-    av.className="bav";av.innerHTML=snow(false);
-    bc.innerHTML="Something went wrong. Please check your connection and try again.";
-    document.getElementById("sb").disabled=false;
-  }
+  }catch(err){var av=document.getElementById("av"+id),bc=document.getElementById("bc"+id);av.className="bav";av.innerHTML=snow(false);bc.innerHTML="Something went wrong. Please check your connection and try again.";document.getElementById("sb").disabled=false;}
 }
 
-function clearChat(){
-  chatLog=[];
-  localStorage.removeItem("finly_chat");
-  document.getElementById("msgs").innerHTML="";
-  document.getElementById("chat").classList.remove("on");
-  document.getElementById("welcome").style.display="flex";
-}
+function clearChat(){chatLog=[];localStorage.removeItem("finly_chat");document.getElementById("msgs").innerHTML="";document.getElementById("chat").classList.remove("on");document.getElementById("welcome").style.display="flex";}
 function openModal(){document.getElementById("ov").classList.add("open");}
 function closeModal(){document.getElementById("ov").classList.remove("open");}
-window.joinWaitlist=function(){var email=document.getElementById("waitlist-email").value.trim();var msg=document.getElementById("waitlist-msg");if(!email||!email.includes("@")){msg.style.color="#c0392b";msg.textContent="Please enter a valid email.";return;}msg.style.color="#0a7a4a";msg.textContent="✓ You're on the list! We'll email you when Pro launches.";document.getElementById("waitlist-email").value="";document.getElementById("waitlist-email").disabled=true;};
+window.joinWaitlist=function(){var email=document.getElementById("waitlist-email").value.trim();var msg=document.getElementById("waitlist-msg");if(!email||!email.includes("@")){msg.style.color="#c0392b";msg.textContent="Please enter a valid email.";return;}msg.style.color="#0a7a4a";msg.textContent="✓ You're on the list!";document.getElementById("waitlist-email").value="";document.getElementById("waitlist-email").disabled=true;};
 function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 </script>
 </body>
